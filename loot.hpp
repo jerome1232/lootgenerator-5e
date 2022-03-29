@@ -23,19 +23,21 @@
  * You should have received a copy of the GNU General Public License
  * along with Loot Generator.  If not, see <http://www.gnu.org/licenses/>.
  */
+#ifndef LOOT_HPP
+#define LOOT_HPP
 
 #include <string>
 
 class Loot
 {
 protected:
-    /* data */
     std::string _name;
     std::string _description;
     float _value;
 
 public:
-    Loot(std::string, std::string, float);
+    Loot(std::string, std::string);
+    virtual ~Loot() {};
 
     std::string get_name();
     std::string get_description();
@@ -48,26 +50,36 @@ public:
     virtual void set_value(float) = 0;
 };
 
-class Coin: protected Loot
+class Coin: public Loot
 {
     public:
+        Coin(std::string, std::string, float);
+        virtual ~Coin() {};
+        virtual void set_value(float);
+};
+
+class Gemstone: public Loot
+{
+    public:
+        Gemstone(std::string, std::string, float);
+        virtual ~Gemstone() {};
         void set_value(float);
 };
 
-class Gemstone: protected Loot
+class Art: public Loot
 {
     public:
+        Art(std::string, std::string, float);
+        virtual ~Art() {};
         void set_value(float);
 };
 
-class Art: protected Loot
+class MagicItem: public Loot
 {
     public:
+        MagicItem(std::string, std::string, float);
+        virtual ~MagicItem() {};
         void set_value(float);
 };
 
-class MagicItem: protected Loot
-{
-    public:
-        void set_value(float);
-};
+#endif /* LOOT_HPP */

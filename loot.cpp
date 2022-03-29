@@ -1,4 +1,3 @@
-
 /**
  * @file loot.cpp
  * @author Jeremy Jones <j.jones1232@gmail.com>
@@ -32,11 +31,10 @@
 #include <iostream>
 #include <math.h>
 
-Loot::Loot(std::string name, std::string description, float value)
+Loot::Loot(std::string name, std::string description)
 {
     set_name(name);
     set_description(description);
-    set_value(value);
 }
 
 bool Loot::isInt(float num)
@@ -61,6 +59,27 @@ void Loot::set_description(std::string description)
     _description = description;
 }
 
+std::string Loot::get_description()
+{
+    return _description;
+}
+
+std::string Loot::get_name()
+{
+    return _name;
+}
+
+float Loot::get_value()
+{
+    return _value;
+}
+
+Coin::Coin(std::string name, std::string desc, float value)
+    : Loot(name, desc)
+    {
+        set_value(value);
+    };
+
 void Coin::set_value(float value)
 {
     if (value >= 0)
@@ -71,6 +90,12 @@ void Coin::set_value(float value)
     {
         _value = 0;
     }
+}
+
+Gemstone::Gemstone(std::string name, std::string desc, float value)
+    : Loot(name, desc)
+{
+    set_value(value);
 }
 
 void Gemstone::set_value(float value)
@@ -85,6 +110,12 @@ void Gemstone::set_value(float value)
     }
 }
 
+Art::Art(std::string name, std::string desc, float value)
+    : Loot(name, desc)
+{
+    set_value(value);
+}
+
 void Art::set_value(float value)
 {
     if (value >= 0)
@@ -95,6 +126,12 @@ void Art::set_value(float value)
     {
         _value = 0;
     }
+}
+
+MagicItem::MagicItem(std::string name, std::string desc, float value)
+    : Loot(name, desc)
+{
+    set_value(value);
 }
 
 void MagicItem::set_value(float value)
