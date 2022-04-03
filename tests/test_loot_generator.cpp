@@ -24,7 +24,9 @@
  * along with Loot Generator.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "../generator.hpp"
+#include "../lootFactory.hpp"
+#include "../treasureGenerator.hpp"
+#include "../loot.hpp"
 #include <iostream>
 
 void printLoot(Loot* loot)
@@ -37,34 +39,12 @@ void printLoot(Loot* loot)
 
 int main()
 {
-    int myArrSize = 5;
-    Loot* myArr[myArrSize];
-    for (int i = 0; i < myArrSize; i++)
-    {
-        myArr[i] = NULL;
-    }
+    treasure* genTreasure = TreasureGenerator::generate_loot(0, true);
 
-    for (int i = 0; i < myArrSize; i++)
-    {
-        myArr[i] = LootFactory::gemFactory(10);
-    }
+    printLoot(genTreasure->coinage->copper);
 
-    for (int i = 0; i < myArrSize; i++)
-    {
-        if (myArr[i])
-        {
-            std::cout << std::endl;
-            printLoot(myArr[i]);
-        }
-    }
-
-    // cleanup
-    for (int i = 0; i < myArrSize; i++)
-    {
-        if (! myArr[i])
-        {
-            delete myArr[i];
-            myArr[i] = NULL;
-        }
-    }
+    delete genTreasure->coinage;
+    genTreasure->coinage = NULL;
+    delete genTreasure;
+    genTreasure = NULL;
 }
