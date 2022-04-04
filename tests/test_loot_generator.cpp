@@ -31,20 +31,53 @@
 
 void printLoot(Loot* loot)
 {
-    std::cout << "Name: " << loot->get_name() << std::endl
-              << "Description: " << loot->get_description() << std::endl
-              << "Value: " << loot->get_value() << std::endl;
-
+    if (loot)
+    {
+        std::cout << loot->get_value() << " " << loot->get_name() << std::endl;
+    }
 }
 
 int main()
 {
-    treasure* genTreasure = TreasureGenerator::generate_loot(0, true);
+    treasure* genTreasure = TreasureGenerator::generate_loot(5, true);
 
-    printLoot(genTreasure->coinage->copper);
+    if (genTreasure && genTreasure->coinage)
+    {
+        printLoot(genTreasure->coinage->copper);
+        printLoot(genTreasure->coinage->silver);
+        printLoot(genTreasure->coinage->electrum);
+        printLoot(genTreasure->coinage->gold);
+        printLoot(genTreasure->coinage->platinum);
+    }
+
+    if (genTreasure->coinage->copper)
+    {
+        delete genTreasure->coinage->copper;
+        genTreasure->coinage->copper = nullptr;
+    }
+    if (genTreasure->coinage->silver)
+    {
+        delete genTreasure->coinage->silver;
+        genTreasure->coinage->silver = nullptr;
+    }
+    if (genTreasure->coinage->electrum)
+    {
+        delete genTreasure->coinage->electrum;
+        genTreasure->coinage->electrum = nullptr;
+    }
+    if (genTreasure->coinage->gold)
+    {
+        delete genTreasure->coinage->gold;
+        genTreasure->coinage->gold = nullptr;
+    }
+    if (genTreasure->coinage->platinum)
+    {
+        delete genTreasure->coinage->platinum;
+        genTreasure->coinage->platinum = nullptr;
+    }
 
     delete genTreasure->coinage;
-    genTreasure->coinage = NULL;
+    genTreasure->coinage = nullptr;
     delete genTreasure;
-    genTreasure = NULL;
+    genTreasure = nullptr;
 }
