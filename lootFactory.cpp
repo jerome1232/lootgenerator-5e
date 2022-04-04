@@ -25,8 +25,8 @@
  */
 
 #include "lootFactory.hpp"
-#include <iostream>
 #include <exception>
+#include <iostream>
 
 std::random_device LootFactory::r;
 std::default_random_engine LootFactory::gen (r());
