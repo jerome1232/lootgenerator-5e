@@ -30,6 +30,7 @@
 
 #include "loot.hpp"
 #include <vector>
+#include <random>
 
 struct coins
 {
