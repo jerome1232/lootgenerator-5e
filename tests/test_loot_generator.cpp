@@ -37,47 +37,71 @@ void printLoot(Loot* loot)
     }
 }
 
+void delTreasure(treasure* pTreasure)
+{
+    if (!pTreasure)
+    {
+        return;
+    }
+    if (!pTreasure->coinage)
+    {
+        delete pTreasure;
+        pTreasure = nullptr;
+        return;
+    }
+    if (pTreasure->coinage->copper)
+    {
+        delete pTreasure->coinage->copper;
+        pTreasure->coinage->copper = nullptr;
+    }
+    if (pTreasure->coinage->silver)
+    {
+        delete pTreasure->coinage->silver;
+        pTreasure->coinage->silver = nullptr;
+    }
+    if (pTreasure->coinage->electrum)
+    {
+        delete pTreasure->coinage->electrum;
+        pTreasure->coinage->electrum = nullptr;
+    }
+    if (pTreasure->coinage->gold)
+    {
+        delete pTreasure->coinage->gold;
+        pTreasure->coinage->gold = nullptr;
+    }
+    if (pTreasure->coinage->platinum)
+    {
+        delete pTreasure->coinage->platinum;
+        pTreasure->coinage->platinum = nullptr;
+    }
+    delete pTreasure->coinage;
+    pTreasure->coinage = nullptr;
+    delete pTreasure;
+    pTreasure = nullptr;
+}
+
 int main()
 {
-    treasure* genTreasure = TreasureGenerator::generate_loot(5, true);
+    std::random_device r;
+    std::default_random_engine gen(r());
+    std::uniform_int_distribution<int> d20(1, 20);
+    treasure* genTreasure;
 
-    if (genTreasure && genTreasure->coinage)
+    for (int i = 0; i < 1000; i++)
     {
-        printLoot(genTreasure->coinage->copper);
-        printLoot(genTreasure->coinage->silver);
-        printLoot(genTreasure->coinage->electrum);
-        printLoot(genTreasure->coinage->gold);
-        printLoot(genTreasure->coinage->platinum);
+        int roll = d20(gen);
+        std::cout << "##########################################\n"
+                  << "Generating Individual treasure for CR: "
+                  << roll << std::endl;
+        genTreasure = TreasureGenerator::generate_loot(roll, true);
+        if (genTreasure && genTreasure->coinage)
+        {
+            printLoot(genTreasure->coinage->copper);
+            printLoot(genTreasure->coinage->silver);
+            printLoot(genTreasure->coinage->electrum);
+            printLoot(genTreasure->coinage->gold);
+            printLoot(genTreasure->coinage->platinum);
+        }
+        delTreasure(genTreasure);
     }
-
-    if (genTreasure->coinage->copper)
-    {
-        delete genTreasure->coinage->copper;
-        genTreasure->coinage->copper = nullptr;
-    }
-    if (genTreasure->coinage->silver)
-    {
-        delete genTreasure->coinage->silver;
-        genTreasure->coinage->silver = nullptr;
-    }
-    if (genTreasure->coinage->electrum)
-    {
-        delete genTreasure->coinage->electrum;
-        genTreasure->coinage->electrum = nullptr;
-    }
-    if (genTreasure->coinage->gold)
-    {
-        delete genTreasure->coinage->gold;
-        genTreasure->coinage->gold = nullptr;
-    }
-    if (genTreasure->coinage->platinum)
-    {
-        delete genTreasure->coinage->platinum;
-        genTreasure->coinage->platinum = nullptr;
-    }
-
-    delete genTreasure->coinage;
-    genTreasure->coinage = nullptr;
-    delete genTreasure;
-    genTreasure = nullptr;
 }
