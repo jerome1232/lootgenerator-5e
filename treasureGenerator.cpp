@@ -60,6 +60,8 @@ coins* TreasureGenerator::_coinage_generator(int cr)
     genCoins->platinum = nullptr;
     int roll = d100(gen);
 
+    // std::cout << "DEBUG: " << roll << " :: " << cr << std::endl;
+
     switch (cr)
     {
     case 0:
@@ -119,9 +121,50 @@ coins* TreasureGenerator::_coinage_generator(int cr)
             genCoins->platinum = LootFactory::coinFactory(3, 6, "platinum");
         }
         break;
+    case 11:
+    case 12:
+    case 13:
+    case 14:
+    case 15:
+    case 16:
+        if (1 <= roll and roll <= 20)
+        {
+            genCoins->silver = LootFactory::coinFactory(4, 6, "copper", 100);
+            genCoins->gold = LootFactory::coinFactory(1, 6, "gold", 10);
+        }
+        else if (20 < roll and roll <= 35)
+        {
+            genCoins->electrum = LootFactory::coinFactory(1, 6, "electrum", 100);
+            genCoins->gold = LootFactory::coinFactory(1, 6, "gold", 100);
+        }
+        else if (35 < roll and roll <= 75)
+        {
+            genCoins->gold = LootFactory::coinFactory(2, 6, "gold", 100);
+            genCoins->platinum = LootFactory::coinFactory(1, 6, "platinum", 10);
+        }
+        else
+        {
+            genCoins->gold = LootFactory::coinFactory(2, 6, "gold", 100);
+            genCoins->platinum = LootFactory::coinFactory(2, 6, "platinum", 10);
+        }
+        break;
     default:
+        if (1 <= roll and roll <= 15)
+        {
+            genCoins->electrum = LootFactory::coinFactory(2, 6, "electrum", 1000);
+            genCoins->gold = LootFactory::coinFactory(8, 6, "gold", 100);
+        }
+        else if (15 < roll and roll <= 55)
+        {
+            genCoins->gold = LootFactory::coinFactory(1, 6, "gold", 1000);
+            genCoins->platinum = LootFactory::coinFactory(1, 6, "platinum", 100);
+        }
+        else
+        {
+            genCoins->gold = LootFactory::coinFactory(1, 6, "gold", 1000);
+            genCoins->platinum = LootFactory::coinFactory(2, 6, "platinum", 100);
+        }
         break;
     }
-
     return genCoins;
 }
