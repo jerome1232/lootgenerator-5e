@@ -79,6 +79,7 @@ Coin* LootFactory::coinFactory(int numDie, int numDieSides,
     {
         amount += dieRoll(gen);
     }
+    amount *= multiplier;
 
     return new Coin(name, desc, amount);
 };
