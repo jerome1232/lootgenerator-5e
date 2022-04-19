@@ -42,7 +42,6 @@ Treasure* TreasureGenerator::generateLoot(const int cr, const bool individual)
         generatedTreasure->coinage = _hoardCoinageGenerator(cr);
         _treasureGenerator(cr, generatedTreasure);
     }
-
     return generatedTreasure;
 }
 
@@ -274,6 +273,128 @@ void TreasureGenerator::_treasureGeneratorCr4(Treasure* treasure)
         {
             treasure->magicItems.push_back(LootFactory::magicItemFactory('A'));
         }
+    }
+    else if (61 <= roll and roll <= 65)
+    {
+        int numItems = d6(gen) + d6(gen);
+        for (int i = 0; i < numItems; i++)
+        {
+            treasure->gems.push_back(LootFactory::gemFactory(10));
+        }
+        numItems = d4(gen);
+        for (int i = 0; i < numItems; i++)
+        {
+            treasure->magicItems.push_back(LootFactory::magicItemFactory('B'));
+        }
+    }
+    else if (66 <= roll and roll <= 70)
+    {
+        int numItems = d4(gen) + d4(gen);
+        for (int i = 0; i < numItems; i++)
+        {
+            treasure->artwork.push_back(LootFactory::artFactory(25));
+        }
+        numItems = d4(gen);
+        for (int i = 0; i < numItems; i++)
+        {
+            treasure->magicItems.push_back(LootFactory::magicItemFactory('B'));
+        }
+    }
+    else if (71 <= roll and roll <= 75)
+    {
+        int numItems = d6(gen) + d6(gen);
+        for (int i = 0; i < numItems; i++)
+        {
+            treasure->gems.push_back(LootFactory::gemFactory(50));
+        }
+        numItems = d4(gen);
+        for (int i = 0; i < numItems; i++)
+        {
+            treasure->magicItems.push_back(LootFactory::magicItemFactory('B'));
+        }
+    }
+    else if (76 <= roll and roll <= 78)
+    {
+        int numItems = d6(gen) + d6(gen);
+        for (int i = 0; i < numItems; i++)
+        {
+            treasure->gems.push_back(LootFactory::gemFactory(10));
+        }
+        numItems = d4(gen);
+        for (int i = 0; i < numItems; i++)
+        {
+            treasure->magicItems.push_back(LootFactory::magicItemFactory('C'));
+        }
+    }
+    else if (79 <= roll and roll <= 80)
+    {
+        int numItems = d4(gen) + d4(gen);
+        for (int i = 0; i < numItems; i++)
+        {
+            treasure->artwork.push_back(LootFactory::artFactory(25));
+        }
+        numItems = d4(gen);
+        for (int i = 0; i < numItems; i++)
+        {
+            treasure->magicItems.push_back(LootFactory::magicItemFactory('C'));
+        }
+    }
+    else if (81 <= roll and roll <= 85)
+    {
+        int numItems = d6(gen) + d6(gen);
+        for (int i = 0; i < numItems; i++)
+        {
+            treasure->gems.push_back(LootFactory::gemFactory(50));
+        }
+        numItems = d4(gen);
+        for (int i = 0; i < numItems; i++)
+        {
+            treasure->magicItems.push_back(LootFactory::magicItemFactory('C'));
+        }
+    }
+    else if (86 <= roll and roll <= 92)
+    {
+        int numItems = d4(gen) + d4(gen);
+        for (int i = 0; i < numItems; i++)
+        {
+            treasure->artwork.push_back(LootFactory::artFactory(25));
+        }
+        numItems = d4(gen);
+        for (int i = 0; i < numItems; i++)
+        {
+            treasure->magicItems.push_back(LootFactory::magicItemFactory('F'));
+        }
+    }
+    else if (93 <= roll and roll <= 97)
+    {
+        int numItems = d6(gen) + d6(gen);
+        for (int i = 0; i < numItems; i++)
+        {
+            treasure->artwork.push_back(LootFactory::artFactory(50));
+        }
+        numItems = d4(gen);
+        for (int i = 0; i < numItems; i++)
+        {
+            treasure->magicItems.push_back(LootFactory::magicItemFactory('F'));
+        }
+    }
+    else if (98 <= roll and roll <= 99)
+    {
+        int numItems = d4(gen) + d4(gen);
+        for (int i = 0; i < numItems; i++)
+        {
+            treasure->artwork.push_back(LootFactory::artFactory(50));
+        }
+        treasure->magicItems.push_back(LootFactory::magicItemFactory('G'));
+    }
+    else if (roll == 100)
+    {
+        int numItems = d6(gen) + d6(gen);
+        for (int i = 0; i < numItems; i++)
+        {
+            treasure->gems.push_back(LootFactory::gemFactory(50));
+        }
+        treasure->magicItems.push_back(LootFactory::magicItemFactory('G'));
     }
 }
 
