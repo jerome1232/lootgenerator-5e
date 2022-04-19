@@ -47,14 +47,6 @@ private:
     static void _treasureGeneratorCr16(Treasure*);
     static void _treasureGeneratorCr17(Treasure*);
 
-    static void _magicItemGeneratorTableA(Treasure*);
-    static void _magicItemGeneratorTableB(Treasure*);
-    static void _magicItemGeneratorTableC(Treasure*);
-    static void _magicItemGeneratorTableE(Treasure*);
-    static void _magicItemGeneratorTableF(Treasure*);
-    static void _magicItemGeneratorTableG(Treasure*);
-    static void _magicItemGeneratorTableH(Treasure*);
-    static void _magicItemGeneratorTableI(Treasure*);
 public:
     ~TreasureGenerator();
     static Treasure* generateLoot(const int, const bool);

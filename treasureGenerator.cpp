@@ -413,5 +413,3 @@ void TreasureGenerator::_treasureGeneratorCr17(Treasure* treasure)
 {
     // TODO
 }
-
-
