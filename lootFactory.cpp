@@ -41,34 +41,28 @@ Coin* LootFactory::coinFactory(int numDie, int numDieSides,
                                std::string coinType, int multiplier)
 {
     std::string name;
-    std::string desc;
     int amount = 0;
     std::uniform_int_distribution<int> dieRoll(1, numDieSides);
 
     if (coinType == "copper")
     {
         name = "copper";
-        desc = "solid copper";
     }
     else if (coinType == "silver")
     {
         name = "silver";
-        desc = "solid silver";
     }
     else if (coinType == "electrum")
     {
         name = "electrum";
-        desc = "solid electrum";
     }
     else if (coinType == "gold")
     {
         name = "gold";
-        desc = "solid gold";
     }
     else if (coinType == "platinum")
     {
         name = "platinum";
-        desc = "solid platinum";
     }
     else
     {
@@ -81,269 +75,635 @@ Coin* LootFactory::coinFactory(int numDie, int numDieSides,
     }
     amount *= multiplier;
 
-    return new Coin(name, desc, amount);
+    return new Coin(name, amount);
 };
 
-Gemstone* LootFactory::gemFactory(int value)
+Gemstone* LootFactory::gemFactory(const int value)
 {
-    std::string name;
-    std::string desc;
-    int roll;
+    Gemstone* gem = nullptr;
 
     switch (value)
     {
         case 10:
-            roll = d12(gen);
-            switch (roll)
-            {
-                case 1:
-                    name = "Azurite";
-                    desc = "Opaque mottled deep blue";
-                    break;
-                case 2:
-                    name = "Banded agate";
-                    desc = "Translucent striped brown blue, white, or red";
-                    break;
-                case 3:
-                    name = "Blue quartz";
-                    desc = "Transparent pale blue";
-                    break;
-                case 4:
-                    name = "Eye agate";
-                    desc = "Translucent circles of gray, white, brown, blue, or green";
-                    break;
-                case 5:
-                    name = "Hematite";
-                    desc = "Opaque gray-black";
-                    break;
-                case 6:
-                    name = "Lapis lazuli";
-                    desc = "Opaque light and dark blue with yellow flecks";
-                    break;
-                case 7:
-                    name = "Malachite";
-                    desc = "Opaque striated light and dark green";
-                    break;
-                case 8:
-                    name = "Moss agate";
-                    desc = "Translucent pink or yellow-white with mossy gray or green markings";
-                    break;
-                case 9:
-                    name = "Obsidian";
-                    desc = "Opaque black";
-                    break;
-                case 10:
-                    name = "Rhodochrosite";
-                    desc = "Opaque light pink";
-                    break;
-                case 11:
-                    name = "Tiger eye";
-                    desc = "Translucent brown with golden center";
-                    break;
-                case 12:
-                    name = "Turquoise";
-                    desc = "Opaque light blue-green";
-                    break;
-            }
+            gem = _gen10gpGem(value);
             break;
         case 50:
-            roll = d12(gen);
-            switch (roll)
-            {
-            case 1:
-                name = "Bloodstone";
-                desc = "Opaque dark gray with red flecks";
-                break;
-            case 2:
-                name = "Carnelian";
-                desc = "Opaque orange to red-brown";
-                break;
-            case 3:
-                name = "Chalcedony";
-                desc = "Opaque white";
-                break;
-            case 4:
-                name = "Chrysoprase";
-                desc = "Translucent green";
-                break;
-            case 5:
-                name = "Citrine";
-                desc = "Transparent pale yellow-brown";
-                break;
-            case 6:
-                name = "Jasper";
-                desc = "Opaque blue, black, or brown";
-                break;
-            case 7:
-                name = "Moonstone";
-                desc = "Translucent white with pale blue glow";
-                break;
-            case 8:
-                name = "Onyx";
-                desc = "Opaque bands of black and white, or pure black or white";
-                break;
-            case 9:
-                name = "Quartz";
-                desc = "Transparent white, smokey gray, or yellow";
-                break;
-            case 10:
-                name = "Sardonyx";
-                desc = "Opaque bands of red and white";
-                break;
-            case 11:
-                name = "Star rose quartz";
-                desc = "Translucent rosy stone with white star-shaped center";
-            case 12:
-                name = "Zircon";
-                desc = "Transparent pale blue-green";
-            }
+            gem = _gen50gpGem(value);
             break;
         case 100:
-            roll = d10(gen);
-            switch (roll)
-            {
-            case 1:
-                name = "Amber";
-                desc = "Transparent deep purple";
-                break;
-            case 2:
-                name = "Amethyst";
-                desc = "Transparent deep purple";
-                break;
-            case 3:
-                name = "Chrysoberyl";
-                desc = "Transparent yellow-green to pale green";
-                break;
-            case 4:
-                name = "Coral";
-                desc = "Opaque crimson";
-                break;
-            case 5:
-                name = "Garnet";
-                desc = "Transparent red, brown-green, or violet";
-                break;
-            case 6:
-                name = "Jade";
-                desc = "Translucent light green, deep green, or white";
-                break;
-            case 7:
-                name = "Jet";
-                desc = "Opaque deep black";
-                break;
-            case 8:
-                name = "Pearl";
-                desc = "Opaque lustrous white, yellow, or pink";
-                break;
-            case 9:
-                name = "Spinel";
-                desc = "Transparent red, red-brow, or deep green";
-                break;
-            case 10:
-                name = "Tourmaline";
-                desc = "Transparent pale green, blue, brown, or red";
-                break;
-            }
+            gem = _gen100gpGem(value);
             break;
         case 500:
-            roll = d6(gen);
-            switch (roll)
-            {
-            case 1:
-                name = "Alexandrite";
-                desc = "Transperent dark green";
-                break;
-            case 2:
-                name = "Aquamarine";
-                desc = "Transparent pale blue-green";
-                break;
-            case 3:
-                name = "Black pearl";
-                desc = "Opaque pure black";
-                break;
-            case 4:
-                name = "Blue spinel";
-                desc = "Transparent deep blue";
-                break;
-            case 5:
-                name = "Peridot";
-                desc = "Transparent rich olive green";
-                break;
-            case 6:
-                name = "Topaz";
-                desc = "Transparent golden yellow";
-                break;
-            }
+            gem = _gen500gpGem(value);
             break;
         case 1000:
-            roll = d8(gen);
-            switch (roll)
-            {
-            case 1:
-                name = "Black opal";
-                desc = "Tranlucent dark green with black mottling and golden flecks";
-                break;
-            case 2:
-                name = "Blue sapphire";
-                desc = "Transparent blue-white to medium blue";
-                break;
-            case 3:
-                name = "Emerald";
-                desc = "Transparent deep bright green";
-                break;
-            case 4:
-                name = "Fire opal";
-                desc = "Tranlucent fiery red";
-                break;
-            case 5:
-                name = "Opal";
-                desc = "Translucent pale blue with green and golden mottling";
-                break;
-            case 6:
-                name = "Star ruby";
-                desc = "Translucent pale blue with green and golden mottling";
-                break;
-            case 7:
-                name = "Star sapphire";
-                desc = "Translucent blue sapphire with white star-shaped center";
-                break;
-            case 8:
-                name = "Yellow sapphire";
-                desc = "Transparent fiery yellow or yellow-green";
-                break;
-            }
+            gem = _gen1000gpGem(value);
             break;
         case 5000:
-            roll = d4(gen);
-            switch (roll)
-            {
-            case 1:
-                name = "Black sapphire";
-                desc = "Translucent lustrous black with glowing highlights";
-                break;
-            case 2:
-                name = "Diamond";
-                desc = "Transparent blue-white, canary, pink, brown, or blue";
-                break;
-            case 3:
-                name = "Jacinth";
-                desc = "Transparent fiery orange";
-                break;
-            case 4:
-                name = "Ruby";
-                desc = "Transparent clear red to deep crimson";
-                break;
-            }
+            gem = _gen5000gpGem(value);
             break;
     }
-    return new Gemstone(name, desc, value);
+    return gem;
 };
 
-Art* LootFactory::artFactory(std::string name, std::string desc, float value)
+Gemstone* LootFactory::_gen10gpGem(const int value)
 {
-    return new Art(name, desc, value);
+    std::string name;
+    int roll = d12(gen);
+
+    switch (roll)
+    {
+        case 1:
+            name = "Azurite (Opaque mottled deep blue)";
+            break;
+        case 2:
+            name = "Banded agate (Translucent striped "
+                   "brown blue, white, or red)";
+            break;
+        case 3:
+            name = "Blue quartz (Transparent pale blue)";
+            break;
+        case 4:
+            name = "Eye agate "
+                   "(Translucent circles of gray, white, "
+                   "brown, blue, or green)";
+            break;
+        case 5:
+            name = "Hematite "
+                   "(Opaque gray-black)";
+            break;
+        case 6:
+            name = "Lapis lazuli "
+                   "(Opaque light and dark blue with yellow flecks)";
+            break;
+        case 7:
+            name = "Malachite "
+                   "(Opaque striated light and dark green)";
+            break;
+        case 8:
+            name = "Moss agate "
+                   "(Translucent pink or yellow-white with mossy "
+                   "gray or green markings)";
+            break;
+        case 9:
+            name = "Obsidian (Opaque black)";
+            break;
+        case 10:
+            name = "Rhodochrosite (Opaque light pink)";
+            break;
+        case 11:
+            name = "Tiger eye "
+                   "(Translucent brown with golden center";
+            break;
+        case 12:
+            name = "Turquoise"
+                   " (Opaque light blue-green)";
+            break;
+    }
+    return new Gemstone(name, value);
+}
+
+Gemstone* LootFactory::_gen50gpGem(const int value)
+{
+    std::string name;
+    int roll = d12(gen);
+
+    switch (roll)
+    {
+        case 1:
+            name = "Bloodstone "
+                   "(Opaque dark gray with red flecks)";
+            break;
+        case 2:
+            name = "Carnelian "
+                   "(Opaque orange to red-brown)";
+            break;
+        case 3:
+            name = "Chalcedony "
+                   "(Opaque white)";
+            break;
+        case 4:
+            name = "Chrysoprase "
+                   "(Translucent green)";
+            break;
+        case 5:
+            name = "Citrine "
+                   "(Transparent pale yellow-brown)";
+            break;
+        case 6:
+            name = "Jasper "
+                   "(Opaque blue, black, or brown)";
+            break;
+        case 7:
+            name = "Moonstone "
+                   "(Translucent white with pale blue glow)";
+            break;
+        case 8:
+            name = "Onyx "
+                   "(Opaque bands of black and white, or pure black or white)";
+            break;
+        case 9:
+            name = "Quartz "
+                   "(Transparent white, smokey gray, or yellow)";
+            break;
+        case 10:
+            name = "Sardonyx "
+                   "(Opaque bands of red and white)";
+            break;
+        case 11:
+            name = "Star rose quartz "
+                   "(Translucent rosy stone with white star-shaped center)";
+            break;
+        case 12:
+            name = "Zircon "
+                   "(Transparent pale blue-green)";
+            break;
+    }
+    return new Gemstone(name, value);
+}
+
+Gemstone* LootFactory::_gen100gpGem(const int value)
+{
+    std::string name;
+    int roll = d10(gen);
+    switch (roll)
+    {
+        case 1:
+            name = "Amber "
+                   "(Transparent deep purple)";
+            break;
+        case 2:
+            name = "Amethyst "
+                   "(Transparent deep purple)";
+            break;
+        case 3:
+            name = "Chrysoberyl "
+                   "(Transparent yellow-green to pale green)";
+            break;
+        case 4:
+            name = "Coral "
+                   "(Opaque crimson)";
+            break;
+        case 5:
+            name = "Garnet "
+                   "(Transparent red, brown-green, or violet)";
+            break;
+        case 6:
+            name = "Jade "
+                   "(Translucent light green, deep green, or white)";
+            break;
+        case 7:
+            name = "Jet "
+                   "(Opaque deep black)";
+            break;
+        case 8:
+            name = "Pearl "
+                   "(Opaque lustrous white, yellow, or pink)";
+            break;
+        case 9:
+            name = "Spinel "
+                   "(Transparent red, red-brow, or deep green)";
+            break;
+        case 10:
+            name = "Tourmaline "
+                   "(Transparent pale green, blue, brown, or red)";
+            break;
+    }
+    return new Gemstone(name, value);
+}
+
+Gemstone* LootFactory::_gen500gpGem(const int value)
+{
+    std::string name;
+    int roll = d6(gen);
+
+    switch (roll)
+    {
+        case 1:
+            name = "Alexandrite "
+                   "(Transperent dark green)";
+            break;
+        case 2:
+            name = "Aquamarine "
+                   "(Transparent pale blue-green)";
+            break;
+        case 3:
+            name = "Black pearl "
+                   "(Opaque pure black)";
+            break;
+        case 4:
+            name = "Blue spinel "
+                   "(Transparent deep blue)";
+            break;
+        case 5:
+            name = "Peridot "
+                   "(Transparent rich olive green)";
+            break;
+        case 6:
+            name = "Topaz "
+                   "Transparent golden yellow";
+            break;
+    }
+    return new Gemstone(name, value);
+}
+
+Gemstone* LootFactory::_gen1000gpGem(const int value)
+{
+    std::string name;
+    int roll = d8(gen);
+    switch (roll)
+    {
+        case 1:
+            name = "Black opal "
+                   "(Tranlucent dark green with "
+                   "black mottling and golden flecks)";
+            break;
+        case 2:
+            name = "Blue sapphire "
+                   "(Transparent blue-white to medium blue)";
+            break;
+        case 3:
+            name = "Emerald "
+                   "(Transparent deep bright green)";
+            break;
+        case 4:
+            name = "Fire opal "
+                   "(Tranlucent fiery red)";
+            break;
+        case 5:
+            name = "Opal "
+                   "(Translucent pale blue with green and golden mottling)";
+            break;
+        case 6:
+            name = "Star ruby "
+                   "(Translucent pale blue with green and golden mottling)";
+            break;
+        case 7:
+            name = "Star sapphire "
+                   "(Translucent blue sapphire with white star-shaped center)";
+            break;
+        case 8:
+            name = "Yellow sapphire "
+                   "(Transparent fiery yellow or yellow-green)";
+            break;
+    }
+    return new Gemstone(name, value);
+}
+
+Gemstone* LootFactory::_gen5000gpGem(const int value)
+{
+    std::string name;
+    int roll = d4(gen);
+    switch (roll)
+    {
+        case 1:
+            name = "Black sapphire "
+                   "(Translucent lustrous black with glowing highlights)";
+            break;
+        case 2:
+            name = "Diamond "
+                   "(Transparent blue-white, canary, pink, brown, or blue)";
+            break;
+        case 3:
+            name = "Jacinth "
+                   "(Transparent fiery orange)";
+            break;
+        case 4:
+            name = "Ruby "
+                   "(Transparent clear red to deep crimson)";
+            break;
+    }
+    return new Gemstone(name, value);
+}
+
+
+Art* LootFactory::artFactory(const int value)
+{
+    Art* art = nullptr;
+    switch (value)
+    {
+        case 25:
+            art = _gen25gpArt(value);
+            break;
+        case 250:
+            art = _gen250gpArt(value);
+            break;
+        case 750:
+            art = _gen750gpArt(value);
+            break;
+        case 2500:
+            art = _gen2500gpArt(value);
+            break;
+        case 7500:
+            art = _gen7500gpArt(value);
+            break;
+    }
+    return art;
 };
 
-MagicItem* LootFactory::magicItemFactory(std::string name, std::string desc, float value)
+Art* LootFactory::_gen25gpArt(const int value)
 {
-    return new MagicItem(name, desc, value);
+    std::string name;
+    int roll = d10(gen);
+    switch (roll)
+    {
+        case 1:
+            name = "Silver ewer";
+            break;
+        case 2:
+            name = "Carved bone statuette";
+            break;
+        case 3:
+            name = "Small gold bracelet";
+            break;
+        case 4:
+            name = "Cloth-of-gold vestments";
+            break;
+        case 5:
+            name = "Black velvet mask stitched with silver thread";
+            break;
+        case 6:
+            name = "Copper chalice with silver filigree";
+            break;
+        case 7:
+            name = "Pair of engraved bone dice";
+            break;
+        case 8:
+            name = "Small mirror set in a painted wooden frame";
+            break;
+        case 9:
+            name = "Embroidered silk handkerchief";
+            break;
+        case 10:
+            name = "Gold locket with a painted portrait inside";
+            break;
+    }
+
+    return new Art(name, value);
+}
+
+Art* LootFactory::_gen250gpArt(const int value)
+{
+    std::string name;
+    int roll = d10(gen);
+    switch (roll)
+    {
+        case 1:
+            name = "Gold ring set with bloodstones";
+            break;
+        case 2:
+            name = "Carved ivory statuette";
+            break;
+        case 3:
+            name = "Large gold bracelet";
+            break;
+        case 4:
+            name = "Silver necklace with a gemstone pendant";
+            break;
+        case 5:
+            name = "Bronze crown";
+            break;
+        case 6:
+            name = "Silk robe with gold embroidery";
+            break;
+        case 7:
+            name = "Large well-made tapestry";
+            break;
+        case 8:
+            name = "Brass mug with jade inlay";
+            break;
+        case 9:
+            name = "Box of turquoise animal figurines";
+            break;
+        case 10:
+            name = "Gold bird cage with electrum filigree";
+            break;
+    }
+    return new Art(name, value);
+}
+
+Art* LootFactory::_gen750gpArt(const int value)
+{
+    std::string name;
+    int roll = d10(gen);
+    switch (roll)
+    {
+        case 1:
+            name = "Silver chalice set with moonstones";
+            break;
+        case 2:
+            name = "Silver-plated steel longsword with jet set in hilt";
+            break;
+        case 3:
+            name = "Carved harp of exotic wood with ivory inlay "
+                   "and zircon gems";
+            break;
+        case 4:
+            name = "Small gold idol";
+            break;
+        case 5:
+            name = "Gold dragon comb set with red garnets as eyes";
+            break;
+        case 6:
+            name = "Bottle stopper cork embossed with gold leaf "
+                   "and set with amethysts";
+            break;
+        case 7:
+            name = "Ceremonial electrum dagger with a black "
+                   "pearl in the pommel";
+            break;
+        case 8:
+            name = "Silver and gold brooch";
+            break;
+        case 9:
+            name = "Obsidian statuette with gold fittings and inlay";
+            break;
+        case 10:
+            name = "Painted gold war mask";
+            break;
+    }
+
+    return new Art(name, value);
+}
+
+Art* LootFactory::_gen2500gpArt(const int value)
+{
+    std::string name;
+    int roll = d10(gen);
+    switch (roll)
+    {
+        case 1:
+            name = "Fine gold chain set with a fire opal";
+            break;
+        case 2:
+            name = "Old masterpiece painting";
+            break;
+        case 3:
+            name = "Embroidered silk and velvet mantle "
+                   "set with numerous moonstones";
+            break;
+        case 4:
+            name = "Platinum bracelet set with a sapphire";
+            break;
+        case 5:
+            name = "Embroidered glove set with jewel chips";
+            break;
+        case 6:
+            name = "Jeweled anklet";
+            break;
+        case 8:
+            name = "Gold circlet set with four aquamarines";
+            break;
+        case 9:
+            name = "Eye patch with a mock eye set in "
+                   "blue sapphire and moonstone";
+            break;
+        case 10:
+            name = "A necklace string of small pink pearls";
+            break;
+    }
+
+    return new Art(name, value);
+}
+
+Art* LootFactory::_gen7500gpArt(const int value)
+{
+    std::string name;
+    int roll = d8(gen);
+    switch (roll)
+    {
+        case 1:
+            name = "Jeweled gold crown";
+            break;
+        case 2:
+            name = "Jeweled platinum ring";
+            break;
+        case 3:
+            name = "Small gold statuette set with rubies";
+            break;
+        case 4:
+            name = "Gold cup set with emeralds";
+            break;
+        case 5:
+            name = "Gold jewelry box with platinum filigree";
+            break;
+        case 6:
+            name = "Painted gold child's sarcophagus";
+            break;
+        case 7:
+            name = "Jade game board with solid gold playing pieces";
+            break;
+        case 8:
+            name = "Bejeweled ivory drinking horn with gold filigree";
+            break;
+    }
+
+    return new Art(name, value);
+}
+
+MagicItem* LootFactory::magicItemFactory(char table)
+{
+    MagicItem* magicItem = nullptr;
+    switch (table)
+    {
+        case 'A':
+        case 'a':
+            magicItem = _magicItemFactoryTableA();
+            break;
+        case 'B':
+        case 'b':
+            magicItem = _magicItemFactoryTableB();
+            break;
+        case 'C':
+        case 'c':
+            magicItem = _magicItemFactoryTableC();
+            break;
+        case 'D':
+        case 'd':
+            magicItem = _magicItemFactoryTableD();
+            break;
+        case 'E':
+        case 'e':
+            magicItem = _magicItemFactoryTableE();
+            break;
+        case 'F':
+        case 'f':
+            magicItem = _magicItemFactoryTableF();
+            break;
+        case 'G':
+        case 'g':
+            magicItem = _magicItemFactoryTableG();
+            break;
+        case 'H':
+        case 'h':
+            magicItem = _magicItemFactoryTableH();
+            break;
+        case 'I':
+        case 'i':
+            magicItem = _magicItemFactoryTableI();
+            break;
+    }
+    return magicItem;
+}
+
+MagicItem* LootFactory::_magicItemFactoryTableA()
+{
+    MagicItem* magicItem = nullptr;
+
+    return magicItem;
+}
+MagicItem* LootFactory::_magicItemFactoryTableB()
+{
+    MagicItem* magicItem = nullptr;
+
+    return magicItem;
+}
+
+MagicItem* LootFactory::_magicItemFactoryTableC()
+{
+    MagicItem* magicItem = nullptr;
+
+    return magicItem;
+}
+
+MagicItem* LootFactory::_magicItemFactoryTableD()
+{
+    MagicItem* magicItem = nullptr;
+
+    return magicItem;
+}
+
+MagicItem* LootFactory::_magicItemFactoryTableE()
+{
+    MagicItem* magicItem = nullptr;
+
+    return magicItem;
+}
+
+MagicItem* LootFactory::_magicItemFactoryTableF()
+{
+    MagicItem* magicItem = nullptr;
+
+    return magicItem;
+}
+
+MagicItem* LootFactory::_magicItemFactoryTableG()
+{
+    MagicItem* magicItem = nullptr;
+
+    return magicItem;
+}
+
+MagicItem* LootFactory::_magicItemFactoryTableH()
+{
+    MagicItem* magicItem = nullptr;
+
+    return magicItem;
+}
+
+MagicItem* LootFactory::_magicItemFactoryTableI()
+{
+    MagicItem* magicItem = nullptr;
+
+    return magicItem;
 }

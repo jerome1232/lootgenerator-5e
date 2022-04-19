@@ -37,13 +37,36 @@ class LootFactory
         static std::random_device r;
         static std::default_random_engine gen;
         static std::uniform_int_distribution<int> distribution;
+
+        static Gemstone* _gen10gpGem(const int);
+        static Gemstone* _gen50gpGem(const int);
+        static Gemstone* _gen100gpGem(const int);
+        static Gemstone* _gen500gpGem(const int);
+        static Gemstone* _gen1000gpGem(const int);
+        static Gemstone* _gen5000gpGem(const int);
+
+        static Art* _gen25gpArt(const int);
+        static Art* _gen250gpArt(const int);
+        static Art* _gen750gpArt(const int);
+        static Art* _gen2500gpArt(const int);
+        static Art* _gen7500gpArt(const int);
+
+        static MagicItem* _magicItemFactoryTableA();
+        static MagicItem* _magicItemFactoryTableB();
+        static MagicItem* _magicItemFactoryTableC();
+        static MagicItem* _magicItemFactoryTableD();
+        static MagicItem* _magicItemFactoryTableE();
+        static MagicItem* _magicItemFactoryTableF();
+        static MagicItem* _magicItemFactoryTableG();
+        static MagicItem* _magicItemFactoryTableH();
+        static MagicItem* _magicItemFactoryTableI();
     public:
         virtual ~LootFactory() {};
 
         static Coin* coinFactory(int, int, std::string, int = 1);
         static Gemstone* gemFactory(int);
-        static Art* artFactory(std::string, std::string, float);
-        static MagicItem* magicItemFactory(std::string, std::string, float);
+        static Art* artFactory(int);
+        static MagicItem* magicItemFactory(char);
 };
 
 
