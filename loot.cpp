@@ -31,10 +31,9 @@
 #include <iostream>
 #include <math.h>
 
-Loot::Loot(std::string name, std::string description)
+Loot::Loot(std::string name)
 {
     set_name(name);
-    set_description(description);
 }
 
 bool Loot::isInt(float num)
@@ -54,16 +53,6 @@ void Loot::set_name(std::string name)
     _name = name;
 }
 
-void Loot::set_description(std::string description)
-{
-    _description = description;
-}
-
-std::string Loot::get_description()
-{
-    return _description;
-}
-
 std::string Loot::get_name()
 {
     return _name;
@@ -74,8 +63,8 @@ float Loot::get_value()
     return _value;
 }
 
-Coin::Coin(std::string name, std::string desc, float value)
-    : Loot(name, desc)
+Coin::Coin(std::string name, float value)
+    : Loot(name)
     {
         set_value(value);
     };
@@ -92,8 +81,8 @@ void Coin::set_value(float value)
     }
 }
 
-Gemstone::Gemstone(std::string name, std::string desc, float value)
-    : Loot(name, desc)
+Gemstone::Gemstone(std::string name, float value)
+    : Loot(name)
 {
     set_value(value);
 }
@@ -110,8 +99,8 @@ void Gemstone::set_value(float value)
     }
 }
 
-Art::Art(std::string name, std::string desc, float value)
-    : Loot(name, desc)
+Art::Art(std::string name, float value)
+    : Loot(name)
 {
     set_value(value);
 }
@@ -128,8 +117,8 @@ void Art::set_value(float value)
     }
 }
 
-MagicItem::MagicItem(std::string name, std::string desc, float value)
-    : Loot(name, desc)
+MagicItem::MagicItem(std::string name, float value)
+    : Loot(name)
 {
     set_value(value);
 }

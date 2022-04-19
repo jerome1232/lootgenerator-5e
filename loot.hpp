@@ -32,28 +32,25 @@ class Loot
 {
 protected:
     std::string _name;
-    std::string _description;
     float _value;
 
 public:
-    Loot(std::string, std::string);
+    Loot(std::string);
     virtual ~Loot() {};
 
     std::string get_name();
-    std::string get_description();
     float get_value();
 
     static bool isInt(float);
 
     void set_name(std::string);
-    void set_description(std::string);
     virtual void set_value(float) = 0;
 };
 
 class Coin: public Loot
 {
     public:
-        Coin(std::string, std::string, float);
+        Coin(std::string, float);
         virtual ~Coin() {};
         virtual void set_value(float);
 };
@@ -61,7 +58,7 @@ class Coin: public Loot
 class Gemstone: public Loot
 {
     public:
-        Gemstone(std::string, std::string, float);
+        Gemstone(std::string, float);
         virtual ~Gemstone() {};
         void set_value(float);
 };
@@ -69,7 +66,7 @@ class Gemstone: public Loot
 class Art: public Loot
 {
     public:
-        Art(std::string, std::string, float);
+        Art(std::string, float);
         virtual ~Art() {};
         void set_value(float);
 };
@@ -77,7 +74,7 @@ class Art: public Loot
 class MagicItem: public Loot
 {
     public:
-        MagicItem(std::string, std::string, float);
+        MagicItem(std::string, float);
         virtual ~MagicItem() {};
         void set_value(float);
 };
