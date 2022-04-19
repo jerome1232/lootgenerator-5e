@@ -29,34 +29,35 @@
 
 
 #include "loot.hpp"
+#include "coinage.hpp"
+#include "treasure.hpp"
 #include <vector>
 #include <random>
 
-struct coins
-{
-    Coin* copper;
-    Coin* silver;
-    Coin* electrum;
-    Coin* gold;
-    Coin* platinum;
-};
-
-struct treasure
-{
-    coins* coinage;
-    std::vector<Gemstone*> gems;
-    std::vector<Art*> artwork;
-    std::vector<MagicItem*> magicItems;
-};
 
 class TreasureGenerator
 {
 private:
-    static coins* _coinage_generator(int);
-    static treasure* _treasure_generator(int);
+    static Coinage* _coinageGenerator(const int);
+    static Coinage* _hoardCoinageGenerator(const int);
+
+    static void _treasureGenerator(const int, Treasure*);
+    static void _treasureGeneratorCr4(Treasure*);
+    static void _treasureGeneratorCr10(Treasure*);
+    static void _treasureGeneratorCr16(Treasure*);
+    static void _treasureGeneratorCr17(Treasure*);
+
+    static void _magicItemGeneratorTableA(Treasure*);
+    static void _magicItemGeneratorTableB(Treasure*);
+    static void _magicItemGeneratorTableC(Treasure*);
+    static void _magicItemGeneratorTableE(Treasure*);
+    static void _magicItemGeneratorTableF(Treasure*);
+    static void _magicItemGeneratorTableG(Treasure*);
+    static void _magicItemGeneratorTableH(Treasure*);
+    static void _magicItemGeneratorTableI(Treasure*);
 public:
     ~TreasureGenerator();
-    static treasure* generate_loot(int, bool);
+    static Treasure* generateLoot(const int, const bool);
 };
 
 

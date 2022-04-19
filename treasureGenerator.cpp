@@ -28,36 +28,31 @@
 #include "lootFactory.hpp"
 #include <iostream>
 
-treasure* TreasureGenerator::generate_loot(int cr, bool individual)
+Treasure* TreasureGenerator::generateLoot(const int cr, const bool individual)
 {
 
-    treasure* generatedTreasure = new treasure();
-    generatedTreasure->coinage = nullptr;
+    Treasure* generatedTreasure = new Treasure();
 
     if (individual)
     {
-        generatedTreasure->coinage = _coinage_generator(cr);
+        generatedTreasure->coinage = _coinageGenerator(cr);
     }
     else
     {
-        // TODO
+        generatedTreasure->coinage = _hoardCoinageGenerator(cr);
+        _treasureGenerator(cr, generatedTreasure);
     }
 
     return generatedTreasure;
 }
 
-coins* TreasureGenerator::_coinage_generator(int cr)
+Coinage* TreasureGenerator::_coinageGenerator(const int cr)
 {
     std::random_device r;
     std::default_random_engine gen(r());
     std::uniform_int_distribution<int> d100(1, 100);
 
-    coins* genCoins = new coins();
-    genCoins->copper = nullptr;
-    genCoins->silver = nullptr;
-    genCoins->electrum = nullptr;
-    genCoins->gold = nullptr;
-    genCoins->platinum = nullptr;
+    Coinage* genCoins = new Coinage();
     int roll = d100(gen);
 
     // std::cout << "DEBUG: " << roll << " :: " << cr << std::endl;
@@ -168,3 +163,134 @@ coins* TreasureGenerator::_coinage_generator(int cr)
     }
     return genCoins;
 }
+
+Coinage* TreasureGenerator::_hoardCoinageGenerator(const int cr)
+{
+    Coinage* generatedCoins = new Coinage();
+
+    if (0 <= cr and cr <= 4)
+    {
+        generatedCoins->copper = LootFactory::coinFactory(6, 6, "copper", 100);
+        generatedCoins->silver= LootFactory::coinFactory(3, 6, "silver", 100);
+        generatedCoins->gold= LootFactory::coinFactory(3, 6, "gold", 10);
+    }
+    else if (5 <= cr and cr <= 10)
+    {
+        generatedCoins->copper = LootFactory::coinFactory(2, 6, "copper", 100);
+        generatedCoins->silver= LootFactory::coinFactory(2, 6, "silver", 1000);
+        generatedCoins->gold= LootFactory::coinFactory(6, 6, "gold", 100);
+        generatedCoins->platinum = LootFactory::coinFactory(3, 6, "platinum", 10);
+    }
+    else if (11 <= cr and cr <= 16)
+    {
+        generatedCoins->gold= LootFactory::coinFactory(4, 6, "gold", 1000);
+        generatedCoins->platinum = LootFactory::coinFactory(5, 6, "platinum", 100);
+    }
+    else
+    {
+        generatedCoins->gold= LootFactory::coinFactory(12, 6, "gold", 1000);
+        generatedCoins->platinum = LootFactory::coinFactory(8, 6, "platinum", 1000);
+
+    }
+    return generatedCoins;
+}
+
+void TreasureGenerator::_treasureGenerator(const int cr, Treasure* treasure)
+{
+    if (cr <= 4)
+    {
+        _treasureGeneratorCr4(treasure);
+    }
+}
+
+void TreasureGenerator::_treasureGeneratorCr4(Treasure* treasure)
+{
+    std::random_device r;
+    std::default_random_engine gen (r());
+    std::uniform_int_distribution<int> d100(1, 100);
+    std::uniform_int_distribution<int> d4(1, 4);
+    std::uniform_int_distribution<int> d6(1, 6);
+
+    int roll = d100(gen);
+    if (7 <= roll and roll <= 16)
+    {
+        int numItems = d6(gen) + d6(gen);
+        for (int i = 0; i < numItems; i++)
+        {
+            treasure->gems.push_back(LootFactory::gemFactory(10));
+        }
+    }
+    else if (17 <= roll and roll <= 26)
+    {
+        int numItems = d4(gen) + d4(gen);
+        for (int i = 0; i < numItems; i++)
+        {
+            treasure->artwork.push_back(LootFactory::artFactory(25));
+        }
+    }
+    else if (27 <= roll and roll <= 36)
+    {
+        int numItems = d6(gen) + d6(gen);
+        for (int i = 0; i < numItems; i++)
+        {
+            treasure->gems.push_back(LootFactory::gemFactory(50));
+        }
+    }
+    else if (37 <= roll and roll <= 44)
+    {
+        int numItems = d6(gen) + d6(gen);
+        for (int i = 0; i < numItems; i++)
+        {
+            treasure->gems.push_back(LootFactory::gemFactory(10));
+        }
+        numItems = d6(gen);
+        for (int i = 0; i < numItems; i++)
+        {
+            treasure->magicItems.push_back(LootFactory::magicItemFactory('A'));
+        }
+    }
+    else if (45 <= roll and roll <= 52)
+    {
+        int numItems = d4(gen) + d4(gen);
+        for (int i = 0; i < numItems; i++)
+        {
+            treasure->artwork.push_back(LootFactory::artFactory(25));
+        }
+        numItems = d6(gen);
+        for (int i = 0; i < numItems; i++)
+        {
+            treasure->magicItems.push_back(LootFactory::magicItemFactory('A'));
+        }
+    }
+    else if (53 <= roll and roll <= 60)
+    {
+        int numItems = d6(gen) + d6(gen);
+        for (int i = 0; i < numItems; i++)
+        {
+            treasure->gems.push_back(LootFactory::gemFactory(50));
+        }
+        numItems = d6(gen);
+        for (int i = 0; i < numItems; i++)
+        {
+            treasure->magicItems.push_back(LootFactory::magicItemFactory('A'));
+        }
+    }
+}
+
+
+void TreasureGenerator::_treasureGeneratorCr10(Treasure* treasure)
+{
+    // TODO
+}
+
+void TreasureGenerator::_treasureGeneratorCr16(Treasure* treasure)
+{
+    // TODO
+}
+
+void TreasureGenerator::_treasureGeneratorCr17(Treasure* treasure)
+{
+    // TODO
+}
+
+
