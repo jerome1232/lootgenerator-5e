@@ -27,9 +27,11 @@
 #include "../lootFactory.hpp"
 #include "../treasureGenerator.hpp"
 #include "../loot.hpp"
+#include "../coinage.hpp"
+#include <chrono>
 #include <iostream>
 
-void printLoot(Loot* loot)
+void printCoin(Loot* loot)
 {
     if (loot)
     {
@@ -37,71 +39,132 @@ void printLoot(Loot* loot)
     }
 }
 
-void delTreasure(treasure* pTreasure)
+void printLoot(Loot* loot)
 {
-    if (!pTreasure)
+    if (loot)
     {
-        return;
+        std::cout << loot->get_value() << " gp " << loot->get_name() << std::endl;
     }
-    if (!pTreasure->coinage)
-    {
-        delete pTreasure;
-        pTreasure = nullptr;
-        return;
-    }
-    if (pTreasure->coinage->copper)
-    {
-        delete pTreasure->coinage->copper;
-        pTreasure->coinage->copper = nullptr;
-    }
-    if (pTreasure->coinage->silver)
-    {
-        delete pTreasure->coinage->silver;
-        pTreasure->coinage->silver = nullptr;
-    }
-    if (pTreasure->coinage->electrum)
-    {
-        delete pTreasure->coinage->electrum;
-        pTreasure->coinage->electrum = nullptr;
-    }
-    if (pTreasure->coinage->gold)
-    {
-        delete pTreasure->coinage->gold;
-        pTreasure->coinage->gold = nullptr;
-    }
-    if (pTreasure->coinage->platinum)
-    {
-        delete pTreasure->coinage->platinum;
-        pTreasure->coinage->platinum = nullptr;
-    }
-    delete pTreasure->coinage;
-    pTreasure->coinage = nullptr;
-    delete pTreasure;
-    pTreasure = nullptr;
 }
+
+void printTreasure(Treasure* treasure)
+{
+    if (treasure)
+    {
+        std::cout << "##################\n"
+                     "# HOARD TREASURE #\n"
+                     "##################\n";
+        if (treasure->coinage)
+        {
+            std::cout << "### COINAGE ###\n";
+            printCoin(treasure->coinage->copper);
+            printCoin(treasure->coinage->silver);
+            printCoin(treasure->coinage->electrum);
+            printCoin(treasure->coinage->gold);
+            printCoin(treasure->coinage->platinum);
+        }
+        if (!treasure->artwork.empty())
+        {
+            std::cout << "### ARTWORK ###\n";
+            for (auto e : treasure->artwork)
+            {
+                printLoot(e);
+            }
+        }
+        if (!treasure->gems.empty())
+        {
+            std::cout << "### GEMSTONES ###\n";
+            for (auto e : treasure->gems)
+            {
+                printLoot(e);
+            }
+        }
+        if (!treasure->magicItems.empty())
+        {
+            std::cout << " ### MAGIC ITEMS ###\n";
+            for (auto e : treasure->magicItems)
+            {
+                printLoot(e);
+            }
+        }
+    }
+}
+
+#define SIZE 100000
 
 int main()
 {
     std::random_device r;
     std::default_random_engine gen(r());
     std::uniform_int_distribution<int> d20(1, 20);
-    treasure* genTreasure;
+    Treasure* genTreasure = nullptr;
+    Treasure* generatedTreasures[SIZE];
 
-    for (int i = 0; i < 1000; i++)
+    auto start = std::chrono::high_resolution_clock::now();
+    for (int i = 0; i < SIZE; i++)
     {
         int roll = d20(gen);
-        std::cout << "##########################################\n"
-                  << "Generating Individual treasure for CR: "
-                  << roll << std::endl;
-        genTreasure = TreasureGenerator::generate_loot(roll, true);
-        if (genTreasure && genTreasure->coinage)
-        {
-            printLoot(genTreasure->coinage->copper);
-            printLoot(genTreasure->coinage->silver);
-            printLoot(genTreasure->coinage->electrum);
-            printLoot(genTreasure->coinage->gold);
-            printLoot(genTreasure->coinage->platinum);
-        }
-        delTreasure(genTreasure);
+        generatedTreasures[i] = TreasureGenerator::generateLoot(roll, true);
     }
+    auto stop = std::chrono::high_resolution_clock::now();
+    auto generationTime = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
+
+
+    start = std::chrono::high_resolution_clock::now();
+    for (int i = 0; i < SIZE; i++)
+    {
+        printTreasure(generatedTreasures[i]);
+    }
+    stop = std::chrono::high_resolution_clock::now();
+    auto printTime = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
+
+
+    start = std::chrono::high_resolution_clock::now();
+    for (int i = 0; i < SIZE; i++)
+    {
+        delete generatedTreasures[i];
+        generatedTreasures[i] = nullptr;
+    }
+    stop = std::chrono::high_resolution_clock::now();
+    auto deletionTime = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
+
+    std::cout << SIZE << " Treasures generated\n"
+              << "Treasure generated in " << generationTime.count() << " milliseconds\n"
+              << "Treasure printed in " << printTime.count() << " milliseconds\n"
+              << "Treasure deleted in " << deletionTime.count() << " milliseconds\n";
+
+    std::cout << "TESTING hoard treasure\n\n\n";
+
+    start = std::chrono::high_resolution_clock::now();
+    for (int i = 0; i < SIZE; i++)
+    {
+        // int roll = d20(gen);
+        int roll = 4;
+        generatedTreasures[i] = TreasureGenerator::generateLoot(roll, false);
+    }
+    stop = std::chrono::high_resolution_clock::now();
+    generationTime = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
+
+    start = std::chrono::high_resolution_clock::now();
+    for (int i = 0; i < SIZE; i++)
+    {
+        printTreasure(generatedTreasures[i]);
+    }
+    stop = std::chrono::high_resolution_clock::now();
+    printTime = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
+
+    start = std::chrono::high_resolution_clock::now();
+    for (int i = 0; i < SIZE; i++)
+    {
+        delete generatedTreasures[i];
+        generatedTreasures[i] = nullptr;
+    }
+    stop = std::chrono::high_resolution_clock::now();
+    deletionTime = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
+
+    std::cout << SIZE << " Treasures generated\n"
+              << "Treasure generated in " << generationTime.count() << " milliseconds\n"
+              << "Treasure printed in " << printTime.count() << " milliseconds\n"
+              << "Treasure deleted in " << deletionTime.count() << " milliseconds\n";
+
 }
