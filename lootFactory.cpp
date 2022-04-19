@@ -608,6 +608,7 @@ MagicItem* LootFactory::magicItemFactory(char table)
     {
         case 'A':
         case 'a':
+            std::cout << "Table A\n";
             magicItem = _magicItemFactoryTableA();
             break;
         case 'B':
@@ -643,15 +644,53 @@ MagicItem* LootFactory::magicItemFactory(char table)
             magicItem = _magicItemFactoryTableI();
             break;
     }
+    std::cout << "MagicItem address" << magicItem << std::endl;
     return magicItem;
 }
 
 MagicItem* LootFactory::_magicItemFactoryTableA()
 {
-    MagicItem* magicItem = nullptr;
+    std::random_device r;
+    std::default_random_engine gen (r());
+    std::uniform_int_distribution<int> d100(1, 100);
+    int roll = d100(gen);
+    std::string name;
 
-    return magicItem;
+    if (1 <= roll and roll <= 50)
+    {
+        name = "Potion of healing";
+    }
+    else if (51 <= roll and roll <= 60)
+    {
+        name = "Spell scroll (cantrip)";
+    }
+    else if (61 <= roll and roll <= 70)
+    {
+        name = "Potion of climbing";
+    }
+    else if (71 <= roll and roll <= 90)
+    {
+        name = "Spell scroll (1st level)";
+    }
+    else if (91 <= roll and roll <= 94)
+    {
+        name = "Spell scroll (2nd level)";
+    }
+    else if (95 <= roll and roll <= 98)
+    {
+        name = "Potion of greater healing";
+    }
+    else if (roll == 99)
+    {
+        name = "Bag of holding";
+    }
+    else
+    {
+        name = "Driftglobe";
+    }
+    return new MagicItem(name, 0);
 }
+
 MagicItem* LootFactory::_magicItemFactoryTableB()
 {
     MagicItem* magicItem = nullptr;

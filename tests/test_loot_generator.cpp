@@ -100,15 +100,50 @@ int main()
     Treasure* genTreasure = nullptr;
     Treasure* generatedTreasures[SIZE];
 
+    // auto start = std::chrono::high_resolution_clock::now();
+    // for (int i = 0; i < SIZE; i++)
+    // {
+    //     int roll = d20(gen);
+    //     generatedTreasures[i] = TreasureGenerator::generateLoot(roll, true);
+    // }
+    // auto stop = std::chrono::high_resolution_clock::now();
+    // auto generationTime = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
+
+
+    // start = std::chrono::high_resolution_clock::now();
+    // for (int i = 0; i < SIZE; i++)
+    // {
+    //     printTreasure(generatedTreasures[i]);
+    // }
+    // stop = std::chrono::high_resolution_clock::now();
+    // auto printTime = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
+
+
+    // start = std::chrono::high_resolution_clock::now();
+    // for (int i = 0; i < SIZE; i++)
+    // {
+    //     delete generatedTreasures[i];
+    //     generatedTreasures[i] = nullptr;
+    // }
+    // stop = std::chrono::high_resolution_clock::now();
+    // auto deletionTime = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
+
+    // std::cout << SIZE << " Treasures generated\n"
+    //           << "Treasure generated in " << generationTime.count() << " milliseconds\n"
+    //           << "Treasure printed in " << printTime.count() << " milliseconds\n"
+    //           << "Treasure deleted in " << deletionTime.count() << " milliseconds\n";
+
+    std::cout << "TESTING hoard treasure\n\n\n";
+
     auto start = std::chrono::high_resolution_clock::now();
     for (int i = 0; i < SIZE; i++)
     {
-        int roll = d20(gen);
-        generatedTreasures[i] = TreasureGenerator::generateLoot(roll, true);
+        // int roll = d20(gen);
+        int roll = 4;
+        generatedTreasures[i] = TreasureGenerator::generateLoot(roll, false);
     }
     auto stop = std::chrono::high_resolution_clock::now();
     auto generationTime = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
-
 
     start = std::chrono::high_resolution_clock::now();
     for (int i = 0; i < SIZE; i++)
@@ -117,7 +152,6 @@ int main()
     }
     stop = std::chrono::high_resolution_clock::now();
     auto printTime = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
-
 
     start = std::chrono::high_resolution_clock::now();
     for (int i = 0; i < SIZE; i++)
@@ -130,41 +164,7 @@ int main()
 
     std::cout << SIZE << " Treasures generated\n"
               << "Treasure generated in " << generationTime.count() << " milliseconds\n"
-              << "Treasure printed in " << printTime.count() << " milliseconds\n"
-              << "Treasure deleted in " << deletionTime.count() << " milliseconds\n";
-
-    std::cout << "TESTING hoard treasure\n\n\n";
-
-    start = std::chrono::high_resolution_clock::now();
-    for (int i = 0; i < SIZE; i++)
-    {
-        // int roll = d20(gen);
-        int roll = 4;
-        generatedTreasures[i] = TreasureGenerator::generateLoot(roll, false);
-    }
-    stop = std::chrono::high_resolution_clock::now();
-    generationTime = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
-
-    start = std::chrono::high_resolution_clock::now();
-    for (int i = 0; i < SIZE; i++)
-    {
-        printTreasure(generatedTreasures[i]);
-    }
-    stop = std::chrono::high_resolution_clock::now();
-    printTime = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
-
-    start = std::chrono::high_resolution_clock::now();
-    for (int i = 0; i < SIZE; i++)
-    {
-        delete generatedTreasures[i];
-        generatedTreasures[i] = nullptr;
-    }
-    stop = std::chrono::high_resolution_clock::now();
-    deletionTime = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
-
-    std::cout << SIZE << " Treasures generated\n"
-              << "Treasure generated in " << generationTime.count() << " milliseconds\n"
-              << "Treasure printed in " << printTime.count() << " milliseconds\n"
+              << "Treasure printed in " << 0 << " milliseconds\n"
               << "Treasure deleted in " << deletionTime.count() << " milliseconds\n";
 
 }
