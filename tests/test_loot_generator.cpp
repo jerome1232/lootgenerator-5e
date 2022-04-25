@@ -24,10 +24,7 @@
  * along with Loot Generator.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "../lootFactory.hpp"
 #include "../treasureGenerator.hpp"
-#include "../loot.hpp"
-#include "../coinage.hpp"
 #include <chrono>
 #include <iostream>
 
@@ -166,5 +163,4 @@ int main()
               << "Treasure generated in " << generationTime.count() << " milliseconds\n"
               << "Treasure printed in " << 0 << " milliseconds\n"
               << "Treasure deleted in " << deletionTime.count() << " milliseconds\n";
-
 }

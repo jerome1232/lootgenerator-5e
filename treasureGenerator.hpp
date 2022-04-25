@@ -31,6 +31,7 @@
 #include "loot.hpp"
 #include "coinage.hpp"
 #include "treasure.hpp"
+#include "lootFactory.hpp"
 #include <vector>
 #include <random>
 

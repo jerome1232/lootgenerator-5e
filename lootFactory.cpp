@@ -608,7 +608,6 @@ MagicItem* LootFactory::magicItemFactory(char table)
     {
         case 'A':
         case 'a':
-            std::cout << "Table A\n";
             magicItem = _magicItemFactoryTableA();
             break;
         case 'B':
@@ -644,7 +643,6 @@ MagicItem* LootFactory::magicItemFactory(char table)
             magicItem = _magicItemFactoryTableI();
             break;
     }
-    std::cout << "MagicItem address" << magicItem << std::endl;
     return magicItem;
 }
 
@@ -693,9 +691,90 @@ MagicItem* LootFactory::_magicItemFactoryTableA()
 
 MagicItem* LootFactory::_magicItemFactoryTableB()
 {
-    MagicItem* magicItem = nullptr;
+    std::random_device r;
+    std::default_random_engine gen (r());
+    std::uniform_int_distribution<int> d100(1, 100);
+    int roll = d100(gen);
+    std::string name;
 
-    return magicItem;
+    if (1 <= roll and roll <= 15)
+    {
+        name = "Potion of greater healing";
+    }
+    else if (16 <= roll and roll <= 22)
+    {
+        name = "Potion of fire breath";
+    }
+    else if (23 <= roll and roll <= 29)
+    {
+        name = "Potion of resistance";
+    }
+    else if (30 <= roll and roll <= 34)
+    {
+        name = "Ammunition, +1";
+    }
+    else if (1 <= roll and roll <= 15)
+    {
+
+    }
+    else if (1 <= roll and roll <= 15)
+    {
+
+    }
+    else if (1 <= roll and roll <= 15)
+    {
+
+    }
+    else if (1 <= roll and roll <= 15)
+    {
+
+    }
+    else if (1 <= roll and roll <= 15)
+    {
+
+    }
+    else if (1 <= roll and roll <= 15)
+    {
+
+    }
+    else if (1 <= roll and roll <= 15)
+    {
+
+    }
+    else if (1 <= roll and roll <= 15)
+    {
+
+    }
+    else if (1 <= roll and roll <= 15)
+    {
+
+    }
+    else if (1 <= roll and roll <= 15)
+    {
+
+    }
+    else if (1 <= roll and roll <= 15)
+    {
+
+    }
+    else if (1 <= roll and roll <= 15)
+    {
+
+    }
+    else if (1 <= roll and roll <= 15)
+    {
+
+    }
+    else if (1 <= roll and roll <= 15)
+    {
+
+    }
+    else if (1 <= roll and roll <= 15)
+    {
+
+    }
+
+    return new MagicItem(name, 0);
 }
 
 MagicItem* LootFactory::_magicItemFactoryTableC()

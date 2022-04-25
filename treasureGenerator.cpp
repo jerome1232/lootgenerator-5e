@@ -25,7 +25,6 @@
  */
 
 #include "treasureGenerator.hpp"
-#include "lootFactory.hpp"
 #include <iostream>
 
 Treasure* TreasureGenerator::generateLoot(const int cr, const bool individual)
