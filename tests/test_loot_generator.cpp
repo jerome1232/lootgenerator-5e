@@ -28,6 +28,109 @@
 #include <chrono>
 #include <iostream>
 
+void printCoin(Loot* loot);
+
+void printLoot(Loot* loot);
+
+void printTreasure(Treasure* treasure);
+
+void printMainMenu();
+
+Treasure* rollTreasure();
+
+bool isNumber(const std::string& str);
+
+
+int main()
+{
+    Treasure* genTreasure = nullptr;
+
+    bool isDone = false;
+    while (!isDone)
+    {
+        std::string again;
+        genTreasure = rollTreasure();
+        printTreasure(genTreasure);
+        delete genTreasure;
+        genTreasure = nullptr;
+        std::cout << "Again? [y/n]\n>>";
+        std::cin >> again;
+
+        if (again == "N" or again == "n")
+        {
+            isDone = true;
+        }
+    }
+
+
+    // auto start = std::chrono::high_resolution_clock::now();
+    // for (int i = 0; i < SIZE; i++)
+    // {
+    //     int roll = d20(gen);
+    //     generatedTreasures[i] = TreasureGenerator::generateLoot(roll, true);
+    // }
+    // auto stop = std::chrono::high_resolution_clock::now();
+    // auto generationTime = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
+
+
+    // start = std::chrono::high_resolution_clock::now();
+    // for (int i = 0; i < SIZE; i++)
+    // {
+    //     printTreasure(generatedTreasures[i]);
+    // }
+    // stop = std::chrono::high_resolution_clock::now();
+    // auto printTime = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
+
+
+    // start = std::chrono::high_resolution_clock::now();
+    // for (int i = 0; i < SIZE; i++)
+    // {
+    //     delete generatedTreasures[i];
+    //     generatedTreasures[i] = nullptr;
+    // }
+    // stop = std::chrono::high_resolution_clock::now();
+    // auto deletionTime = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
+
+    // std::cout << SIZE << " Treasures generated\n"
+    //           << "Treasure generated in " << generationTime.count() << " milliseconds\n"
+    //           << "Treasure printed in " << printTime.count() << " milliseconds\n"
+    //           << "Treasure deleted in " << deletionTime.count() << " milliseconds\n";
+
+    // std::cout << "TESTING hoard treasure\n\n\n";
+
+    // auto start = std::chrono::high_resolution_clock::now();
+    // for (int i = 0; i < SIZE; i++)
+    // {
+    //     // int roll = d20(gen);
+    //     int roll = 4;
+    //     generatedTreasures[i] = TreasureGenerator::generateLoot(roll, false);
+    // }
+    // auto stop = std::chrono::high_resolution_clock::now();
+    // auto generationTime = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
+
+    // start = std::chrono::high_resolution_clock::now();
+    // for (int i = 0; i < SIZE; i++)
+    // {
+    //     printTreasure(generatedTreasures[i]);
+    // }
+    // stop = std::chrono::high_resolution_clock::now();
+    // auto printTime = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
+
+    // start = std::chrono::high_resolution_clock::now();
+    // for (int i = 0; i < SIZE; i++)
+    // {
+    //     delete generatedTreasures[i];
+    //     generatedTreasures[i] = nullptr;
+    // }
+    // stop = std::chrono::high_resolution_clock::now();
+    // auto deletionTime = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
+
+    // std::cout << SIZE << " Treasures generated\n"
+    //           << "Treasure generated in " << generationTime.count() << " milliseconds\n"
+    //           << "Treasure printed in " << 0 << " milliseconds\n"
+    //           << "Treasure deleted in " << deletionTime.count() << " milliseconds\n";
+}
+
 void printCoin(Loot* loot)
 {
     if (loot)
@@ -48,9 +151,9 @@ void printTreasure(Treasure* treasure)
 {
     if (treasure)
     {
-        std::cout << "##################\n"
-                     "# HOARD TREASURE #\n"
-                     "##################\n";
+        std::cout << "############\n"
+                     "# TREASURE #\n"
+                     "############\n";
         if (treasure->coinage)
         {
             std::cout << "### COINAGE ###\n";
@@ -87,80 +190,85 @@ void printTreasure(Treasure* treasure)
     }
 }
 
-#define SIZE 100000
-
-int main()
+void printMainMenu()
 {
-    std::random_device r;
-    std::default_random_engine gen(r());
-    std::uniform_int_distribution<int> d20(1, 20);
-    Treasure* genTreasure = nullptr;
-    Treasure* generatedTreasures[SIZE];
+    std::cout << "Select one.\n"
+              << "---------------------\n"
+              << "[1] Generate Individual Treasure\n"
+              << "[2] Generate Hoard Treasure\n"
+              << ">>";
+}
 
-    // auto start = std::chrono::high_resolution_clock::now();
-    // for (int i = 0; i < SIZE; i++)
-    // {
-    //     int roll = d20(gen);
-    //     generatedTreasures[i] = TreasureGenerator::generateLoot(roll, true);
-    // }
-    // auto stop = std::chrono::high_resolution_clock::now();
-    // auto generationTime = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
+void printCrMenu()
+{
+    std::cout << "Enter CR (must be between 1 and 20\n"
+              << ">>";
+}
 
+Treasure* rollTreasure()
+{
+    bool isDone = false;
+    bool isIndividual;
+    Treasure* treasure = nullptr;
 
-    // start = std::chrono::high_resolution_clock::now();
-    // for (int i = 0; i < SIZE; i++)
-    // {
-    //     printTreasure(generatedTreasures[i]);
-    // }
-    // stop = std::chrono::high_resolution_clock::now();
-    // auto printTime = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
-
-
-    // start = std::chrono::high_resolution_clock::now();
-    // for (int i = 0; i < SIZE; i++)
-    // {
-    //     delete generatedTreasures[i];
-    //     generatedTreasures[i] = nullptr;
-    // }
-    // stop = std::chrono::high_resolution_clock::now();
-    // auto deletionTime = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
-
-    // std::cout << SIZE << " Treasures generated\n"
-    //           << "Treasure generated in " << generationTime.count() << " milliseconds\n"
-    //           << "Treasure printed in " << printTime.count() << " milliseconds\n"
-    //           << "Treasure deleted in " << deletionTime.count() << " milliseconds\n";
-
-    std::cout << "TESTING hoard treasure\n\n\n";
-
-    auto start = std::chrono::high_resolution_clock::now();
-    for (int i = 0; i < SIZE; i++)
+    while (!isDone)
     {
-        // int roll = d20(gen);
-        int roll = 4;
-        generatedTreasures[i] = TreasureGenerator::generateLoot(roll, false);
-    }
-    auto stop = std::chrono::high_resolution_clock::now();
-    auto generationTime = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
+        printMainMenu();
+        unsigned int selection;
+        std::string reply;
+        std::cin >> reply;
 
-    start = std::chrono::high_resolution_clock::now();
-    for (int i = 0; i < SIZE; i++)
+        if (isNumber(reply) and
+                 std::stoi(reply) > 0 and
+                 std::stoi(reply) <= 2)
+        {
+            selection = std::stoi(reply);
+            if (selection == 1)
+            {
+                isIndividual = true;
+            }
+            else
+            {
+                isIndividual = false;
+            }
+            isDone = true;
+        }
+        else
+        {
+            std::cout << "Invalid input\n";
+        }
+    }
+
+    isDone = false;
+    int cr;
+    while (!isDone)
     {
-        printTreasure(generatedTreasures[i]);
-    }
-    stop = std::chrono::high_resolution_clock::now();
-    auto printTime = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
+        std::string reply;
+        int cr;
+        printCrMenu();
+        std::cin >> reply;
 
-    start = std::chrono::high_resolution_clock::now();
-    for (int i = 0; i < SIZE; i++)
+        if (isNumber(reply))
+        {
+            cr = std::stoi(reply);
+            if (cr > 0 and cr <= 20)
+            {
+                treasure = TreasureGenerator::generateLoot(cr, isIndividual);
+                isDone = true;
+            }
+        }
+
+    }
+    return treasure;
+}
+
+
+bool isNumber(const std::string& str)
+{
+    std::string::const_iterator it = str.begin();
+    while (it != str.end() and std::isdigit(*it))
     {
-        delete generatedTreasures[i];
-        generatedTreasures[i] = nullptr;
+        ++it;
     }
-    stop = std::chrono::high_resolution_clock::now();
-    auto deletionTime = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
-
-    std::cout << SIZE << " Treasures generated\n"
-              << "Treasure generated in " << generationTime.count() << " milliseconds\n"
-              << "Treasure printed in " << 0 << " milliseconds\n"
-              << "Treasure deleted in " << deletionTime.count() << " milliseconds\n";
+    return !str.empty() and it == str.end();
 }
