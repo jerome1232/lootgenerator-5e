@@ -31,9 +31,11 @@
 #include "loot.hpp"
 #include "coinage.hpp"
 #include "treasure.hpp"
+#include "dice.hpp"
 #include "lootFactory.hpp"
 #include <vector>
 #include <random>
+#include <iostream>
 
 
 class TreasureGenerator

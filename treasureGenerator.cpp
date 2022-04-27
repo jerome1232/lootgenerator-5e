@@ -25,7 +25,6 @@
  */
 
 #include "treasureGenerator.hpp"
-#include <iostream>
 
 Treasure* TreasureGenerator::generateLoot(const int cr, const bool individual)
 {
@@ -46,22 +45,14 @@ Treasure* TreasureGenerator::generateLoot(const int cr, const bool individual)
 
 Coinage* TreasureGenerator::_coinageGenerator(const int cr)
 {
-    std::random_device r;
-    std::default_random_engine gen(r());
-    std::uniform_int_distribution<int> d100(1, 100);
 
     Coinage* genCoins = new Coinage();
-    int roll = d100(gen);
-
-    // std::cout << "DEBUG: " << roll << " :: " << cr << std::endl;
+    Dice d100(100);
+    int roll = d100.roll();
 
     switch (cr)
     {
-    case 0:
-    case 1:
-    case 2:
-    case 3:
-    case 4:
+    case 0 ... 4:
         if  (1 <= roll and roll <= 30)
         {
             genCoins->copper = LootFactory::coinFactory(5, 6, "copper");
@@ -83,12 +74,7 @@ Coinage* TreasureGenerator::_coinageGenerator(const int cr)
             genCoins->platinum = LootFactory::coinFactory(1, 6, "platinum");
         }
         break;
-    case 5:
-    case 6:
-    case 7:
-    case 8:
-    case 9:
-    case 10:
+    case 5 ... 10:
         if (1 <= roll and roll <= 30)
         {
             genCoins->copper = LootFactory::coinFactory(4, 6, "copper", 100);
@@ -114,12 +100,7 @@ Coinage* TreasureGenerator::_coinageGenerator(const int cr)
             genCoins->platinum = LootFactory::coinFactory(3, 6, "platinum");
         }
         break;
-    case 11:
-    case 12:
-    case 13:
-    case 14:
-    case 15:
-    case 16:
+    case 11 ... 16:
         if (1 <= roll and roll <= 20)
         {
             genCoins->silver = LootFactory::coinFactory(4, 6, "copper", 100);
@@ -199,208 +180,438 @@ void TreasureGenerator::_treasureGenerator(const int cr, Treasure* treasure)
     {
         _treasureGeneratorCr4(treasure);
     }
+    else if (cr <= 10)
+    {
+        _treasureGeneratorCr10(treasure);
+    }
+    else if (cr <= 16)
+    {
+        _treasureGeneratorCr16(treasure);
+    }
+    else
+    {
+        _treasureGeneratorCr17(treasure);
+    }
 }
 
 void TreasureGenerator::_treasureGeneratorCr4(Treasure* treasure)
 {
-    std::random_device r;
-    std::default_random_engine gen (r());
-    std::uniform_int_distribution<int> d100(1, 100);
-    std::uniform_int_distribution<int> d4(1, 4);
-    std::uniform_int_distribution<int> d6(1, 6);
+    Dice d100(100);
+    Dice d6(6);
+    Dice d4(4);
 
-    int roll = d100(gen);
-    if (7 <= roll and roll <= 16)
+    int roll = d100.roll();
+    switch(roll)
     {
-        int numItems = d6(gen) + d6(gen);
-        for (int i = 0; i < numItems; i++)
+        case 1 ... 6:
+            break;
+        case 7 ... 16:
         {
-            treasure->gems.push_back(LootFactory::gemFactory(10));
+            int numItems = d6.roll(2);
+            const int GP_VALUE = 10;
+            for (int i = 0; i < numItems; i++)
+            {
+                treasure->gems
+                    .push_back(LootFactory::gemFactory(GP_VALUE));
+            }
+            break;
         }
-    }
-    else if (17 <= roll and roll <= 26)
-    {
-        int numItems = d4(gen) + d4(gen);
-        for (int i = 0; i < numItems; i++)
+        case 17 ... 26:
         {
-            treasure->artwork.push_back(LootFactory::artFactory(25));
+            int numItems = d4.roll(2);
+            const int GP_VALUE = 25;
+            for (int i = 0; i < numItems; i++)
+            {
+                treasure->artwork
+                    .push_back(LootFactory::artFactory(GP_VALUE));
+            }
+            break;
         }
-    }
-    else if (27 <= roll and roll <= 36)
-    {
-        int numItems = d6(gen) + d6(gen);
-        for (int i = 0; i < numItems; i++)
+        case 27 ... 36:
         {
-            treasure->gems.push_back(LootFactory::gemFactory(50));
+            int numItems = d6.roll(2);
+            const int GP_VALUE = 50;
+            for (int i = 0; i < numItems; i++)
+            {
+                treasure->gems
+                    .push_back(LootFactory::gemFactory(GP_VALUE));
+            }
+            break;
         }
-    }
-    else if (37 <= roll and roll <= 44)
-    {
-        int numItems = d6(gen) + d6(gen);
-        for (int i = 0; i < numItems; i++)
+        case 37 ... 44:
         {
-            treasure->gems.push_back(LootFactory::gemFactory(10));
+            int numItems = d6.roll(2);
+            const int GP_VALUE = 10;
+            for (int i = 0; i < numItems; i++)
+            {
+                treasure->gems
+                    .push_back(LootFactory::gemFactory(GP_VALUE));
+            }
+            numItems = d6.roll();
+            const char LOOT_TABLE = 'A';
+            for (int i = 0; i < numItems; i++)
+            {
+                treasure->magicItems
+                    .push_back(LootFactory::magicItemFactory(LOOT_TABLE));
+            }
+            break;
         }
-        numItems = d6(gen);
-        for (int i = 0; i < numItems; i++)
+        case 45 ... 52:
         {
-            treasure->magicItems.push_back(LootFactory::magicItemFactory('A'));
+            int numItems = d4.roll(2);
+            const int GP_VALUE = 25;
+            for (int i = 0; i < numItems; i++)
+            {
+                treasure->artwork
+                    .push_back(LootFactory::artFactory(GP_VALUE));
+            }
+            numItems = d6.roll();
+            const char LOOT_TABLE = 'A';
+            for (int i = 0; i < numItems; i++)
+            {
+                treasure->magicItems
+                    .push_back(LootFactory::magicItemFactory(LOOT_TABLE));
+            }
+            break;
         }
-    }
-    else if (45 <= roll and roll <= 52)
-    {
-        int numItems = d4(gen) + d4(gen);
-        for (int i = 0; i < numItems; i++)
+        case 53 ... 60:
         {
-            treasure->artwork.push_back(LootFactory::artFactory(25));
+            int numItems = d6.roll(2);
+            const int GP_VALUE = 50;
+            for (int i = 0; i < numItems; i++)
+            {
+                treasure->gems
+                    .push_back(LootFactory::gemFactory(GP_VALUE));
+            }
+            numItems = d6.roll();
+            const char LOOT_TABLE = 'A';
+            for (int i = 0; i < numItems; i++)
+            {
+                treasure->magicItems
+                    .push_back(LootFactory::magicItemFactory(LOOT_TABLE));
+            }
+            break;
         }
-        numItems = d6(gen);
-        for (int i = 0; i < numItems; i++)
+        case 61 ... 65:
         {
-            treasure->magicItems.push_back(LootFactory::magicItemFactory('A'));
+            int numItems = d6.roll(2);
+            const int GP_VALUE = 10;
+            for (int i = 0; i < numItems; i++)
+            {
+                treasure->gems
+                    .push_back(LootFactory::gemFactory(GP_VALUE));
+            }
+            numItems = d4.roll();
+            const char LOOT_TABLE = 'B';
+            for (int i = 0; i < numItems; i++)
+            {
+                treasure->magicItems
+                    .push_back(LootFactory::magicItemFactory(LOOT_TABLE));
+            }
+            break;
         }
-    }
-    else if (53 <= roll and roll <= 60)
-    {
-        int numItems = d6(gen) + d6(gen);
-        for (int i = 0; i < numItems; i++)
+        case 66 ... 70:
         {
-            treasure->gems.push_back(LootFactory::gemFactory(50));
+            int numItems = d4.roll();
+            const int GP_VALUE = 25;
+            for (int i = 0; i < numItems; i++)
+            {
+                treasure->artwork.push_back(LootFactory::artFactory(GP_VALUE));
+            }
+            numItems = d4.roll();
+            const char LOOT_TABLE = 'B';
+            for (int i = 0; i < numItems; i++)
+            {
+                treasure->magicItems
+                    .push_back(LootFactory::magicItemFactory(LOOT_TABLE));
+            }
+            break;
         }
-        numItems = d6(gen);
-        for (int i = 0; i < numItems; i++)
+        case 71 ... 75:
         {
-            treasure->magicItems.push_back(LootFactory::magicItemFactory('A'));
+            int numItems = d6.roll(2);
+            const int GP_VALUE = 50;
+            for (int i = 0; i < numItems; i++)
+            {
+                treasure->gems
+                    .push_back(LootFactory::gemFactory(50));
+            }
+            numItems = d4.roll();
+            const char LOOT_TABLE = 'B';
+            for (int i = 0; i < numItems; i++)
+            {
+                treasure->magicItems
+                    .push_back(LootFactory::magicItemFactory(LOOT_TABLE));
+            }
+            break;
         }
-    }
-    else if (61 <= roll and roll <= 65)
-    {
-        int numItems = d6(gen) + d6(gen);
-        for (int i = 0; i < numItems; i++)
+        case 76 ... 78:
         {
-            treasure->gems.push_back(LootFactory::gemFactory(10));
+            int numItems = d6.roll(2);
+            const int GP_VALUE = 10;
+            for (int i = 0; i < numItems; i++)
+            {
+                treasure->gems
+                    .push_back(LootFactory::gemFactory(GP_VALUE));
+            }
+            numItems = d4.roll();
+            const char LOOT_TABLE = 'C';
+            for (int i = 0; i < numItems; i++)
+            {
+                treasure->magicItems
+                    .push_back(LootFactory::magicItemFactory(LOOT_TABLE));
+            }
+            break;
         }
-        numItems = d4(gen);
-        for (int i = 0; i < numItems; i++)
+        case 79 ... 80:
         {
-            treasure->magicItems.push_back(LootFactory::magicItemFactory('B'));
+            int numItems = d4.roll(2);
+            const int GP_VALUE = 25;
+            for (int i = 0; i < numItems; i++)
+            {
+                treasure->artwork
+                    .push_back(LootFactory::artFactory(GP_VALUE));
+            }
+            numItems = d4.roll();
+            const char LOOT_TABLE = 'C';
+            for (int i = 0; i < numItems; i++)
+            {
+                treasure->magicItems
+                    .push_back(LootFactory::magicItemFactory(LOOT_TABLE));
+            }
+            break;
         }
-    }
-    else if (66 <= roll and roll <= 70)
-    {
-        int numItems = d4(gen) + d4(gen);
-        for (int i = 0; i < numItems; i++)
+        case 81 ... 85:
         {
-            treasure->artwork.push_back(LootFactory::artFactory(25));
+            int numItems = d6.roll(2);
+            const int GP_VALUE = 50;
+            for (int i = 0; i < numItems; i++)
+            {
+                treasure->gems
+                    .push_back(LootFactory::gemFactory(GP_VALUE));
+            }
+            numItems = d4.roll();
+            const char LOOT_TABLE = 'C';
+            for (int i = 0; i < numItems; i++)
+            {
+                treasure->magicItems
+                    .push_back(LootFactory::magicItemFactory(LOOT_TABLE));
+            }
+            break;
         }
-        numItems = d4(gen);
-        for (int i = 0; i < numItems; i++)
+        case 86 ... 92:
         {
-            treasure->magicItems.push_back(LootFactory::magicItemFactory('B'));
+            int numItems = d4.roll(2);
+            const int GP_VALUE = 25;
+            for (int i = 0; i < numItems; i++)
+            {
+                treasure->artwork
+                    .push_back(LootFactory::artFactory(GP_VALUE));
+            }
+            numItems = d4.roll();
+            const char LOOT_TABLE = 'F';
+            for (int i = 0; i < numItems; i++)
+            {
+                treasure->magicItems
+                    .push_back(LootFactory::magicItemFactory(LOOT_TABLE));
+            }
+            break;
         }
-    }
-    else if (71 <= roll and roll <= 75)
-    {
-        int numItems = d6(gen) + d6(gen);
-        for (int i = 0; i < numItems; i++)
+        case 93 ... 97:
         {
-            treasure->gems.push_back(LootFactory::gemFactory(50));
+            int numItems = d6.roll(2);
+            const int GP_VALUE = 50;
+            for (int i = 0; i < numItems; i++)
+            {
+                treasure->artwork
+                    .push_back(LootFactory::artFactory(GP_VALUE));
+            }
+            numItems = d4.roll();
+            const char LOOT_TABLE = 'F';
+            for (int i = 0; i < numItems; i++)
+            {
+                treasure->magicItems
+                    .push_back(LootFactory::magicItemFactory(LOOT_TABLE));
+            }
+            break;
         }
-        numItems = d4(gen);
-        for (int i = 0; i < numItems; i++)
+        case 98 ... 99:
         {
-            treasure->magicItems.push_back(LootFactory::magicItemFactory('B'));
+            int numItems = d4.roll(2);
+            const int GP_VALUE = 50;
+            for (int i = 0; i < numItems; i++)
+            {
+                treasure->artwork
+                    .push_back(LootFactory::artFactory(GP_VALUE));
+            }
+            const char LOOT_TABLE = 'G';
+            treasure->magicItems
+                .push_back(LootFactory::magicItemFactory(LOOT_TABLE));
+            break;
         }
-    }
-    else if (76 <= roll and roll <= 78)
-    {
-        int numItems = d6(gen) + d6(gen);
-        for (int i = 0; i < numItems; i++)
+        case 100:
         {
-            treasure->gems.push_back(LootFactory::gemFactory(10));
+            int numItems = d6.roll(2);
+            const int GP_VALUE = 50;
+            for (int i = 0; i < numItems; i++)
+            {
+                treasure->gems
+                    .push_back(LootFactory::gemFactory(GP_VALUE));
+            }
+            const char LOOT_TABLE = 'G';
+            treasure->magicItems
+                .push_back(LootFactory::magicItemFactory(LOOT_TABLE));
+            break;
         }
-        numItems = d4(gen);
-        for (int i = 0; i < numItems; i++)
-        {
-            treasure->magicItems.push_back(LootFactory::magicItemFactory('C'));
-        }
-    }
-    else if (79 <= roll and roll <= 80)
-    {
-        int numItems = d4(gen) + d4(gen);
-        for (int i = 0; i < numItems; i++)
-        {
-            treasure->artwork.push_back(LootFactory::artFactory(25));
-        }
-        numItems = d4(gen);
-        for (int i = 0; i < numItems; i++)
-        {
-            treasure->magicItems.push_back(LootFactory::magicItemFactory('C'));
-        }
-    }
-    else if (81 <= roll and roll <= 85)
-    {
-        int numItems = d6(gen) + d6(gen);
-        for (int i = 0; i < numItems; i++)
-        {
-            treasure->gems.push_back(LootFactory::gemFactory(50));
-        }
-        numItems = d4(gen);
-        for (int i = 0; i < numItems; i++)
-        {
-            treasure->magicItems.push_back(LootFactory::magicItemFactory('C'));
-        }
-    }
-    else if (86 <= roll and roll <= 92)
-    {
-        int numItems = d4(gen) + d4(gen);
-        for (int i = 0; i < numItems; i++)
-        {
-            treasure->artwork.push_back(LootFactory::artFactory(25));
-        }
-        numItems = d4(gen);
-        for (int i = 0; i < numItems; i++)
-        {
-            treasure->magicItems.push_back(LootFactory::magicItemFactory('F'));
-        }
-    }
-    else if (93 <= roll and roll <= 97)
-    {
-        int numItems = d6(gen) + d6(gen);
-        for (int i = 0; i < numItems; i++)
-        {
-            treasure->artwork.push_back(LootFactory::artFactory(50));
-        }
-        numItems = d4(gen);
-        for (int i = 0; i < numItems; i++)
-        {
-            treasure->magicItems.push_back(LootFactory::magicItemFactory('F'));
-        }
-    }
-    else if (98 <= roll and roll <= 99)
-    {
-        int numItems = d4(gen) + d4(gen);
-        for (int i = 0; i < numItems; i++)
-        {
-            treasure->artwork.push_back(LootFactory::artFactory(50));
-        }
-        treasure->magicItems.push_back(LootFactory::magicItemFactory('G'));
-    }
-    else if (roll == 100)
-    {
-        int numItems = d6(gen) + d6(gen);
-        for (int i = 0; i < numItems; i++)
-        {
-            treasure->gems.push_back(LootFactory::gemFactory(50));
-        }
-        treasure->magicItems.push_back(LootFactory::magicItemFactory('G'));
     }
 }
 
 
 void TreasureGenerator::_treasureGeneratorCr10(Treasure* treasure)
 {
-    // TODO
+    Dice d100(100);
+    Dice d6(6);
+    Dice d4(4);
+    int roll = d100.roll();
+
+    switch(roll)
+    {
+        case 1 ... 4:
+            break;
+        case 5 ... 10:
+        {
+            int numRolls = d4.roll(2);
+            const int GP_VALUE = 25;
+            for (int i = 0; i < numRolls; i++)
+            {
+                treasure->gems.push_back(LootFactory::gemFactory(GP_VALUE));
+            }
+            break;
+        }
+        case 11 ... 16:
+        {
+            int numRolls = d6.roll(3);
+            const int GP_VALUE = 50;
+            for (int i = 0; i < numRolls; i++)
+            {
+                treasure->artwork.push_back(LootFactory::artFactory(GP_VALUE));
+            }
+            break;
+        }
+        case 17 ... 22:
+        {
+            int numRolls = d6.roll(3);
+            const int GP_VALUE = 100;
+            for (int i = 0; i < numRolls; i++)
+            {
+                treasure->gems.push_back(LootFactory::gemFactory(GP_VALUE));
+            }
+            break;
+        }
+        case 23 ... 28:
+        {
+            int numRolls = d4.roll(2);
+            const int GP_VALUE = 250;
+            for (int i = 0; i < numRolls; i++)
+            {
+                treasure->artwork
+                    .push_back(LootFactory::artFactory(GP_VALUE));
+            }
+            break;
+        }
+        case 29 ... 32:
+        {
+            break;
+        }
+        case 33 ... 36:
+        {
+            break;
+        }
+        case 37 ... 40:
+        {
+            break;
+        }
+        case 41 ... 44:
+        {
+            break;
+        }
+        case 45 ... 49:
+        {
+            break;
+        }
+        case 50 ... 54:
+        {
+            break;
+        }
+        case 55 ... 59:
+        {
+            break;
+        }
+        case 60 ... 63:
+        {
+            break;
+        }
+        case 64 ... 66:
+        {
+            break;
+        }
+        case 67 ... 69:
+        {
+            break;
+        }
+        case 70 ... 72:
+        {
+            break;
+        }
+        case 73 ... 74:
+        {
+            break;
+        }
+        case 75 ... 76:
+        {
+            break;
+        }
+        case 79:
+        {
+            break;
+        }
+        case 80:
+        {
+            break;
+        }
+        case 81 ... 84:
+        {
+            break;
+        }
+        case 85 ... 88:
+        {
+            break;
+        }
+        case 89 ... 91:
+        {
+            break;
+        }
+        case 92 ... 94:
+        {
+            break;
+        }
+        case 95 ... 96:
+        {
+            break;
+        }
+        case 97 ... 98:
+        {
+            break;
+        }
+        case 99:
+        {
+            break;
+        }
+        case 100:
+        {
+            break;
+        }
+    }
 }
 
 void TreasureGenerator::_treasureGeneratorCr16(Treasure* treasure)
