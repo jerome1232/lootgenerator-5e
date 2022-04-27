@@ -25,24 +25,20 @@
  */
 
 #include "lootFactory.hpp"
-#include <exception>
-#include <iostream>
 
-std::random_device LootFactory::r;
-std::default_random_engine LootFactory::gen (r());
-std::uniform_int_distribution<int> d100(1, 100);
-std::uniform_int_distribution<int> d12(1, 12);
-std::uniform_int_distribution<int> d10(1, 10);
-std::uniform_int_distribution<int> d8(1, 8);
-std::uniform_int_distribution<int> d6(1, 6);
-std::uniform_int_distribution<int> d4(1, 4);
+Dice LootFactory::d100(100);
+Dice LootFactory::d12(12);
+Dice LootFactory::d10(10);
+Dice LootFactory::d8(8);
+Dice LootFactory::d6(6);
+Dice LootFactory::d4(4);
 
 Coin* LootFactory::coinFactory(int numDie, int numDieSides,
                                std::string coinType, int multiplier)
 {
     std::string name;
     int amount = 0;
-    std::uniform_int_distribution<int> dieRoll(1, numDieSides);
+    Dice die(numDieSides);
 
     if (coinType == "copper")
     {
@@ -69,10 +65,7 @@ Coin* LootFactory::coinFactory(int numDie, int numDieSides,
         throw std::invalid_argument("Invalid coinType");
     }
 
-    for (int i = 0; i < numDie; i++)
-    {
-        amount += dieRoll(gen);
-    }
+    amount = die.roll(numDie);
     amount *= multiplier;
 
     return new Coin(name, amount);
@@ -109,7 +102,7 @@ Gemstone* LootFactory::gemFactory(const int value)
 Gemstone* LootFactory::_gen10gpGem(const int value)
 {
     std::string name;
-    int roll = d12(gen);
+    int roll = d12.roll();
 
     switch (roll)
     {
@@ -166,7 +159,7 @@ Gemstone* LootFactory::_gen10gpGem(const int value)
 Gemstone* LootFactory::_gen50gpGem(const int value)
 {
     std::string name;
-    int roll = d12(gen);
+    int roll = d12.roll();
 
     switch (roll)
     {
@@ -225,7 +218,7 @@ Gemstone* LootFactory::_gen50gpGem(const int value)
 Gemstone* LootFactory::_gen100gpGem(const int value)
 {
     std::string name;
-    int roll = d10(gen);
+    int roll = d10.roll();
     switch (roll)
     {
         case 1:
@@ -275,7 +268,7 @@ Gemstone* LootFactory::_gen100gpGem(const int value)
 Gemstone* LootFactory::_gen500gpGem(const int value)
 {
     std::string name;
-    int roll = d6(gen);
+    int roll = d6.roll();
 
     switch (roll)
     {
@@ -310,7 +303,7 @@ Gemstone* LootFactory::_gen500gpGem(const int value)
 Gemstone* LootFactory::_gen1000gpGem(const int value)
 {
     std::string name;
-    int roll = d8(gen);
+    int roll = d8.roll();
     switch (roll)
     {
         case 1:
@@ -353,7 +346,7 @@ Gemstone* LootFactory::_gen1000gpGem(const int value)
 Gemstone* LootFactory::_gen5000gpGem(const int value)
 {
     std::string name;
-    int roll = d4(gen);
+    int roll = d4.roll();
     switch (roll)
     {
         case 1:
@@ -404,7 +397,7 @@ Art* LootFactory::artFactory(const int value)
 Art* LootFactory::_gen25gpArt(const int value)
 {
     std::string name;
-    int roll = d10(gen);
+    int roll = d10.roll();
     switch (roll)
     {
         case 1:
@@ -445,7 +438,7 @@ Art* LootFactory::_gen25gpArt(const int value)
 Art* LootFactory::_gen250gpArt(const int value)
 {
     std::string name;
-    int roll = d10(gen);
+    int roll = d10.roll();
     switch (roll)
     {
         case 1:
@@ -485,7 +478,7 @@ Art* LootFactory::_gen250gpArt(const int value)
 Art* LootFactory::_gen750gpArt(const int value)
 {
     std::string name;
-    int roll = d10(gen);
+    int roll = d10.roll();
     switch (roll)
     {
         case 1:
@@ -529,7 +522,7 @@ Art* LootFactory::_gen750gpArt(const int value)
 Art* LootFactory::_gen2500gpArt(const int value)
 {
     std::string name;
-    int roll = d10(gen);
+    int roll = d10.roll();
     switch (roll)
     {
         case 1:
@@ -569,7 +562,7 @@ Art* LootFactory::_gen2500gpArt(const int value)
 Art* LootFactory::_gen7500gpArt(const int value)
 {
     std::string name;
-    int roll = d8(gen);
+    int roll = d8.roll();
     switch (roll)
     {
         case 1:
@@ -648,10 +641,7 @@ MagicItem* LootFactory::magicItemFactory(char table)
 
 MagicItem* LootFactory::_magicItemFactoryTableA()
 {
-    std::random_device r;
-    std::default_random_engine gen (r());
-    std::uniform_int_distribution<int> d100(1, 100);
-    int roll = d100(gen);
+    int roll = d100.roll();
     std::string name;
 
     if (1 <= roll and roll <= 50)
@@ -691,10 +681,7 @@ MagicItem* LootFactory::_magicItemFactoryTableA()
 
 MagicItem* LootFactory::_magicItemFactoryTableB()
 {
-    std::random_device r;
-    std::default_random_engine gen (r());
-    std::uniform_int_distribution<int> d100(1, 100);
-    int roll = d100(gen);
+    int roll = d100.roll();
     std::string name;
 
     if (1 <= roll and roll <= 15)

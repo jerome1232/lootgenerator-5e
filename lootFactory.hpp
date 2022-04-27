@@ -28,15 +28,21 @@
 #define LOOT_FACTORY_HPP
 
 #include "loot.hpp"
+#include "dice.hpp"
+#include <exception>
+#include <iostream>
 #include <random>
 
 
 class LootFactory
 {
     private:
-        static std::random_device r;
-        static std::default_random_engine gen;
-        static std::uniform_int_distribution<int> distribution;
+        static Dice d100;
+        static Dice d12;
+        static Dice d10;
+        static Dice d8;
+        static Dice d6;
+        static Dice d4;
 
         static Gemstone* _gen10gpGem(const int);
         static Gemstone* _gen50gpGem(const int);
