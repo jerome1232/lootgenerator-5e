@@ -33,9 +33,7 @@
 class Dice
 {
 private:
-    std::random_device r;
-    std::default_random_engine gen;
-    std::uniform_int_distribution<int> dist;
+    int sides;
 
 public:
     Dice(const int);

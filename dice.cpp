@@ -28,11 +28,14 @@
 
 Dice::Dice(const int sides)
 {
-    dist = std::uniform_int_distribution<int>(1, sides);
+    this->sides = sides;
 }
 
 int Dice::roll(const int rolls)
 {
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<int> dist(1, sides);
     int sum = 0;
     for (int i = 0; i < rolls; i++)
     {
