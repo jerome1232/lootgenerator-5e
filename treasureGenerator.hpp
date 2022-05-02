@@ -41,17 +41,78 @@
 class TreasureGenerator
 {
 private:
+
+    /**
+     * @brief Generates coinage on an individual creature
+     *
+     * @param cr Challenge Rating
+     * @return Coinage*
+     */
     static Coinage* _coinageGenerator(const int);
+
+    /**
+     * @brief Generates coinage based on cr for a hoard treasure.
+     *
+     * @param cr Challenge Rating
+     * @return Coinage*
+     */
     static Coinage* _hoardCoinageGenerator(const int);
 
+    /**
+     * @brief Randomly generates Hoard treasure based on Challenge Rating
+     *
+     * @param cr Challenge Rating
+     * @param treasure Pointer to treasure to which to add generated treasures
+     */
     static void _treasureGenerator(const int, Treasure*);
+
+    /**
+     * @brief Rolls random treasure based on DnD 5e DMG
+     * Treasure Hoard: Challenge 0 - 04
+     * pg 137
+     *
+     * @param treasure Pointer to Treasure object to have the generated treasures added to.
+     */
     static void _treasureGeneratorCr4(Treasure*);
+
+    /**
+     * @brief Rolls random treasure based on DnD 5e DMG
+     * Treasure Hoard: Challenge 05 - 10
+     * pg 137
+     *
+     * @param treasure Pointer to Treasure object to have the generated treasures added to.
+     */
     static void _treasureGeneratorCr10(Treasure*);
+
+    /**
+     * @brief Rolls random treasure based on DnD 5e DMG
+     * Treasure Hoard: Challenge 11 - 16
+     * pg 138
+     *
+     * @param treasure Pointer to Treasure object to have the generated treasures added to.
+     */
     static void _treasureGeneratorCr16(Treasure*);
+
+    /**
+     * @brief Rolls random treasure based on DnD 5e DMG
+     * Treasure Hoard: Challenge 17+
+     * pg 139
+     *
+     * @param treasure Pointer to Treasure object to have the generated treasures added to.
+     */
     static void _treasureGeneratorCr17(Treasure*);
 
 public:
     ~TreasureGenerator();
+
+    /**
+     * @brief Generates loot for individual or Hoard encounters
+     *
+     * @param cr Challenge Rating
+     * @param isIndividual A bool to indicate whether individual or hoard treasure
+     *                     should be generated.
+     * @return Treasure*
+     */
     static Treasure* generateLoot(const int, const bool);
 };
 

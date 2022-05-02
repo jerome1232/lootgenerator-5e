@@ -26,12 +26,12 @@
 
 #include "treasureGenerator.hpp"
 
-Treasure* TreasureGenerator::generateLoot(const int cr, const bool individual)
+Treasure* TreasureGenerator::generateLoot(const int cr, const bool isIndividual)
 {
 
     Treasure* generatedTreasure = new Treasure();
 
-    if (individual)
+    if (isIndividual)
     {
         generatedTreasure->coinage = _coinageGenerator(cr);
     }
@@ -194,6 +194,7 @@ void TreasureGenerator::_treasureGenerator(const int cr, Treasure* treasure)
     }
 }
 
+
 void TreasureGenerator::_treasureGeneratorCr4(Treasure* treasure)
 {
     Dice d100(100);
@@ -320,7 +321,6 @@ void TreasureGenerator::_treasureGeneratorCr4(Treasure* treasure)
             .push_back(LootFactory::magicItemFactory(magicItemTable));
     }
 }
-
 
 void TreasureGenerator::_treasureGeneratorCr10(Treasure* treasure)
 {
@@ -765,5 +765,177 @@ void TreasureGenerator::_treasureGeneratorCr16(Treasure* treasure)
 
 void TreasureGenerator::_treasureGeneratorCr17(Treasure* treasure)
 {
-    // TODO
+    Dice d100(100);
+    Dice d10(10);
+    Dice d8(8);
+    Dice d6(6);
+    Dice d4(4);
+
+    int gemRolls = 0;
+    int artRolls = 0;
+    int magicRolls = 0;
+    int gpValue = 0;
+    char magicItemTable = '\0';
+
+    int roll = d100.roll();
+    switch(roll)
+    {
+        case 1 ... 2:
+            break;
+        case 3 ... 5:
+            gemRolls = d6.roll(3);
+            gpValue = 1000;
+            magicRolls = d8.roll();
+            magicItemTable = 'C';
+            break;
+        case 6 ... 8:
+            artRolls = d10.roll();
+            gpValue = 2500;
+            magicRolls = d8.roll();
+            magicItemTable = 'C';
+            break;
+        case 9 ... 11:
+            artRolls = d4.roll();
+            gpValue = 7500;
+            magicRolls = d8.roll();
+            magicItemTable = 'C';
+            break;
+        case 12 ... 14:
+            gemRolls = d8.roll();
+            gpValue = 5000;
+            magicRolls = d8.roll();
+            magicItemTable = 'C';
+            break;
+        case 15 ... 22:
+            gemRolls = d6.roll(3);
+            gpValue = 1000;
+            magicRolls = d6.roll();
+            magicItemTable = 'D';
+            break;
+        case 23 ... 30:
+            artRolls = d10.roll();
+            gpValue = 25000;
+            magicRolls = d6.roll();
+            magicItemTable = 'D';
+        case 31 ... 38:
+            artRolls = d4.roll();
+            gpValue = 7500;
+            magicRolls = d6.roll();
+            magicItemTable = 'D';
+        case 39 ... 46:
+            gemRolls = d8.roll();
+            gpValue = 5000;
+            magicRolls = d6.roll();
+            magicItemTable = 'D';
+            break;
+        case 47 ... 52:
+            gemRolls = d6.roll(3);
+            gpValue = 1000;
+            magicRolls = d6.roll();
+            magicItemTable = 'E';
+            break;
+        case 53 ... 58:
+            artRolls = d10.roll();
+            gpValue = 2500;
+            magicRolls = d6.roll();
+            magicItemTable = 'E';
+            break;
+        case 59 ... 63:
+            artRolls = d4.roll();
+            gpValue = 7500;
+            magicRolls = d6.roll();
+            magicItemTable = 'E';
+            break;
+        case 64 ... 68:
+            gemRolls = d8.roll();
+            gpValue = 5000;
+            magicRolls = d6.roll();
+            magicItemTable = 'E';
+            break;
+        case 69:
+            gemRolls = d6.roll(3);
+            gpValue = 1000;
+            magicRolls = d4.roll();
+            magicItemTable = 'G';
+            break;
+        case 70:
+            artRolls = d10.roll();
+            gpValue = 2500;
+            magicRolls = d4.roll();
+            magicItemTable = 'G';
+            break;
+        case 71:
+            artRolls = d4.roll();
+            gpValue = 7500;
+            magicRolls = d4.roll();
+            magicItemTable = 'G';
+            break;
+        case 72:
+            gemRolls = d8.roll();
+            gpValue = 5000;
+            magicRolls = d4.roll();
+            magicItemTable = 'G';
+            break;
+        case 73 ... 74:
+            gemRolls = d6.roll(3);
+            gpValue = 1000;
+            magicRolls = d4.roll();
+            magicItemTable = 'H';
+            break;
+        case 75 ... 76:
+            artRolls = d10.roll();
+            gpValue = 2500;
+            magicRolls = d4.roll();
+            magicItemTable = 'H';
+        case 77 ... 78:
+            artRolls = d4.roll();
+            gpValue = 7500;
+            magicRolls = d4.roll();
+            magicItemTable = 'H';
+        case 79 ... 80:
+            gemRolls = d8.roll();
+            gpValue = 5000;
+            magicRolls = d4.roll();
+            magicItemTable = 'H';
+            break;
+        case 81 ... 85:
+            gemRolls = d6.roll(3);
+            gpValue = 1000;
+            magicRolls = d4.roll();
+            magicItemTable = 'I';
+            break;
+        case 86 ... 90:
+            artRolls = d10.roll();
+            gpValue = 2500;
+            magicRolls = d4.roll();
+            magicItemTable = 'I';
+            break;
+        case 91 ... 95:
+            artRolls = d4.roll();
+            gpValue = 7500;
+            magicRolls = d4.roll();
+            magicItemTable = 'I';
+            break;
+        case 96 ... 100:
+            gemRolls = d8.roll();
+            gpValue = 5000;
+            magicRolls = d4.roll();
+            magicItemTable = 'I';
+            break;
+    }
+    for (int i = 0; i < gemRolls; i++)
+    {
+        treasure->gems
+            .push_back(LootFactory::gemFactory(gpValue));
+    }
+    for (int i = 0; i < artRolls; i++)
+    {
+        treasure->artwork
+            .push_back(LootFactory::artFactory(gpValue));
+    }
+    for (int i = 0; i < magicRolls; i++)
+    {
+        treasure->magicItems
+            .push_back(LootFactory::magicItemFactory(magicItemTable));
+    }
 }
