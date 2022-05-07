@@ -644,37 +644,32 @@ MagicItem* LootFactory::_magicItemFactoryTableA()
     int roll = d100.roll();
     std::string name;
 
-    if (1 <= roll and roll <= 50)
+    switch (roll)
     {
-        name = "Potion of healing";
-    }
-    else if (51 <= roll and roll <= 60)
-    {
-        name = "Spell scroll (cantrip)";
-    }
-    else if (61 <= roll and roll <= 70)
-    {
-        name = "Potion of climbing";
-    }
-    else if (71 <= roll and roll <= 90)
-    {
-        name = "Spell scroll (1st level)";
-    }
-    else if (91 <= roll and roll <= 94)
-    {
-        name = "Spell scroll (2nd level)";
-    }
-    else if (95 <= roll and roll <= 98)
-    {
-        name = "Potion of greater healing";
-    }
-    else if (roll == 99)
-    {
-        name = "Bag of holding";
-    }
-    else
-    {
-        name = "Driftglobe";
+        case 1 ... 50:
+            name = "Potion of healing";
+            break;
+        case 51 ... 60:
+            name = "Spell scroll (cantrip)";
+            break;
+        case 61 ... 70:
+            name = "Potion of climbing";
+            break;
+        case 71 ... 90:
+            name = "Spell scroll (1st level)";
+            break;
+        case 91 ... 94:
+            name = "Spell scroll (2nd level)";
+            break;
+        case 95 ... 98:
+            name = "Potion of greater healing";
+            break;
+        case 99:
+            name = "Bag of holding";
+            break;
+        case 100:
+            name = "Driftglobe";
+            break;
     }
     return new MagicItem(name, 0);
 }
@@ -684,83 +679,22 @@ MagicItem* LootFactory::_magicItemFactoryTableB()
     int roll = d100.roll();
     std::string name;
 
-    if (1 <= roll and roll <= 15)
+    switch (roll)
     {
-        name = "Potion of greater healing";
+        case 1 ... 15:
+            name = "Potion of greater healing";
+            break;
+        case 16 ... 22:
+            name = "Potion of fire breath";
+            break;
+        case 23 ... 29:
+            name = "Potion of resistance";
+            break;
+        case 30 ... 34:
+            name = "Ammunition, +1";
+            break;
+    /// TODO Finish implementing
     }
-    else if (16 <= roll and roll <= 22)
-    {
-        name = "Potion of fire breath";
-    }
-    else if (23 <= roll and roll <= 29)
-    {
-        name = "Potion of resistance";
-    }
-    else if (30 <= roll and roll <= 34)
-    {
-        name = "Ammunition, +1";
-    }
-    else if (1 <= roll and roll <= 15)
-    {
-
-    }
-    else if (1 <= roll and roll <= 15)
-    {
-
-    }
-    else if (1 <= roll and roll <= 15)
-    {
-
-    }
-    else if (1 <= roll and roll <= 15)
-    {
-
-    }
-    else if (1 <= roll and roll <= 15)
-    {
-
-    }
-    else if (1 <= roll and roll <= 15)
-    {
-
-    }
-    else if (1 <= roll and roll <= 15)
-    {
-
-    }
-    else if (1 <= roll and roll <= 15)
-    {
-
-    }
-    else if (1 <= roll and roll <= 15)
-    {
-
-    }
-    else if (1 <= roll and roll <= 15)
-    {
-
-    }
-    else if (1 <= roll and roll <= 15)
-    {
-
-    }
-    else if (1 <= roll and roll <= 15)
-    {
-
-    }
-    else if (1 <= roll and roll <= 15)
-    {
-
-    }
-    else if (1 <= roll and roll <= 15)
-    {
-
-    }
-    else if (1 <= roll and roll <= 15)
-    {
-
-    }
-
     return new MagicItem(name, 0);
 }
 
