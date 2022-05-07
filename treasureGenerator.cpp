@@ -287,7 +287,7 @@ void TreasureGenerator::_treasureGeneratorCr4(Treasure* treasure)
             magicItemTable = 'F';
             break;
         case 93 ... 97:
-            artRolls = d6.roll(2);
+            gemRolls = d6.roll(2);
             gpValue = 50;
             magicRolls = d4.roll();
             magicItemTable = 'F';
@@ -345,7 +345,7 @@ void TreasureGenerator::_treasureGeneratorCr10(Treasure* treasure)
             gpValue = 25;
             break;
         case 11 ... 16:
-            artRolls = d6.roll(3);
+            gemRolls = d6.roll(3);
             gpValue = 50;
             break;
         case 17 ... 22:
