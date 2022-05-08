@@ -64,3 +64,19 @@ Coinage::~Coinage()
         platinum = nullptr;
     }
 }
+
+std::string Coinage::toString()
+{
+    std::ostringstream oss;
+    if (copper)
+        oss << copper->toString() << std::endl;
+    if (silver)
+        oss << silver->toString() << std::endl;
+    if (electrum)
+        oss << electrum->toString() << std::endl;
+    if (gold)
+        oss << gold->toString() << std::endl;
+    if (platinum)
+        oss << platinum->toString() << std::endl;
+    return oss.str();
+}

@@ -27,6 +27,9 @@
 #define LOOT_HPP
 
 #include <string>
+#include <sstream>
+#include <iostream>
+#include <math.h>
 
 class Loot
 {
@@ -38,13 +41,15 @@ public:
     Loot(std::string);
     virtual ~Loot() {};
 
-    std::string get_name();
-    float get_value();
+    std::string getName();
+    float getValue();
 
     static bool isInt(float);
 
-    void set_name(std::string);
-    virtual void set_value(float) = 0;
+    void setName(std::string);
+    virtual void setValue(float) = 0;
+
+    virtual std::string toString() = 0;
 };
 
 class Coin: public Loot
@@ -52,7 +57,8 @@ class Coin: public Loot
     public:
         Coin(std::string, float);
         virtual ~Coin() {};
-        virtual void set_value(float);
+        virtual void setValue(float);
+        virtual std::string toString();
 };
 
 class Gemstone: public Loot
@@ -60,7 +66,8 @@ class Gemstone: public Loot
     public:
         Gemstone(std::string, float);
         virtual ~Gemstone() {};
-        void set_value(float);
+        void setValue(float);
+        virtual std::string toString();
 };
 
 class Art: public Loot
@@ -68,7 +75,8 @@ class Art: public Loot
     public:
         Art(std::string, float);
         virtual ~Art() {};
-        void set_value(float);
+        void setValue(float);
+        virtual std::string toString();
 };
 
 class MagicItem: public Loot
@@ -76,7 +84,8 @@ class MagicItem: public Loot
     public:
         MagicItem(std::string, float);
         virtual ~MagicItem() {};
-        void set_value(float);
+        void setValue(float);
+        virtual std::string toString();
 };
 
 #endif /* LOOT_HPP */

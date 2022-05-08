@@ -28,12 +28,10 @@
 #define LOOT_H
 
 #include "loot.hpp"
-#include <iostream>
-#include <math.h>
 
 Loot::Loot(std::string name)
 {
-    set_name(name);
+    setName(name);
 }
 
 bool Loot::isInt(float num)
@@ -48,17 +46,17 @@ bool Loot::isInt(float num)
     }
 }
 
-void Loot::set_name(std::string name)
+void Loot::setName(std::string name)
 {
     _name = name;
 }
 
-std::string Loot::get_name()
+std::string Loot::getName()
 {
     return _name;
 }
 
-float Loot::get_value()
+float Loot::getValue()
 {
     return _value;
 }
@@ -66,10 +64,10 @@ float Loot::get_value()
 Coin::Coin(std::string name, float value)
     : Loot(name)
     {
-        set_value(value);
+        setValue(value);
     };
 
-void Coin::set_value(float value)
+void Coin::setValue(float value)
 {
     if (value >= 0)
     {
@@ -81,13 +79,21 @@ void Coin::set_value(float value)
     }
 }
 
+std::string Coin::toString()
+{
+    std::ostringstream oss;
+    std::string pluralityOfCoin = getValue() == 1 ? "coin" : "coins";
+    oss << getValue() << " " << getName() << " " << pluralityOfCoin;
+    return oss.str();
+}
+
 Gemstone::Gemstone(std::string name, float value)
     : Loot(name)
 {
-    set_value(value);
+    setValue(value);
 }
 
-void Gemstone::set_value(float value)
+void Gemstone::setValue(float value)
 {
     if (value >= 0)
     {
@@ -97,15 +103,22 @@ void Gemstone::set_value(float value)
     {
         _value = 0;
     }
+}
+
+std::string Gemstone::toString()
+{
+    std::ostringstream oss;
+    oss << getName() << " gem worth " << getValue() << " gp";
+    return oss.str();
 }
 
 Art::Art(std::string name, float value)
     : Loot(name)
 {
-    set_value(value);
+    setValue(value);
 }
 
-void Art::set_value(float value)
+void Art::setValue(float value)
 {
     if (value >= 0)
     {
@@ -115,15 +128,22 @@ void Art::set_value(float value)
     {
         _value = 0;
     }
+}
+
+std::string Art::toString()
+{
+    std::ostringstream oss;
+    oss << getName() << " art worth " << getValue() << " gp";
+    return oss.str();
 }
 
 MagicItem::MagicItem(std::string name, float value)
     : Loot(name)
 {
-    set_value(value);
+    setValue(value);
 }
 
-void MagicItem::set_value(float value)
+void MagicItem::setValue(float value)
 {
     if (value >= 0)
     {
@@ -133,6 +153,11 @@ void MagicItem::set_value(float value)
     {
         _value = 0;
     }
+}
+
+std::string MagicItem::toString()
+{
+    return getName();
 }
 
 #endif
