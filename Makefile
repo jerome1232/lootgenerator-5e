@@ -3,7 +3,7 @@ CFLAGS := -g -O0 --std=c++20
 WCC := x86_64-w64-mingw32-g++-win32
 WFLAGS := --static
 
-all: linux-cli win-cli
+# all: linux-cli win-cli
 
 linux-cli: test_loot_generator.o
 	${CC} ${CFLAGS} loot.o coinage.o treasure.o lootFactory.o \
