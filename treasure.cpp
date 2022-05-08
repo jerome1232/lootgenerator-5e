@@ -47,3 +47,40 @@ Treasure::~Treasure()
     artwork.clear();
     magicItems.clear();
 }
+
+std::string Treasure::toString()
+{
+    std::ostringstream oss;
+    if (coinage)
+        oss << "\nCoinage\n"
+            << "-------"
+            << coinage->toString() << std::endl;
+    if (!gems.empty())
+    {
+        oss << "\nGems\n"
+            << "----\n";
+        for (Gemstone* e : gems)
+        {
+            oss << e->toString() << std::endl;
+        }
+    }
+    if (!artwork.empty())
+    {
+        oss << "\nArtwork\n"
+            << "-------\n";
+        for (Art* e : artwork)
+        {
+            oss << e->toString() << std::endl;
+        }
+    }
+    if (!magicItems.empty())
+    {
+        oss << "\nMagic Items\n"
+            << "-----------\n";
+        for (MagicItem* e : magicItems)
+        {
+            oss << e->toString() << std::endl;
+        }
+    }
+    return oss.str();
+}

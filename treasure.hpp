@@ -28,6 +28,7 @@
 
 #include "coinage.hpp"
 #include <vector>
+#include <sstream>
 
 class Treasure
 {
@@ -39,6 +40,7 @@ public:
 
     Treasure(Coinage* = nullptr, std::vector<Gemstone*> = {},
              std::vector<Art*> = {}, std::vector<MagicItem*> = {});
+    std::string toString();
     ~Treasure();
 };
 
