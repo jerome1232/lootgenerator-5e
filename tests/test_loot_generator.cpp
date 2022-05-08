@@ -135,38 +135,7 @@ void printTreasure(Treasure* treasure)
 {
     if (treasure)
     {
-        std::cout << "############\n"
-                     "# TREASURE #\n"
-                     "############\n";
-        if (treasure->coinage)
-        {
-            std::cout << treasure->coinage->toString();
-        }
-        if (!treasure->artwork.empty())
-        {
-            std::cout << "### ARTWORK ###\n";
-            for (auto e : treasure->artwork)
-            {
-                std::cout << e->toString() << std::endl;
-            }
-        }
-        if (!treasure->gems.empty())
-        {
-            std::cout << "### GEMSTONES ###\n";
-            for (auto e : treasure->gems)
-            {
-                std::cout << e->toString() << std::endl;
-            }
-        }
-        if (!treasure->magicItems.empty())
-        {
-            std::cout << " ### MAGIC ITEMS ###\n";
-            for (auto e : treasure->magicItems)
-            {
-                if (e)
-                    std::cout << e->toString() << std::endl;
-            }
-        }
+        std::cout << treasure->toString() << std::endl;
     }
 }
 
