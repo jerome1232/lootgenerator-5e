@@ -24,7 +24,7 @@
  * along with Loot Generator.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "../treasureGenerator.hpp"
+#include "../src/treasureGenerator.hpp"
 #include <chrono>
 #include <iostream>
 
