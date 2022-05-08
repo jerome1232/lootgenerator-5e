@@ -69,14 +69,14 @@ std::string Coinage::toString()
 {
     std::ostringstream oss;
     if (copper)
-        oss << copper->toString() << std::endl;
+        oss << std::endl << copper->toString();
     if (silver)
-        oss << silver->toString() << std::endl;
+        oss << std::endl << silver->toString();
     if (electrum)
-        oss << electrum->toString() << std::endl;
+        oss << std::endl << electrum->toString();
     if (gold)
-        oss << gold->toString() << std::endl;
+        oss << std::endl << gold->toString();
     if (platinum)
-        oss << platinum->toString() << std::endl;
+        oss << std::endl << platinum->toString();
     return oss.str();
 }
