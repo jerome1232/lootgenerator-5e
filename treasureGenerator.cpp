@@ -317,8 +317,9 @@ void TreasureGenerator::_treasureGeneratorCr4(Treasure* treasure)
     }
     for (int i = 0; i < magicRolls; i++)
     {
-        treasure->magicItems
-            .push_back(LootFactory::magicItemFactory(magicItemTable));
+        MagicItem* item = LootFactory::magicItemFactory(magicItemTable);
+        if (item)
+            treasure->magicItems.push_back(item);
     }
 }
 
@@ -513,8 +514,9 @@ void TreasureGenerator::_treasureGeneratorCr10(Treasure* treasure)
     }
     for (int i = 0; i < magicRolls; i++)
     {
-        treasure->magicItems
-            .push_back(LootFactory::magicItemFactory(magicItemTable));
+        MagicItem* item = LootFactory::magicItemFactory(magicItemTable);
+        if (item)
+            treasure->magicItems.push_back(LootFactory::magicItemFactory(magicItemTable));
     }
 }
 
@@ -753,13 +755,15 @@ void TreasureGenerator::_treasureGeneratorCr16(Treasure* treasure)
     }
     for (int i = 0; i < magicRolls; i++)
     {
-        treasure->magicItems
-            .push_back(LootFactory::magicItemFactory(magicItemTable));
+        MagicItem* item = LootFactory::magicItemFactory(magicItemTable);
+        if (item)
+            treasure->magicItems.push_back(item);
     }
     for (int i = 0; i < magicRolls2; i++)
     {
-        treasure->magicItems
-            .push_back(LootFactory::magicItemFactory(magicItemTable2));
+        MagicItem* item = LootFactory::magicItemFactory(magicItemTable2);
+        if (item)
+            treasure->magicItems.push_back(item);
     }
 }
 
@@ -935,7 +939,9 @@ void TreasureGenerator::_treasureGeneratorCr17(Treasure* treasure)
     }
     for (int i = 0; i < magicRolls; i++)
     {
-        treasure->magicItems
-            .push_back(LootFactory::magicItemFactory(magicItemTable));
+        MagicItem* item = LootFactory::magicItemFactory(magicItemTable);
+        std::cout << item << "\n";
+        if (item)
+            treasure->magicItems.push_back(item);
     }
 }
