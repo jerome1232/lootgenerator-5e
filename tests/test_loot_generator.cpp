@@ -131,22 +131,6 @@ int main()
     //           << "Treasure deleted in " << deletionTime.count() << " milliseconds\n";
 }
 
-void printCoin(Loot* loot)
-{
-    if (loot)
-    {
-        std::cout << loot->get_value() << " " << loot->get_name() << std::endl;
-    }
-}
-
-void printLoot(Loot* loot)
-{
-    if (loot)
-    {
-        std::cout << loot->get_value() << " gp " << loot->get_name() << std::endl;
-    }
-}
-
 void printTreasure(Treasure* treasure)
 {
     if (treasure)
@@ -156,19 +140,14 @@ void printTreasure(Treasure* treasure)
                      "############\n";
         if (treasure->coinage)
         {
-            std::cout << "### COINAGE ###\n";
-            printCoin(treasure->coinage->copper);
-            printCoin(treasure->coinage->silver);
-            printCoin(treasure->coinage->electrum);
-            printCoin(treasure->coinage->gold);
-            printCoin(treasure->coinage->platinum);
+            std::cout << treasure->coinage->toString();
         }
         if (!treasure->artwork.empty())
         {
             std::cout << "### ARTWORK ###\n";
             for (auto e : treasure->artwork)
             {
-                printLoot(e);
+                std::cout << e->toString() << std::endl;
             }
         }
         if (!treasure->gems.empty())
@@ -176,7 +155,7 @@ void printTreasure(Treasure* treasure)
             std::cout << "### GEMSTONES ###\n";
             for (auto e : treasure->gems)
             {
-                printLoot(e);
+                std::cout << e->toString() << std::endl;
             }
         }
         if (!treasure->magicItems.empty())
@@ -184,7 +163,8 @@ void printTreasure(Treasure* treasure)
             std::cout << " ### MAGIC ITEMS ###\n";
             for (auto e : treasure->magicItems)
             {
-                printLoot(e);
+                if (e)
+                    std::cout << e->toString() << std::endl;
             }
         }
     }
