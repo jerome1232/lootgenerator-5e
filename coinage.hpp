@@ -27,6 +27,7 @@
 #define COINAGE_HPP
 
 #include "loot.hpp"
+#include "ostream"
 
 class Coinage
 {
@@ -40,6 +41,8 @@ public:
     Coin* electrum;
     Coin* gold;
     Coin* platinum;
+
+    std::string toString();
 };
 
 #endif
