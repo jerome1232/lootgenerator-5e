@@ -43,9 +43,13 @@ Treasure* rollTreasure();
 
 bool isNumber(const std::string& str);
 
-bool testCoinage();
-
 bool testCoin();
+
+bool testArt();
+
+void printPass(std::string msg);
+
+void printFail(std::string msg, std::string expected, std::string got);
 
 int main()
 {
@@ -66,32 +70,106 @@ int main()
     //     {
     //         isDone = true;
     //     }
-    testCoin();
+    if (testCoin())
+    {
+        printPass("All coin tests passed");
+    }
+    else
+    {
+        printFail("Some coin tests failed", "", "");
+    }
     return 0;
+}
+
+void printPass(std::string msg)
+{
+    std::cout << PASS << " "<< msg << "\n";
+}
+
+void printFail(std::string msg, std::string expected, std::string got)
+{
+    std::cout << FAIL << " " << msg << "\n"
+              << "EXPECTED: " << expected << "\n"
+              << "GOT:      " << got << "\n";
 }
 
 bool testCoin()
 {
     std::string result;
     std::string test;
+    std::string expected;
+    std::string got;
+    std::ostringstream oss;
+    bool pass = true;
+
     test = "Creating \"Copper\" Coin with value 1";
-    std::cout << "\033[0;33m***Testing Coin creation***\n"
+    std::cout << "---------------------------\033[0;m\n"
+              << "\033[0;33m***Testing Coin creation***\n"
               << "---------------------------\033[0;m\n";
     Coin coin = Coin("Copper", 1);
     if (coin.getName() == "Copper" and coin.getValue() == 1)
     {
-        std::cout << PASS << " " << test << "\n";
+        printPass(test);
     }
     else
     {
-        std::cout << FAIL << " " << test << "\n";
+        oss.str("");
+        oss.clear();
+        oss << "Expected Name: Copper | Value: 1";
+        expected = oss.str();
+        oss.str("");
+        oss.clear();
+        oss << "Got Name: " << coin.getName() << " | Value: "
+            << coin.getValue() << "\n";
+        got = oss.str();
+        printFail(test, expected, got);
+        pass = false;
     }
-
-
-    return true;
+    test = "Creating \"Copper\" Coin with negative value";
+    coin = Coin("Copper", -1);
+    if (coin.getName() == "Copper" and coin.getValue() == 0)
+    {
+        printPass(test);
+    }
+    else
+    {
+        oss.str("");
+        oss.clear();
+        oss << "Expected Name: Copper | Value: 0";
+        expected = oss.str();
+        oss.str("");
+        oss.clear();
+        oss << "Got Name: " << coin.getName() << " | Value: "
+            << coin.getValue() << "\n";
+        got = oss.str();
+        printFail(test, expected, got);
+        pass = false;
+    }
+    test = "Creating \"Gold\" Coin with high value";
+    int highValue = 2147483647;
+    coin = Coin("Gold", highValue);
+    if (coin.getName() == "Gold" and coin.getValue() == highValue)
+    {
+        printPass(test);
+    }
+    else
+    {
+        oss.str("");
+        oss.clear();
+        oss << "Expected Name: Gold | Value: " << highValue;
+        expected = oss.str();
+        oss.str("");
+        oss.clear();
+        oss << "Got Name: " << coin.getName() << " | Value: "
+            << coin.getValue() << "\n";
+        got = oss.str();
+        printFail(test, expected, got);
+        pass = false;
+    }
+    return pass;
 }
 
-bool testCoinage()
+bool testArt()
 {
 
 }
