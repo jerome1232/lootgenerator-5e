@@ -693,9 +693,102 @@ MagicItem* LootFactory::_magicItemFactoryTableB()
         case 30 ... 34:
             name = "Ammunition, +1";
             break;
-    /// TODO Finish implementing
+        case 35 ... 39:
+            name = "Potion of Animal Friendship";
+            break;
+        case 40 ... 44:
+            name = "Potion of Hill Giant Strength";
+            break;
+        case 45 ... 49:
+            name = "Potion of growth";
+            break;
+        case 50 ... 54:
+            name = "Potion of water breathing";
+            break;
+        case 55 ... 59:
+            name = "Spell scroll (2nd level)";
+            break;
+        case 60 ... 64:
+            name = "Spell scroll (3rd level)";
+            break;
+        case 65 ... 67:
+            name = "Bag of holding";
+            break;
+        case 68 ... 70:
+            name = "Keoghtom's ointment";
+            break;
+        case 71 ... 73:
+            name = "Oil of slipperiness";
+            break;
+        case 74 ... 75:
+            name = "Dust of disapperance";
+            break;
+        case 76 ... 77:
+            name = "Dust of dryness";
+            break;
+        case 78 ... 79:
+            name = "Dust of sneezing and choking";
+            break;
+        case 80 ... 81:
+            name = "Elemental gem";
+            break;
+        case 82 ... 83:
+            name = "Philter of love";
+            break;
+        case 84:
+            name = "Alchemy jug";
+            break;
+        case 85:
+            name = "Cap of water breathing";
+            break;   
+        case 86:
+            name = "Cloak of the manta ray";
+            break;
+        case 87:
+            name = "Driftglobe";
+            break;
+        case 88:
+            name = "Goggles of night";
+            break;
+        case 89:
+            name = "Helm of comprehending languages";
+            break;
+        case 90:
+            name = "Immovable Rob";
+            break;
+        case 91:
+            name = "Lantern of revealing";
+            break;
+        case 92:
+            name = "Mariner's armor";
+            break;
+        case 93:
+            name = "Mithral armor";
+            break;
+        case 94:
+            name = "Potion of poison";
+            break;
+        case 95:
+            name = "Ring of swimming";
+            break;
+        case 96:
+            name = "Robe of useful items";
+            break;
+        case 97:
+            name = "Rope of climbing";
+            break;
+        case 98:
+            name = "Saddle of the cavalier";
+            break;
+        case 99:
+            name = "Wand of magic detection";
+            break;
+        case 100:
+            name = "Wand of secrets";
+            break;    
     }
     return new MagicItem(name, 0);
+    
 }
 
 MagicItem* LootFactory::_magicItemFactoryTableC()
