@@ -33,23 +33,23 @@
 
 class Loot
 {
-    protected:
-        std::string _name;
-        float _value;
+protected:
+    std::string _name;
+    float _value;
 
-    public:
-        Loot(std::string);
-        virtual ~Loot() {};
+public:
+    Loot(std::string);
+    virtual ~Loot() {};
 
-        std::string getName();
-        float getValue();
+    std::string getName();
+    float getValue();
 
-        static bool isInt(float);
+    static bool isInt(float);
 
-        void setName(std::string);
-        virtual void setValue(float) = 0;
+    void setName(std::string);
+    virtual void setValue(float) = 0;
 
-        virtual std::string toString() = 0;
+    virtual std::string toString() = 0;
 };
 
 class Coin: public Loot
