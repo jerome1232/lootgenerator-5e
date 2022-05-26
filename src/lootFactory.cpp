@@ -788,7 +788,8 @@ MagicItem* LootFactory::_magicItemFactoryTableB()
             break;    
     }
     return new MagicItem(name, 0);
-
+    
+}
 
 MagicItem* LootFactory::_magicItemFactoryTableC()
 {

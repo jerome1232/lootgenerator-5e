@@ -171,7 +171,7 @@ bool testCoin()
 
 bool testArt()
 {
-
+    
 }
 
 void printTreasure(Treasure* treasure)
