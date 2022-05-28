@@ -793,9 +793,97 @@ MagicItem* LootFactory::_magicItemFactoryTableB()
 
 MagicItem* LootFactory::_magicItemFactoryTableC()
 {
-    MagicItem* magicItem = nullptr;
+        int roll = d100.roll();
+    std::string name;
 
-    return magicItem;
+    switch (roll)
+    {
+        case 1 ... 15:
+            name = "Potion of superior healing";
+            break;
+        case 16 ... 22:
+            name = "Spell scroll (4th level)";
+            break;
+        case 23 ... 27:
+            name = "Aummunition, +2";
+            break;
+        case 28 ... 32:
+            name = "Potion of clairvoyance";
+            break;
+        case 33 ... 37:
+            name = "Potion of duminution";
+            break;
+        case 38 ... 42:
+            name = "Potion of gaseous form";
+            break;
+        case 43 ... 47:
+            name = "Potion of frost giant strength";
+            break;
+        case 48 ... 52:
+            name = "Potion of stone giant strength";
+            break;
+        case 53 ... 57:
+            name = "Potion of heroism";
+            break;
+        case 58 ... 62:
+            name = "Potion of invulnerability";
+            break;
+        case 63 ... 67:
+            name = "Potion of mind reading";
+            break;
+        case 68 ... 72:
+            name = "Spell scroll (5th level)";
+            break;
+        case 73 ... 75:
+            name = "Elixir of health";
+            break;
+        case 76 ... 78:
+            name = "Oil of ehterealness";
+            break;
+        case 79 ... 81:
+            name = "Potion of fire giant strength";
+            break;
+        case 82 ... 84:
+            name = "Quaal's feather token";
+            break;
+        case 85 ... 87:
+            name = "Scroll of protection";
+            break;
+        case 88 ... 89:
+            name = "Bag of beans";
+            break;
+        case 90 ... 91:
+            name = "Bead of force";
+            break;
+        case 92:
+            name = "Chime of opening";
+            break;   
+        case 93:
+            name = "Decanter of endless water";
+            break;
+        case 94:
+            name = "Eyes of minute seeing";
+            break;
+        case 95:
+            name = "Folding boat";
+            break;
+        case 96:
+            name = "Heward's handy haversack";
+            break;
+        case 97:
+            name = "Horseshoes of speed";
+            break;
+        case 98:
+            name = "Necklace of fireballs";
+            break;
+        case 99:
+            name = "Periapt of health";
+            break;
+        case 100:
+            name = "Sending stones";
+            break;
+    }
+    return new MagicItem(name, 0);
 }
 
 MagicItem* LootFactory::_magicItemFactoryTableD()
