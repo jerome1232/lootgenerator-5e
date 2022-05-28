@@ -882,10 +882,8 @@ MagicItem* LootFactory::_magicItemFactoryTableC()
         case 100:
             name = "Sending stones";
             break;
-
     }
     return new MagicItem(name, 0);
-    
 }
 
 MagicItem* LootFactory::_magicItemFactoryTableD()
