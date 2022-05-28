@@ -800,7 +800,7 @@ MagicItem* LootFactory::_magicItemFactoryTableC()
 
 MagicItem* LootFactory::_magicItemFactoryTableD()
 {
-     int roll = d100.roll();
+    int roll = d100.roll();
     std::string name;
 
     switch (roll)
@@ -855,7 +855,6 @@ MagicItem* LootFactory::_magicItemFactoryTableD()
             break;    
     }
     return new MagicItem(name, 0);
-
 }
 
 MagicItem* LootFactory::_magicItemFactoryTableE()
