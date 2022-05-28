@@ -27,6 +27,8 @@
 #include "../src/treasureGenerator.hpp"
 #include <chrono>
 #include <iostream>
+#include <string>
+#include <unordered_map>
 
 #define PASS "[\033[0;32mpass\033[0;m]"
 #define FAIL "[\033[0;31mfail\033[0;m]"
@@ -51,35 +53,57 @@ void printPass(std::string msg);
 
 void printFail(std::string msg, std::string expected, std::string got);
 
-int main()
+void printHelp();
+
+int main(int argc, char **argv)
 {
-    // Treasure* genTreasure = nullptr;
-
-    // bool isDone = false;
-    // while (!isDone)
-    // {
-    //     std::string again;
-    //     genTreasure = rollTreasure();
-    //     printTreasure(genTreasure);
-    //     delete genTreasure;
-    //     genTreasure = nullptr;
-    //     std::cout << "Again? [y/n]\n>>";
-    //     std::cin >> again;
-
-    //     if (again == "N" or again == "n")
-    //     {
-    //         isDone = true;
-    //     }
-    if (testCoin())
+    // Checking that there are exactly 4 arguments.
+    if (argc < 5 or argc > 5)
     {
-        printPass("All coin tests passed");
+        printHelp();
+        return 1;
     }
-    else
+
+    std::unordered_map<std::string, std::string> args;
+    args  = { { argv[1], argv[2] },
+              { argv[3], argv[4] } };
+
+    int cr;
+    bool isIndividual;
+    if (args.contains("-cr") and args.contains("-individual"))
     {
-        printFail("Some coin tests failed", "", "");
+        try
+        {
+            cr = std::stoi(args.at("-cr"));
+            if (args.at("-individual") == "true")
+            {
+                isIndividual = true;
+            }
+            else if (args.at("-individual") == "false")
+            {
+                isIndividual = false;
+            }
+            else
+            {
+                throw std::invalid_argument("-individual must be \"false\" or \"true\"");
+            }
+        }
+        catch(const std::exception& e)
+        {
+            std::cerr << e.what() << '\n';
+            return 1;
+        }
     }
+    std::cout  << "Hey that worked!\n";
+    Treasure* pTreasure = TreasureGenerator::generateLoot(cr, isIndividual);
+    std::cout << pTreasure->toString() << "\n";
     return 0;
 }
+
+void printHelp()
+{
+    std::cout << "Add agruments -cr n -individual false\n";
+};
 
 void printPass(std::string msg)
 {
