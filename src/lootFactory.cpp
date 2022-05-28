@@ -888,9 +888,61 @@ MagicItem* LootFactory::_magicItemFactoryTableC()
 
 MagicItem* LootFactory::_magicItemFactoryTableD()
 {
-    MagicItem* magicItem = nullptr;
+    int roll = d100.roll();
+    std::string name;
 
-    return magicItem;
+    switch (roll)
+    {
+        case 1 ... 20:
+            name = "Potion of supreme healing";
+            break;
+        case 21 ... 30:
+            name = "Potion of invisibility";
+            break;
+        case 31 ... 40:
+            name = "Potion of speed";
+            break;
+        case 41 ... 50:
+            name = "Spell scroll (6th level)";
+            break;
+        case 51 ... 57:
+            name = "Spell scroll (7th level)";
+            break;
+        case 58 ... 62:
+            name = "Aummunition , +3";
+            break;
+        case 63 ... 67:
+            name = "Oil of sharpness";
+            break;
+        case 68 ... 72:
+            name = "Potion of flying";
+            break;
+        case 73 ... 77:
+            name = "Potion of cloud giant strength";
+            break;
+        case 78 ... 82:
+            name = "Potion of longevity";
+            break;
+        case 83 ... 87:
+            name = "Potion of vitality";
+            break;
+        case 88 ... 92:
+            name = "Spell scroll (8th level)";
+            break;
+        case 93 ... 95:
+            name = "Horseshoes of a zephyr";
+            break;
+        case 96 ... 98:
+            name = "Nolzur's marvelous pigments";
+            break;
+        case 99:
+            name = "Bag of devouring";
+            break;
+        case 100:
+            name = "Portable hole";
+            break;    
+    }
+    return new MagicItem(name, 0);
 }
 
 MagicItem* LootFactory::_magicItemFactoryTableE()
