@@ -947,9 +947,34 @@ MagicItem* LootFactory::_magicItemFactoryTableD()
 
 MagicItem* LootFactory::_magicItemFactoryTableE()
 {
-    MagicItem* magicItem = nullptr;
+ int roll = d100.roll();
+    std::string name;
 
-    return magicItem;
+    switch (roll)
+    {
+        case 1 ... 30:
+            name = "Spell scroll (8th level)";
+            break;
+        case 31 ... 55:
+            name = "Potion of storm giant strength";
+            break;
+        case 56 ... 70:
+            name = "potion of supreme healing";
+            break;
+        case 71 ... 85:
+            name = "Spell scroll (9th level)";
+            break;
+        case 86 ... 93:
+            name = "Universal solvent";
+            break;
+        case 94 ... 98:
+            name = "Arrow of slaying";
+            break;
+        case 99 ... 100:
+            name = "Sovereign glue";
+            break;
+    }
+    return new MagicItem(name, 0);
 }
 
 MagicItem* LootFactory::_magicItemFactoryTableF()
