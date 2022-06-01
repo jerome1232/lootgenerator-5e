@@ -29,23 +29,6 @@
 
 #include "loot.hpp"
 
-Loot::Loot(std::string name)
-{
-    setName(name);
-}
-
-bool Loot::isInt(float num)
-{
-    if (rintf(num) - num <= 0.0000001)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
-
 void Loot::setName(std::string name)
 {
     _name = name;
