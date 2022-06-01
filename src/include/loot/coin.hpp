@@ -1,9 +1,9 @@
 /**
- * @file coinage.hpp
+ * @file coin.hpp
  * @author Jeremy Jones <j.jones1232@gmail.com>
  * @brief
  * @version 0.1
- * @date 2022-03-12
+ * @date 2022-05-31
  *
  * @copyright Copyright (c) 2022
  *
@@ -23,26 +23,38 @@
  * You should have received a copy of the GNU General Public License
  * along with Loot Generator.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef COINAGE_HPP
-#define COINAGE_HPP
+#ifndef COIN_HPP
+#define COIN_HPP
 
 #include "loot.hpp"
-#include "ostream"
 
-class Coinage
+enum class CoinType { COPPER, SILVER, GOLD, ELECTRUM, PLATINUM };
+
+/**
+ * @brief
+ * Represents a coin of any type.
+ */
+class Coin: public Loot
 {
-public:
-    Coinage(Coin* = nullptr, Coin* = nullptr, Coin* = nullptr,
-            Coin* = nullptr, Coin* = nullptr);
-    ~Coinage();
+    private:
+        // The type of coin (gold, platinum, etc..)
+        CoinType _type;
 
-    Coin* copper;
-    Coin* silver;
-    Coin* electrum;
-    Coin* gold;
-    Coin* platinum;
+    public:
+        // Default Constructor.
+        Coin();
 
-    std::string toString();
+        // Non-default Constructor.
+        Coin(CoinType, float);
+
+        // Sets the name of this object.
+        virtual void setName(CoinType);
+
+        // The number of coins of this type.
+        virtual void setValue(float);
+
+        // Creates a string representation of this object.
+        virtual std::string toString();
 };
 
-#endif
+#endif /* COIN_HPP */

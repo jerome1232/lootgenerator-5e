@@ -31,35 +31,36 @@
 #include <iostream>
 #include <math.h>
 
+/**
+ * @brief
+ * An abstract base class for loot.
+ */
 class Loot
 {
-protected:
-    std::string _name;
-    float _value;
+    protected:
+        // Common name by which loot is called.
+        std::string _name;
 
-public:
-    Loot(std::string);
-    virtual ~Loot() {};
+        // Value of the loot.
+        float _value;
 
-    std::string getName();
-    float getValue();
-
-    static bool isInt(float);
-
-    void setName(std::string);
-    virtual void setValue(float) = 0;
-
-    virtual std::string toString() = 0;
-};
-
-class Coin: public Loot
-{
     public:
-        Coin(std::string, float);
-        virtual ~Coin() {};
-        virtual void setValue(float);
-        virtual std::string toString();
+        // Gets the name.
+        std::string getName();
+
+        // Gets the value.
+        float getValue();
+
+        // Sets the name.
+        void setName(std::string);
+
+        // Sets the value.
+        virtual void setValue(float) = 0;
+
+        // Creates a string representation of the loot item.
+        virtual std::string toString() = 0;
 };
+
 
 class Gemstone: public Loot
 {
