@@ -954,9 +954,288 @@ MagicItem* LootFactory::_magicItemFactoryTableE()
 
 MagicItem* LootFactory::_magicItemFactoryTableF()
 {
-    MagicItem* magicItem = nullptr;
+int roll = d100.roll();
+    std::string name;
 
-    return magicItem;
+    switch (roll)
+    {
+        case 1 ... 15:
+            name = "Potion of superior healing";
+            break;
+        case 16 ... 22:
+            name = "Spell scroll (4th level)";
+            break;
+        case 23 ... 27:
+            name = "Aummunition, +2";
+            break;
+        case 28 ... 32:
+            name = "Potion of clairvoyance";
+            break;
+        case 33 ... 37:
+            name = "Potion of duminution";
+            break;
+        case 38 ... 42:
+            name = "Potion of gaseous form";
+            break;
+        case 43 ... 47:
+            name = "Potion of frost giant strength";
+            break;
+        case 48 ... 52:
+            name = "Potion of stone giant strength";
+            break;
+        case 53 ... 57:
+            name = "Potion of heroism";
+            break;
+        case 58 ... 62:
+            name = "Potion of invulnerability";
+            break;
+        case 63 ... 67:
+            name = "Potion of mind reading";
+            break;
+        case 68 ... 72:
+            name = "Spell scroll (5th level)";
+            break;
+        case 73 ... 75:
+            name = "Elixir of health";
+            break;
+        case 76 ... 78:
+            name = "Oil of ehterealness";
+            break;
+        case 79 ... 81:
+            name = "Potion of fire giant strength";
+            break;
+        case 82 ... 84:
+            name = "Quaal's feather token";
+            break;
+        case 85 ... 87:
+            name = "Scroll of protection";
+            break;
+        case 88 ... 89:
+            name = "Bag of beans";
+            break;
+        case 90 ... 91:
+            name = "Bead of force";
+            break;
+        case 92:
+            name = "Chime of opening";
+            break;   
+        case 93:
+            name = "Decanter of endless water";
+            break;
+        case 94:
+            name = "Eyes of minute seeing";
+            break;
+        case 95:
+            name = "Folding boat";
+            break;
+        case 96:
+            name = "Heward's handy haversack";
+            break;
+        case 97:
+            name = "Horseshoes of speed";
+            break;
+        case 98:
+            name = "Necklace of fireballs";
+            break;
+        case 99:
+            name = "Periapt of health";
+            break;
+        case 100:
+            name = "Sending stones";
+            break;
+    }
+    return new MagicItem(name, 0);
+}
+
+MagicItem* LootFactory::_magicItemFactoryTableD()
+{
+    int roll = d100.roll();
+    std::string name;
+
+    switch (roll)
+    {
+        case 1 ... 15:
+            name = "Weaon, +1";
+            break;
+        case 16 ... 18:
+            name = "Shield, +1";
+            break;
+        case 19 ... 21:
+            name = "Sentinel shield";
+            break;
+        case 22 ... 23:
+            name = "Amulet of proof against detection and location";
+            break;
+        case 24 ... 25:
+            name = "Boots of elvenkind";
+            break;
+        case 26 ... 27:
+            name = "Boots of striding and springing";
+            break;
+        case 28 ... 29:
+            name = "Bracers of archery";
+            break;
+        case 30 ... 31:
+            name = "Brooch of shielding";
+            break;
+        case 32 ... 33:
+            name = "Broom of flying";
+            break;
+        case 34 ... 35:
+            name = "Cloak of elvenkind";
+            break;
+        case 36 ... 37:
+            name = "Cloak of protection";
+            break;
+        case 38 ... 39:
+            name = "Gauntlets of ogre power";
+            break;
+        case 40 ... 41:
+            name = "Hat of disguise";
+            break;
+        case 42 ... 43:
+            name = "Javelin of lightning";
+            break;
+        case 44 ... 45:
+            name = "Pearl of power";
+            break;
+        case 46 ... 47:
+            name = "Rod of the pact keeper, +1";
+            break;
+        case 48 ... 49:
+            name = "Slippers of sprider climbing";
+            break;
+        case 50 ... 51:
+            name = "Staff of the adder";
+            break;
+        case 52 ... 53:
+            name = "Staff of the python";
+            break;
+        case 54 ... 55:
+            name = "Sword of vengeance";
+            break;
+        case 56 ... 57:
+            name = "Trident of fish command";
+            break;
+        case 58 ... 59:
+            name = "Wand of magic missiles";
+            break;
+        case 60 ... 61:
+            name = "Wand of war mage, +1";
+            break;
+        case 62 ... 63:
+            name = "Wand of web";
+            break;
+        case 64 ... 65:
+            name = "Weapon of warning";
+            break;
+        case 66:
+            name = "Adamantine armor (chain mail)";
+            break;
+        case 67:
+            name = "Adamantine armor (chain shirt)";
+            break;
+        case 68:
+            name = "Adamantine armor (scale mail)";
+            break;
+        case 69:
+            name = "Bag of tricks (grey)";
+            break;
+        case 70:
+            name = "Bag of tricks (rust)";
+            break;
+        case 71:
+            name = "Bah of trick (tan)";
+            break;
+        case 72:
+            name = "Boots of the winterlands";
+            break;
+        case 73:
+            name = "Circlet of blasting";
+            break;
+        case 74:
+            name = "Deck of illusions";
+            break;
+        case 75:
+            name = "Eversmoking bottle";
+            break;
+        case 76:
+            name = "Eyes of charming";
+            break;
+        case 77:
+            name = "Eyes of the eagle";
+            break;
+        case 78:
+            name = "Figurine of wondrous power (silver raven)";
+            break;
+        case 79:
+            name = "Gem of brightness";
+            break;
+        case 80:
+            name = "Gloves of missile snaring";
+            break;
+        case 81:
+            name = "Gloves of swimming and climbing";
+            break;
+        case 82:
+            name = "Gloves of theivery";
+            break;
+        case 83:
+            name = "Headband of intellect";
+            break;
+        case 84:
+            name = "Helm of telepathy";
+            break;
+        case 85:
+            name = "Instrument of the bards (Doss lute)";
+            break;
+        case 86:
+            name = "Instrument of the bards (fochlucan bandore)";
+            break;
+        case 87:
+            name = "Instrument of the bards (mac-Fuimidh cittern)";
+            break;
+        case 88:
+            name = "Medallion of thoughts";
+            break;
+        case 89:
+            name = "Necklace of adaptation";
+            break;
+        case 90:
+            name = "Periapt of wound closure";
+            break;
+        case 91:
+            name = "Pipes of haunting";
+            break;
+        case 92:
+            name = "Pipes of sewers";
+            break;
+        case 93:
+            name = "Ring of jumping";
+            break;
+        case 94:
+            name = "Ring of mind shielding";
+            break;
+        case 95:
+            name = "Ring of warmth";
+            break;
+        case 96:
+            name = "Ring of water walking";
+            break;
+        case 97:
+            name = "Quiver of Ehlonna";
+            break;
+        case 98:
+            name = "Stone of good luck";
+            break;
+        case 99:
+            name = "Wind fan";
+            break;
+        case 100:
+            name = "Winged boots";
+            break;
+    }
+    return new MagicItem(name, 0);
 }
 
 MagicItem* LootFactory::_magicItemFactoryTableG()
