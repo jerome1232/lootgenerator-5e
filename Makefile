@@ -26,16 +26,19 @@ lootFactory.o: loot.o dice.o src/lootFactory.cpp
 	${CC} ${CFLAGS} -c src/lootFactory.cpp
 
 loot.o: src/loot.cpp
-	${CC} ${CFLAGS} -c src/loot.cpp
+	${CC} ${CFLAGS} -c src/loot.cpp -I src/include/loot
 
 coinage.o: src/coinage.cpp
-	${CC} ${CFLAGS} -c src/coinage.cpp
+	${CC} ${CFLAGS} -c src/coinage.cpp -I src/include/loot
 
 treasure.o: coinage.o loot.o src/treasure.cpp
 	${CC} ${CFLAGS} -c src/treasure.cpp
 
 dice.o: src/dice.cpp
 	${CC} ${CFLAGS} -c src/dice.cpp
+
+coin.o: src/coin.cpp
+	${CC} ${CFLAGS} -c src/coin.cpp -I src/include/loot
 
 test_loot_generator-win.o: tests/test_loot_generator.cpp \
                            treasureGenerator-win.o
