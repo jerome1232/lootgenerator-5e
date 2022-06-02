@@ -1,9 +1,9 @@
 /**
- * @file loot.cpp
+ * @file gemstone.hpp
  * @author Jeremy Jones <j.jones1232@gmail.com>
  * @brief
  * @version 0.1
- * @date 2022-03-12
+ * @date 2022-05-31
  *
  * @copyright Copyright (c) 2022
  *
@@ -23,42 +23,16 @@
  * You should have received a copy of the GNU General Public License
  * along with Loot Generator.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "loot.hpp"
 
-Loot::Loot(float value)
-{
-    _value = value;
-}
+#include "gemstone.hpp"
 
-Loot::Loot(std::string name)
-{
-    _name = name;
-}
-
-Loot::Loot(std::string name, float value)
-{
-    _name = name;
-    _value = value;
-}
-
-std::string Loot::getName()
-{
-    return _name;
-}
-
-float Loot::getValue()
-{
-    return _value;
-}
-
-
-Art::Art(std::string name, float value)
+Gemstone::Gemstone(std::string name, float value)
     : Loot(name)
 {
     setValue(value);
 }
 
-void Art::setValue(float value)
+void Gemstone::setValue(float value)
 {
     if (value >= 0)
     {
@@ -70,32 +44,9 @@ void Art::setValue(float value)
     }
 }
 
-std::string Art::toString()
+std::string Gemstone::toString()
 {
     std::ostringstream oss;
-    oss << getName() << " art worth " << getValue() << " gp";
+    oss << getName() << " gem worth " << getValue() << " gp";
     return oss.str();
-}
-
-MagicItem::MagicItem(std::string name, float value)
-    : Loot(name)
-{
-    setValue(value);
-}
-
-void MagicItem::setValue(float value)
-{
-    if (value >= 0)
-    {
-        _value = round(value);
-    }
-    else
-    {
-        _value = 0;
-    }
-}
-
-std::string MagicItem::toString()
-{
-    return getName();
 }

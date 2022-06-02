@@ -28,6 +28,7 @@
 #define LOOT_FACTORY_HPP
 
 #include "loot.hpp"
+#include "coin.hpp"
 #include "dice.hpp"
 #include <exception>
 #include <iostream>

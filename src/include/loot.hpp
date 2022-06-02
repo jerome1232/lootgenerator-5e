@@ -45,14 +45,20 @@ class Loot
         float _value;
 
     public:
+        // Constructor to set name only.
+        Loot(std::string);
+
+        // Constructor to set value only.
+        Loot(float);
+
+        // Constructor to set both name and value.
+        Loot(std::string, float);
+
         // Gets the name.
         std::string getName();
 
         // Gets the value.
         float getValue();
-
-        // Sets the name.
-        void setName(std::string);
 
         // Sets the value.
         virtual void setValue(float) = 0;
@@ -62,14 +68,6 @@ class Loot
 };
 
 
-class Gemstone: public Loot
-{
-    public:
-        Gemstone(std::string, float);
-        virtual ~Gemstone() {};
-        void setValue(float);
-        virtual std::string toString();
-};
 
 class Art: public Loot
 {

@@ -1,9 +1,9 @@
 /**
- * @file coinage.hpp
+ * @file gemstone.hpp
  * @author Jeremy Jones <j.jones1232@gmail.com>
  * @brief
  * @version 0.1
- * @date 2022-03-12
+ * @date 2022-05-31
  *
  * @copyright Copyright (c) 2022
  *
@@ -23,26 +23,37 @@
  * You should have received a copy of the GNU General Public License
  * along with Loot Generator.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef COINAGE_HPP
-#define COINAGE_HPP
+#ifndef GEMSTONE_HPP
+#define GEMSTONE_HPP
 
-#include "coin.hpp"
-#include "ostream"
+#include "loot.hpp"
+#include <math.h>
 
-class Coinage
+/**
+ * @brief Represents a Gemstone.
+ *
+ */
+class Gemstone: public Loot
 {
-public:
-    Coinage(Coin* = nullptr, Coin* = nullptr, Coin* = nullptr,
-            Coin* = nullptr, Coin* = nullptr);
-    ~Coinage();
+    public:
+        /**
+         * @brief Construct a new Gemstone object
+         *
+         */
+        Gemstone(std::string, float);
 
-    Coin* copper;
-    Coin* silver;
-    Coin* electrum;
-    Coin* gold;
-    Coin* platinum;
+        /**
+         * @brief Set the Value object
+         *
+         */
+        void setValue(float);
 
-    std::string toString();
+        /**
+         * @brief Represent the Gemstone object as a string.
+         *
+         * @return std::string
+         */
+        virtual std::string toString();
 };
 
-#endif
+#endif /* GEMSTONE_HPP */

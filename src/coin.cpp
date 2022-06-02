@@ -1,5 +1,5 @@
 /**
- * @file loot.cpp
+ * @file coin.cpp
  * @author Jeremy Jones <j.jones1232@gmail.com>
  * @brief
  * @version 0.1
@@ -23,46 +23,32 @@
  * You should have received a copy of the GNU General Public License
  * along with Loot Generator.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "loot.hpp"
+#include "coin.hpp"
 
-Loot::Loot(float value)
+Coin::Coin(CoinType coinType, float value)
+    : Loot(value)
+    {
+        setName(coinType);
+    };
+
+void Coin::setName(CoinType coinType)
 {
-    _value = value;
+    switch (coinType)
+    {
+    case CoinType::COPPER:
+        /* code */
+        break;
+
+    default:
+        break;
+    }
 }
 
-Loot::Loot(std::string name)
-{
-    _name = name;
-}
-
-Loot::Loot(std::string name, float value)
-{
-    _name = name;
-    _value = value;
-}
-
-std::string Loot::getName()
-{
-    return _name;
-}
-
-float Loot::getValue()
-{
-    return _value;
-}
-
-
-Art::Art(std::string name, float value)
-    : Loot(name)
-{
-    setValue(value);
-}
-
-void Art::setValue(float value)
+void Coin::setValue(float value)
 {
     if (value >= 0)
     {
-        _value = round(value);
+        _value = value;
     }
     else
     {
@@ -70,32 +56,10 @@ void Art::setValue(float value)
     }
 }
 
-std::string Art::toString()
+std::string Coin::toString()
 {
     std::ostringstream oss;
-    oss << getName() << " art worth " << getValue() << " gp";
+    std::string pluralityOfCoin = getValue() == 1 ? "coin" : "coins";
+    oss << getValue() << " " << getName() << " " << pluralityOfCoin;
     return oss.str();
-}
-
-MagicItem::MagicItem(std::string name, float value)
-    : Loot(name)
-{
-    setValue(value);
-}
-
-void MagicItem::setValue(float value)
-{
-    if (value >= 0)
-    {
-        _value = round(value);
-    }
-    else
-    {
-        _value = 0;
-    }
-}
-
-std::string MagicItem::toString()
-{
-    return getName();
 }
