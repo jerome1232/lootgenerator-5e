@@ -29,7 +29,6 @@
 #include <string>
 #include <sstream>
 #include <iostream>
-#include <math.h>
 
 /**
  * @brief
@@ -38,17 +37,29 @@
 class Loot
 {
     protected:
-        // Common name by which loot is called.
+        /**
+         * @brief Common name by which loot is called.
+         *
+         */
         std::string _name;
 
-        // Value of the loot.
+        /**
+         * @brief Value of loot.
+         *
+         */
         float _value;
 
     public:
-        // Constructor to set name only.
+        /**
+         * @brief Construct a new Loot object.
+         *
+         */
         Loot(std::string);
 
-        // Constructor to set value only.
+        /**
+         * @brief Construct a new Loot object
+         *
+         */
         Loot(float);
 
         // Constructor to set both name and value.
@@ -69,14 +80,6 @@ class Loot
 
 
 
-class Art: public Loot
-{
-    public:
-        Art(std::string, float);
-        virtual ~Art() {};
-        void setValue(float);
-        virtual std::string toString();
-};
 
 class MagicItem: public Loot
 {

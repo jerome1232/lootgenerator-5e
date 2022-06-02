@@ -35,6 +35,9 @@ coin.o: loot.o src/coin.cpp
 gemstone.o: loot.o src/gemstone.cpp
 	${CC} ${CFLAGS} -c src/gemstone.cpp ${INCLUDE}
 
+art.o: loot.o src/art.cpp
+	${CC} ${CFLAGS} -c src/art.cpp ${INCLUDE}
+
 coinage.o: coin.o src/coinage.cpp
 	${CC} ${CFLAGS} -c src/coinage.cpp ${INCLUDE}
 

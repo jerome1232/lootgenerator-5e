@@ -29,6 +29,8 @@
 
 #include "loot.hpp"
 #include "coin.hpp"
+#include "gemstone.hpp"
+#include "art.hpp"
 #include "dice.hpp"
 #include <exception>
 #include <iostream>

@@ -1,9 +1,9 @@
 /**
- * @file coin.hpp
+ * @file art.hpp
  * @author Jeremy Jones <j.jones1232@gmail.com>
  * @brief
  * @version 0.1
- * @date 2022-05-31
+ * @date 2022-03-12
  *
  * @copyright Copyright (c) 2022
  *
@@ -23,58 +23,36 @@
  * You should have received a copy of the GNU General Public License
  * along with Loot Generator.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef COIN_HPP
-#define COIN_HPP
-
 #include "loot.hpp"
 
-enum class CoinType { COPPER, SILVER, GOLD, ELECTRUM, PLATINUM };
+#ifndef ART_HPP
+#define ART_HPP
 
 /**
- * @brief
- * Represents a coin of any type.
+ * @brief Represents a work of art.
+ *
  */
-class Coin: public Loot
+class Art: public Loot
 {
-    private:
-        /**
-         * @brief Type of coin (COPPER, SILVER, etc...).
-         *
-         */
-        CoinType _type;
-
     public:
         /**
-         * @brief Construct a new Coin object.
+         * @brief Construct a new Art object.
          *
          */
-        Coin();
-
-        /**
-         * @brief Construct a new Coin object.
-         *
-         */
-        Coin(CoinType, float);
-
-
-        /**
-         * @brief Set the Name object.
-         *
-         */
-        virtual void setName(CoinType);
+        Art(std::string, float);
 
         /**
          * @brief Set the Value object.
          *
          */
-        virtual void setValue(float);
+        void setValue(float);
 
         /**
-         * @brief Creates a string representation of the object.
+         * @brief Represent an Art object as a string.
          *
          * @return std::string
          */
         virtual std::string toString();
 };
 
-#endif /* COIN_HPP */
+#endif /* ART_HPP */
