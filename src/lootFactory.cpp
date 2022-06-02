@@ -1270,11 +1270,497 @@ MagicItem* LootFactory::_magicItemFactoryTableG()
     return magicItem;
 }
 
+MagicItem* LootFactory::_magicItemFactoryTableF()
+{
+int roll = d100.roll();
+    std::string name;
+
+    switch (roll)
+    {
+        case 1 ... 11:
+            name = "Weapon, +2";
+            break;
+        case 12 ... 14:
+            name = "Figurine of wondrous power (see DMG)";
+            break;
+        case 15:
+            name = "Adamantine armor (breastplate)";
+            break;
+        case 16:
+            name = "Adamantine armor (splint)";
+            break;
+        case 17:
+            name = "Amulet of health";
+            break;
+        case 18:
+            name = "Armor of vulnerability";
+            break;
+        case 19:
+            name = "Arrow-catching shield";
+            break;
+        case 20:
+            name = "Belt of dwarvenkind";
+            break;
+        case 21:
+            name = "Belt of hill giant strength";
+            break;
+        case 22:
+            name = "Berserker axe";
+            break;
+        case 23:
+            name = "Boots of levitation";
+            break;
+        case 24:
+            name = "Boots of speed";
+            break;
+        case 25:
+            name = "Bowl of commanding water elementals";
+            break;
+        case 26:
+            name = "Bracers of defense";
+            break;
+        case 27:
+            name = "Brazier of commanding fire elementals";
+            break;
+        case 28:
+            name = "Cape of the moutebank";
+            break;
+        case 29:
+            name = "Censer of crontrolling air elementals";
+            break;
+        case 30:
+            name = "Armor, +1 chain mail";
+            break;
+        case 31:
+            name = "Amor of resistance (chain mail)";
+            break;
+        case 32:
+            name = "Armor, +1 chain shirt";
+            break;
+        case 33:
+            name = "Armor of resistnace (chain shirt)";
+            break;
+        case 34:
+            name = "Cloak of displacement";
+            break;
+        case 35:
+            name = "Cload of the bat";
+            break;
+        case 36:
+            name = "Cube of force";
+            break;
+        case 37:
+            name = "Daern's instant fortress";
+            break;
+        case 38:
+            name = "Dagger of venom";
+            break;
+        case 39:
+            name = "Dimensional shackles";
+            break;
+        case 40:
+            name = "Dragon slayer";
+            break;
+        case 41:
+            name = "Elven chain";
+            break;
+        case 42:
+            name = "Flame tongue";
+            break;
+        case 43:
+            name = "Gem of seeing";
+            break;
+        case 44:
+            name = "Giant slayer";
+            break;
+        case 45:
+            name = "Glamoured studded leather";
+            break;
+        case 46:
+            name = "Helm of teleportation";
+            break;
+        case 47:
+            name = "Horn of blasting";
+            break;
+        case 48:
+            name = "Horn of Valhalla (silver or brass)";
+            break;
+        case 49:
+            name = "Instrument of the bards (Canaith mandolin)";
+            break;
+        case 50:
+            name = "Instument of the bards (Cli lyre)";
+            break;
+        case 51:
+            name = "Ioun stone (awareness)";
+            break;
+        case 52:
+            name = "Ioun stone (protection)";
+            break;
+        case 53:
+            name = "Ioun stone (reserve)";
+            break;
+        case 54:
+            name = "Ioun stone (sustenance)";
+            break;
+        case 55:
+            name = "Iron bands of Bilarro";
+            break;
+        case 56:
+            name = "Armor, +1 leather";
+            break;
+        case 57:
+            name = "Amor of resistance (leather)";
+            break;
+        case 58:
+            name = "Mace of disruption";
+            break;
+        case 59:
+            name = "Mace of smiting";
+            break;
+        case 60:
+            name = "Mace of terror";
+            break;
+        case 61:
+            name = "Mantle of spell resistance";
+            break;
+        case 62:
+            name = "Necklace of prayer beads";
+            break;
+        case 63:
+            name = "Periapt of proof against poison";
+            break;
+        case 64:
+            name = "Ring of animal influence";
+            break;
+        case 65:
+            name = "Ring of evasion";
+            break;
+        case 66:
+            name = "Ring of feather falling";
+            break;
+        case 67:
+            name = "Ring of free action";
+            break;
+        case 68:
+            name = "Ring of protection";
+            break;
+        case 69:
+            name = "Ring of resistance";
+            break;
+        case 70:
+            name = "Ring of spell storing";
+            break;
+        case 71:
+            name = "Ring of the ram";
+            break;
+        case 72:
+            name = "Ring of X-ray vision";
+            break;
+        case 73:
+            name = "Robe of eyes";
+            break;
+        case 74:
+            name = "Rod of rulership";
+            break;
+        case 75:
+            name = "Rod of the pact keeper, +2";
+            break;
+        case 76:
+            name = "Rope of entanglement";
+            break;
+        case 77:
+            name = "Armor, +1 scale mail";
+            break;
+        case 78:
+            name = "Armor of resistance (scale mail)";
+            break;
+        case 79:
+            name = "Shield, +2";
+            break;
+        case 80:
+            name = "Shield of missile attraction";
+            break;
+        case 81:
+            name = "Staff of charming";
+            break;
+        case 82:
+            name = "Staff of healing";
+            break;
+        case 83:
+            name = "Staff of swarming insects";
+            break;
+        case 84:
+            name = "Staff of the woodlands";
+            break;
+        case 85:
+            name = "Staff of withering";
+            break;
+        case 86:
+            name = "Stone of controlling earth elementals";
+            break;
+        case 87:
+            name = "Sun blade";
+            break;
+        case 88:
+            name = "Sword of life stealing";
+            break;
+        case 89:
+            name = "Sword of wounding";
+            break;
+        case 90:
+            name = "Tentacle rod";
+            break;
+        case 91:
+            name = "Vicious weapon";
+            break;
+        case 92:
+            name = "Wand of binding";
+            break;
+        case 93:
+            name = "Wand of enemy detection";
+            break;
+        case 94:
+            name = "Wand of fear";
+            break;
+        case 95:
+            name = "Wand of fireballs";
+            break;
+        case 96:
+            name = "Wand of lighning bolts";
+            break;
+        case 97:
+            name = "Wand of paralysis";
+            break;
+        case 98:
+            name = "Wand of the war mage, +2";
+            break;
+        case 99:
+            name = "Wand of wonder";
+            break;
+        case 100:
+            name = "Wings of flying";
+            break;
+    }
+    return new MagicItem(name, 0);
+}
+
 MagicItem* LootFactory::_magicItemFactoryTableH()
 {
-    MagicItem* magicItem = nullptr;
+int roll = d100.roll();
+    std::string name;
 
-    return magicItem;
+    switch (roll)
+    {
+        case 1 ... 10:
+            name = "Weapon, +3";
+            break;
+        case 11 ... 12:
+            name = "Amulet of the planes";
+            break;
+        case 13 ... 14:
+            name = "Carpet of flying";
+            break;
+        case 15 ... 16:
+            name = "Crystal ball (very rare version)";
+            break;
+        case 17 ... 18:
+            name = "Ring of regeneration";
+            break;
+        case 19 ... 20:
+            name = "Ring of shooting stars";
+            break;
+        case 21 ... 22:
+            name = "Ring of telekinesis";
+            break;
+        case 23 ... 24:
+            name = "Robe of scantillating colors";
+            break;
+        case 25 ... 26:
+            name = "Robe of stars";
+            break;
+        case 27 ... 28:
+            name = "Rod of absorption";
+            break;
+        case 29 ... 30:
+            name = "Rod of alertness";
+            break;
+        case 31 ... 32:
+            name = "Rod of security";
+            break;
+        case 33 ... 34:
+            name = "Rod of the pact keeper, +3";
+            break;
+        case 35 ... 36:
+            name = "Scimitar of speed";
+            break;
+        case 37 ... 38:
+            name = "Shield, +3";
+            break;
+        case 39 ... 40:
+            name = "Staff of fire";
+            break;
+        case 41 ... 42:
+            name = "Staff of frost";
+            break;
+        case 43 ... 44:
+            name = "Staff of power";
+            break;
+        case 45 ... 46:
+            name = "Staff of striking";
+            break;
+        case 47 ... 48:
+            name = "Staff of thunder and lightning";
+            break;
+        case 49 ... 50:
+            name = "Sword of sharpness";
+            break;
+        case 51 ... 52:
+            name = "Wand of polymorph";
+            break;
+        case 53 ... 54:
+            name = "Wand of war mage, +3";
+            break;
+        case 55:
+            name = "Adamantine armor (half plate)";
+            break;
+        case 56:
+            name = "Adamantine armor (plate)";
+            break;
+        case 57:
+            name = "Animated shield";
+            break;
+        case 58:
+            name = "Belt of fire giant strength";
+            break;
+        case 59:
+            name = "Belf of frost(or stone) giant strength";
+            break;
+        case 60:
+            name = "Armor, +1 breastplate";
+            break;
+        case 61:
+            name = "Armor of resistance (breastplate)";
+            break;
+        case 62:
+            name = "Candle of invocation";
+            break;
+        case 63:
+            name = "Armor, +2 chain mail";
+            break;
+        case 64:
+            name = "Armor, +2 chain shirt";
+            break;
+        case 65:
+            name = "Cloak of arachnida";
+            break;
+        case 66:
+            name = "Dancing sword";
+            break;
+        case 67:
+            name = "Demon armor";
+            break;
+        case 68:
+            name = "Dragon scale mail";
+            break;
+        case 69:
+            name = "Dwarven plate";
+            break;
+        case 70:
+            name = "Dwarven thrower";
+            break;
+        case 71:
+            name = "Efreeti bottle";
+            break;
+        case 72:
+            name = "figurine of wondrous power(obsidian steed)";
+            break;
+        case 73:
+            name = "Frost brand";
+            break;
+        case 74:
+            name = "Helm of brilliance";
+            break;
+        case 75:
+            name = "Horn of Valhalla";
+            break;
+        case 76:
+            name = "Instument of the bards (Anstruth harp)";
+            break;
+        case 77:
+            name = "Ioun stone (absorption)";
+            break;
+        case 78:
+            name = "Ioun stone (agility)";
+            break;
+        case 79:
+            name = "Ioun stone (fortitude)";
+            break;
+        case 80:
+            name = "Ioun stone (insight)";
+            break;
+        case 81:
+            name = "Ioun stone (intellect)";
+            break;
+        case 82:
+            name = "Ioun stone (leadership)";
+            break;
+        case 83:
+            name = "Ioun stone (strength)";
+            break;
+        case 84:
+            name = "Armor, +2 leather";
+            break;
+        case 85:
+            name = "Manual of bodily health";
+            break;
+        case 86:
+            name = "Manual of gainful exercise";
+            break;
+        case 87:
+            name = "Manual of golems";
+            break;
+        case 88:
+            name = "Manual of quickness of action";
+            break;
+        case 89:
+            name = "Mirror of life trapping";
+            break;
+        case 90:
+            name = "Nine lives stealer";
+            break;
+        case 91:
+            name = "Oathbow";
+            break;
+        case 92:
+            name = "Armor, +2 scale mail";
+            break;
+        case 93:
+            name = "Spellgaurd shield";
+            break;
+        case 94:
+            name = "Armor, +1 splint";
+            break;
+        case 95:
+            name = "Armor of resistance (splint)";
+            break;
+        case 96:
+            name = "Armor, +1 (studded leather)";
+            break;
+        case 97:
+            name = "Armor of resistance (studded leather)";
+            break;
+        case 98:
+            name = "Tome of clear thought";
+            break;
+        case 99:
+            name = "Tome of leadership and influence";
+            break;
+        case 100:
+            name = "Tome of understanding";
+            break;
+    }
+    return new MagicItem(name, 0);
 }
 
 MagicItem* LootFactory::_magicItemFactoryTableI()
