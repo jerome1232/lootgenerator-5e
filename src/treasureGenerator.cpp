@@ -55,88 +55,96 @@ Coinage* TreasureGenerator::_coinageGenerator(const int cr)
     case 0 ... 4:
         if  (1 <= roll and roll <= 30)
         {
-            genCoins->copper = LootFactory::coinFactory(5, 6, "copper");
+            genCoins->copper = LootFactory::coinFactory(5,
+                                                        6,
+                                                        CoinType::COPPER);
         }
         else if (30 < roll and roll <= 60)
         {
-            genCoins->silver = LootFactory::coinFactory(4, 6, "silver");
+            genCoins->silver = LootFactory::coinFactory(4,
+                                                        6,
+                                                        CoinType::SILVER);
         }
         else if (60 < roll and roll <= 70)
         {
-            genCoins->electrum = LootFactory::coinFactory(3, 6, "electrum");
+            genCoins->electrum = LootFactory::coinFactory(3,
+                                                          6,
+                                                          CoinType::ELECTRUM);
         }
         else if (70 < roll and roll <= 95)
         {
-            genCoins->gold = LootFactory::coinFactory(3, 6, "gold");
+            genCoins->gold = LootFactory::coinFactory(3, 6, CoinType::GOLD);
         }
         else
         {
-            genCoins->platinum = LootFactory::coinFactory(1, 6, "platinum");
+            genCoins->platinum = LootFactory::coinFactory(1,
+                                                          6,
+                                                          CoinType::PLATINUM);
         }
         break;
     case 5 ... 10:
         if (1 <= roll and roll <= 30)
         {
-            genCoins->copper = LootFactory::coinFactory(4, 6, "copper", 100);
-            genCoins->electrum = LootFactory::coinFactory(1, 6, "electrum", 10);
+            genCoins->copper = LootFactory::coinFactory(4, 6, CoinType::COPPER, 100);
+            genCoins->electrum = LootFactory::coinFactory(1, 6, CoinType::ELECTRUM, 10);
         }
         else if (30 < roll and roll <= 60)
         {
-            genCoins->silver = LootFactory::coinFactory(6, 6, "silver", 10);
-            genCoins->gold = LootFactory::coinFactory(2, 6, "gold", 10);
+            genCoins->silver = LootFactory::coinFactory(6, 6, CoinType::SILVER, 10);
+            genCoins->gold = LootFactory::coinFactory(2, 6, CoinType::GOLD, 10);
         }
         else if (60 < roll and roll <= 70)
         {
-            genCoins->electrum = LootFactory::coinFactory(3, 6, "electrum", 10);
-            genCoins->gold = LootFactory::coinFactory(2, 6, "gold", 10);
+            genCoins->electrum = LootFactory::coinFactory(3, 6, CoinType::ELECTRUM, 10);
+            genCoins->gold = LootFactory::coinFactory(2, 6, CoinType::GOLD, 10);
         }
         else if (70 < roll and roll <= 95)
         {
-            genCoins->gold = LootFactory::coinFactory(4, 6, "gold", 10);
+            genCoins->gold = LootFactory::coinFactory(4, 6, CoinType::GOLD, 10);
         }
         else
         {
-            genCoins->gold = LootFactory::coinFactory(2, 6, "gold", 10);
-            genCoins->platinum = LootFactory::coinFactory(3, 6, "platinum");
+            genCoins->gold = LootFactory::coinFactory(2, 6, CoinType::GOLD, 10);
+            genCoins->platinum = LootFactory::coinFactory(3, 6, CoinType::PLATINUM);
         }
         break;
     case 11 ... 16:
         if (1 <= roll and roll <= 20)
         {
-            genCoins->silver = LootFactory::coinFactory(4, 6, "copper", 100);
-            genCoins->gold = LootFactory::coinFactory(1, 6, "gold", 10);
+            genCoins->silver = LootFactory::coinFactory(4, 6, CoinType::COPPER, 100);
+            genCoins->gold = LootFactory::coinFactory(1, 6, CoinType::GOLD, 10);
         }
         else if (20 < roll and roll <= 35)
         {
-            genCoins->electrum = LootFactory::coinFactory(1, 6, "electrum", 100);
-            genCoins->gold = LootFactory::coinFactory(1, 6, "gold", 100);
+            genCoins->electrum = LootFactory::coinFactory(1, 6, CoinType::ELECTRUM, 100);
+            genCoins->gold = LootFactory::coinFactory(1, 6, CoinType::GOLD, 100);
         }
         else if (35 < roll and roll <= 75)
         {
-            genCoins->gold = LootFactory::coinFactory(2, 6, "gold", 100);
-            genCoins->platinum = LootFactory::coinFactory(1, 6, "platinum", 10);
+            genCoins->gold = LootFactory::coinFactory(2, 6, CoinType::GOLD, 100);
+            genCoins->platinum = LootFactory::coinFactory(1, 6, CoinType::PLATINUM, 10);
         }
         else
         {
-            genCoins->gold = LootFactory::coinFactory(2, 6, "gold", 100);
-            genCoins->platinum = LootFactory::coinFactory(2, 6, "platinum", 10);
+            genCoins->gold = LootFactory::coinFactory(2, 6, CoinType::GOLD, 100);
+            genCoins->platinum = LootFactory::coinFactory(2, 6, CoinType::PLATINUM, 10);
         }
         break;
     default:
         if (1 <= roll and roll <= 15)
         {
-            genCoins->electrum = LootFactory::coinFactory(2, 6, "electrum", 1000);
-            genCoins->gold = LootFactory::coinFactory(8, 6, "gold", 100);
+            genCoins->electrum = LootFactory::coinFactory(2, 6, CoinType::ELECTRUM, 1000);
+            genCoins->gold = LootFactory::coinFactory(8, 6, CoinType::GOLD, 100);
         }
         else if (15 < roll and roll <= 55)
         {
-            genCoins->gold = LootFactory::coinFactory(1, 6, "gold", 1000);
-            genCoins->platinum = LootFactory::coinFactory(1, 6, "platinum", 100);
+            genCoins->gold = LootFactory::coinFactory(1, 6, CoinType::GOLD, 1000);
+            genCoins->platinum = LootFactory::coinFactory(1, 6, CoinType::PLATINUM, 100);
         }
         else
         {
-            genCoins->gold = LootFactory::coinFactory(1, 6, "gold", 1000);
-            genCoins->platinum = LootFactory::coinFactory(2, 6, "platinum", 100);
+            genCoins->gold = LootFactory::coinFactory(1, 6, CoinType::GOLD, 1000);
+            genCoins->platinum = LootFactory::coinFactory(2, 6, CoinType::PLATINUM, 100);
         }
         break;
     }
@@ -149,26 +157,26 @@ Coinage* TreasureGenerator::_hoardCoinageGenerator(const int cr)
 
     if (0 <= cr and cr <= 4)
     {
-        generatedCoins->copper = LootFactory::coinFactory(6, 6, "copper", 100);
-        generatedCoins->silver= LootFactory::coinFactory(3, 6, "silver", 100);
-        generatedCoins->gold= LootFactory::coinFactory(3, 6, "gold", 10);
+        generatedCoins->copper = LootFactory::coinFactory(6, 6, CoinType::COPPER, 100);
+
+        generatedCoins->gold= LootFactory::coinFactory(3, 6, CoinType::GOLD, 10);
     }
     else if (5 <= cr and cr <= 10)
     {
-        generatedCoins->copper = LootFactory::coinFactory(2, 6, "copper", 100);
-        generatedCoins->silver= LootFactory::coinFactory(2, 6, "silver", 1000);
-        generatedCoins->gold= LootFactory::coinFactory(6, 6, "gold", 100);
-        generatedCoins->platinum = LootFactory::coinFactory(3, 6, "platinum", 10);
+        generatedCoins->copper = LootFactory::coinFactory(2, 6, CoinType::COPPER, 100);
+        generatedCoins->silver= LootFactory::coinFactory(2, 6, CoinType::SILVER, 1000);
+        generatedCoins->gold= LootFactory::coinFactory(6, 6, CoinType::GOLD, 100);
+        generatedCoins->platinum = LootFactory::coinFactory(3, 6, CoinType::PLATINUM, 10);
     }
     else if (11 <= cr and cr <= 16)
     {
-        generatedCoins->gold= LootFactory::coinFactory(4, 6, "gold", 1000);
-        generatedCoins->platinum = LootFactory::coinFactory(5, 6, "platinum", 100);
+        generatedCoins->gold= LootFactory::coinFactory(4, 6, CoinType::GOLD, 1000);
+        generatedCoins->platinum = LootFactory::coinFactory(5, 6, CoinType::PLATINUM, 100);
     }
     else
     {
-        generatedCoins->gold= LootFactory::coinFactory(12, 6, "gold", 1000);
-        generatedCoins->platinum = LootFactory::coinFactory(8, 6, "platinum", 1000);
+        generatedCoins->gold= LootFactory::coinFactory(12, 6, CoinType::GOLD, 1000);
+        generatedCoins->platinum = LootFactory::coinFactory(8, 6, CoinType::PLATINUM, 1000);
 
     }
     return generatedCoins;

@@ -1,5 +1,5 @@
 /**
- * @file loot.cpp
+ * @file dice.hpp
  * @author Jeremy Jones <j.jones1232@gmail.com>
  * @brief
  * @version 0.1
@@ -23,31 +23,40 @@
  * You should have received a copy of the GNU General Public License
  * along with Loot Generator.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "loot.hpp"
 
-Loot::Loot(float value)
+#ifndef DICE_HPP
+#define DICE_HPP
+
+#include <iostream>
+#include <random>
+
+/**
+ * @brief Represents a die
+ *
+ */
+class Dice
 {
-    _value = value;
-}
+private:
+    /**
+     * @brief The number of sides of the die.
+     *
+     */
+    int sides;
 
-Loot::Loot(std::string name)
-{
-    _name = name;
-}
+public:
+    /**
+     * @brief Construct a new Dice object
+     *
+     */
+    Dice(const int);
 
-Loot::Loot(std::string name, float value)
-{
-    _name = name;
-    _value = value;
-}
+    /**
+     * @brief Roll the die.
+     *
+     * @param int rolls number of times to roll the die.
+     * @return int.
+     */
+    int roll(const int = 1);
+};
 
-std::string Loot::getName()
-{
-    return _name;
-}
-
-float Loot::getValue()
-{
-    return _value;
-}
-
+#endif /* DICE_HPP */
