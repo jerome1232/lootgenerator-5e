@@ -23,6 +23,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Loot Generator.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #ifndef LOOT_HPP
 #define LOOT_HPP
 
@@ -81,13 +82,5 @@ class Loot
 
 
 
-class MagicItem: public Loot
-{
-    public:
-        MagicItem(std::string, float);
-        virtual ~MagicItem() {};
-        void setValue(float);
-        virtual std::string toString();
-};
 
 #endif /* LOOT_HPP */

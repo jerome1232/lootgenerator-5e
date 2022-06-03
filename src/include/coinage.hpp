@@ -23,25 +23,67 @@
  * You should have received a copy of the GNU General Public License
  * along with Loot Generator.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #ifndef COINAGE_HPP
 #define COINAGE_HPP
 
 #include "coin.hpp"
 #include "ostream"
 
+/**
+ * @brief Represents a collection of coins.
+ *
+ */
 class Coinage
 {
 public:
+    /**
+     * @brief Construct a new Coinage object
+     *
+     */
     Coinage(Coin* = nullptr, Coin* = nullptr, Coin* = nullptr,
             Coin* = nullptr, Coin* = nullptr);
+
+    /**
+     * @brief Destroy the Coinage object
+     *
+     */
     ~Coinage();
 
+    /**
+     * @brief Copper coins.
+     *
+     */
     Coin* copper;
+
+    /**
+     * @brief Silver coins.
+     *
+     */
     Coin* silver;
+
+    /**
+     * @brief Electrum coins.
+     *
+     */
     Coin* electrum;
+
+    /**
+     * @brief Gold coins.
+     *
+     */
     Coin* gold;
+
+    /**
+     * @brief Platinum coins.
+     *
+     */
     Coin* platinum;
 
+    /**
+     * @brief Represent the coin collection as a string.
+     *
+     */
     std::string toString();
 };
 

@@ -23,6 +23,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Loot Generator.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #ifndef GEMSTONE_HPP
 #define GEMSTONE_HPP
 

@@ -27,21 +27,62 @@
 #define TREASURE_HPP
 
 #include "coinage.hpp"
+#include "gemstone.hpp"
+#include "art.hpp"
+#include "magicItem.hpp"
 #include <vector>
 #include <sstream>
 
+/**
+ * @brief Represents a treasure hoard.
+ *
+ */
 class Treasure
 {
 public:
+    /**
+     * @brief The collection of coins.
+     *
+     */
     Coinage* coinage;
+
+    /**
+     * @brief Gems in the treasure.
+     *
+     */
     std::vector<Gemstone*> gems;
+
+    /**
+     * @brief Art in the treasure.
+     *
+     */
     std::vector<Art*> artwork;
+
+    /**
+     * @brief Magic Items in the treasure.
+     *
+     */
     std::vector<MagicItem*> magicItems;
 
+    /**
+     * @brief Construct a new Treasure object
+     *
+     */
     Treasure(Coinage* = nullptr, std::vector<Gemstone*> = {},
              std::vector<Art*> = {}, std::vector<MagicItem*> = {});
-    std::string toString();
+
+    /**
+     * @brief Destroy the Treasure object
+     *
+     */
     ~Treasure();
+
+    /**
+     * @brief Represent the entire treasure collection as a string.
+     *
+     * @return std::string
+     */
+    std::string toString();
 };
 
 #endif /* TREASURE_HPP */

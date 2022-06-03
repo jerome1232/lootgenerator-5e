@@ -1,9 +1,10 @@
+
 /**
- * @file dice.hpp
+ * @file magicItem.hpp
  * @author Jeremy Jones <j.jones1232@gmail.com>
  * @brief
  * @version 0.1
- * @date 2022-03-12
+ * @date 2022-06-03
  *
  * @copyright Copyright (c) 2022
  *
@@ -24,22 +25,37 @@
  * along with Loot Generator.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef DICE_HPP
-#define DICE_HPP
+#ifndef MAGICITEM_HPP
+#define MAGICITEM_HPP
 
-#include <iostream>
-#include <random>
+#include "loot.hpp"
+#include <cmath>
 
-class Dice
+/**
+ * @brief Represents a magic item.
+ *
+ */
+class MagicItem: public Loot
 {
-private:
-    int sides;
+    public:
+        /**
+         * @brief Construct a new Magic Item object
+         *
+         */
+        MagicItem(std::string, float);
 
-public:
-    Dice(const int);
-    ~Dice() {};
+        /**
+         * @brief Set the Value object.
+         *
+         */
+        void setValue(float);
 
-    int roll(const int = 1);
+        /**
+         * @brief Creates string representation of a MagicItem.
+         *
+         * @return std::string
+         */
+        virtual std::string toString();
 };
 
-#endif /* DICE_HPP */
+#endif /* MAIGCITEM_HPP */

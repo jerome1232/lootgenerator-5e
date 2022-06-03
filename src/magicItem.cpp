@@ -1,9 +1,9 @@
 /**
- * @file art.cpp
+ * @file magicItem.cpp
  * @author Jeremy Jones <j.jones1232@gmail.com>
  * @brief
  * @version 0.1
- * @date 2022-03-12
+ * @date 2022-06-03
  *
  * @copyright Copyright (c) 2022
  *
@@ -23,16 +23,15 @@
  * You should have received a copy of the GNU General Public License
  * along with Loot Generator.  If not, see <http://www.gnu.org/licenses/>.
  */
+#include "magicItem.hpp"
 
-#include "art.hpp"
-
-Art::Art(std::string name, float value)
+MagicItem::MagicItem(std::string name, float value)
     : Loot(name)
 {
     setValue(value);
 }
 
-void Art::setValue(float value)
+void MagicItem::setValue(float value)
 {
     if (value >= 0)
     {
@@ -44,9 +43,7 @@ void Art::setValue(float value)
     }
 }
 
-std::string Art::toString()
+std::string MagicItem::toString()
 {
-    std::ostringstream oss;
-    oss << getName() << " art worth " << getValue() << " gp";
-    return oss.str();
+    return getName();
 }

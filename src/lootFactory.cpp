@@ -34,41 +34,16 @@ Dice LootFactory::d6(6);
 Dice LootFactory::d4(4);
 
 Coin* LootFactory::coinFactory(int numDie, int numDieSides,
-                               std::string coinType, int multiplier)
+                               CoinType coinType, int multiplier)
 {
     std::string name;
     int amount = 0;
     Dice die(numDieSides);
 
-    if (coinType == "copper")
-    {
-        name = "copper";
-    }
-    else if (coinType == "silver")
-    {
-        name = "silver";
-    }
-    else if (coinType == "electrum")
-    {
-        name = "electrum";
-    }
-    else if (coinType == "gold")
-    {
-        name = "gold";
-    }
-    else if (coinType == "platinum")
-    {
-        name = "platinum";
-    }
-    else
-    {
-        throw std::invalid_argument("Invalid coinType");
-    }
-
     amount = die.roll(numDie);
     amount *= multiplier;
 
-    return new Coin(name, amount);
+    return new Coin(coinType, amount);
 };
 
 Gemstone* LootFactory::gemFactory(const int value)
@@ -740,7 +715,7 @@ MagicItem* LootFactory::_magicItemFactoryTableB()
             break;
         case 85:
             name = "Cap of water breathing";
-            break;   
+            break;
         case 86:
             name = "Cloak of the manta ray";
             break;
@@ -785,10 +760,10 @@ MagicItem* LootFactory::_magicItemFactoryTableB()
             break;
         case 100:
             name = "Wand of secrets";
-            break;    
+            break;
     }
     return new MagicItem(name, 0);
-    
+
 }
 
 MagicItem* LootFactory::_magicItemFactoryTableC()
@@ -857,7 +832,7 @@ MagicItem* LootFactory::_magicItemFactoryTableC()
             break;
         case 92:
             name = "Chime of opening";
-            break;   
+            break;
         case 93:
             name = "Decanter of endless water";
             break;
@@ -940,7 +915,7 @@ MagicItem* LootFactory::_magicItemFactoryTableD()
             break;
         case 100:
             name = "Portable hole";
-            break;    
+            break;
     }
     return new MagicItem(name, 0);
 }

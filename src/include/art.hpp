@@ -23,10 +23,12 @@
  * You should have received a copy of the GNU General Public License
  * along with Loot Generator.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "loot.hpp"
 
 #ifndef ART_HPP
 #define ART_HPP
+
+#include "loot.hpp"
+#include <cmath>
 
 /**
  * @brief Represents a work of art.

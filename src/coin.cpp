@@ -36,10 +36,19 @@ void Coin::setName(CoinType coinType)
     switch (coinType)
     {
     case CoinType::COPPER:
-        /* code */
+        _name = "copper";
         break;
-
-    default:
+    case CoinType::SILVER:
+        _name = "silver";
+        break;
+    case CoinType::ELECTRUM:
+        _name = "electrum";
+        break;
+    case CoinType::GOLD:
+        _name = "gold";
+        break;
+    case CoinType::PLATINUM:
+        _name = "platinum";
         break;
     }
 }
