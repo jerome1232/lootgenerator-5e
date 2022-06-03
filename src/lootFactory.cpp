@@ -1445,7 +1445,7 @@ int roll = d100.roll();
 
 MagicItem* LootFactory::_magicItemFactoryTableH()
 {
-int roll = d100.roll();
+    int roll = d100.roll();
     std::string name;
 
     switch (roll)
