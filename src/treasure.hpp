@@ -1,9 +1,9 @@
 /**
- * @file gemstone.hpp
+ * @file treasure.hpp
  * @author Jeremy Jones <j.jones1232@gmail.com>
  * @brief
  * @version 0.1
- * @date 2022-05-31
+ * @date 2022-03-12
  *
  * @copyright Copyright (c) 2022
  *
@@ -23,38 +23,25 @@
  * You should have received a copy of the GNU General Public License
  * along with Loot Generator.  If not, see <http://www.gnu.org/licenses/>.
  */
+#ifndef TREASURE_HPP
+#define TREASURE_HPP
 
-#ifndef GEMSTONE_HPP
-#define GEMSTONE_HPP
+#include "coinage.hpp"
+#include <vector>
+#include <sstream>
 
-#include "loot.hpp"
-#include <math.h>
-
-/**
- * @brief Represents a Gemstone.
- *
- */
-class Gemstone: public Loot
+class Treasure
 {
-    public:
-        /**
-         * @brief Construct a new Gemstone object
-         *
-         */
-        Gemstone(std::string, float);
+public:
+    Coinage* coinage;
+    std::vector<Gemstone*> gems;
+    std::vector<Art*> artwork;
+    std::vector<MagicItem*> magicItems;
 
-        /**
-         * @brief Set the Value object
-         *
-         */
-        void setValue(float);
-
-        /**
-         * @brief Represent the Gemstone object as a string.
-         *
-         * @return std::string
-         */
-        virtual std::string toString();
+    Treasure(Coinage* = nullptr, std::vector<Gemstone*> = {},
+             std::vector<Art*> = {}, std::vector<MagicItem*> = {});
+    std::string toString();
+    ~Treasure();
 };
 
-#endif /* GEMSTONE_HPP */
+#endif /* TREASURE_HPP */

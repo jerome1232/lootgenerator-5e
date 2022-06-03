@@ -34,16 +34,41 @@ Dice LootFactory::d6(6);
 Dice LootFactory::d4(4);
 
 Coin* LootFactory::coinFactory(int numDie, int numDieSides,
-                               CoinType coinType, int multiplier)
+                               std::string coinType, int multiplier)
 {
     std::string name;
     int amount = 0;
     Dice die(numDieSides);
 
+    if (coinType == "copper")
+    {
+        name = "copper";
+    }
+    else if (coinType == "silver")
+    {
+        name = "silver";
+    }
+    else if (coinType == "electrum")
+    {
+        name = "electrum";
+    }
+    else if (coinType == "gold")
+    {
+        name = "gold";
+    }
+    else if (coinType == "platinum")
+    {
+        name = "platinum";
+    }
+    else
+    {
+        throw std::invalid_argument("Invalid coinType");
+    }
+
     amount = die.roll(numDie);
     amount *= multiplier;
 
-    return new Coin(coinType, amount);
+    return new Coin(name, amount);
 };
 
 Gemstone* LootFactory::gemFactory(const int value)
@@ -668,288 +693,30 @@ MagicItem* LootFactory::_magicItemFactoryTableB()
         case 30 ... 34:
             name = "Ammunition, +1";
             break;
-        case 35 ... 39:
-            name = "Potion of Animal Friendship";
-            break;
-        case 40 ... 44:
-            name = "Potion of Hill Giant Strength";
-            break;
-        case 45 ... 49:
-            name = "Potion of growth";
-            break;
-        case 50 ... 54:
-            name = "Potion of water breathing";
-            break;
-        case 55 ... 59:
-            name = "Spell scroll (2nd level)";
-            break;
-        case 60 ... 64:
-            name = "Spell scroll (3rd level)";
-            break;
-        case 65 ... 67:
-            name = "Bag of holding";
-            break;
-        case 68 ... 70:
-            name = "Keoghtom's ointment";
-            break;
-        case 71 ... 73:
-            name = "Oil of slipperiness";
-            break;
-        case 74 ... 75:
-            name = "Dust of disapperance";
-            break;
-        case 76 ... 77:
-            name = "Dust of dryness";
-            break;
-        case 78 ... 79:
-            name = "Dust of sneezing and choking";
-            break;
-        case 80 ... 81:
-            name = "Elemental gem";
-            break;
-        case 82 ... 83:
-            name = "Philter of love";
-            break;
-        case 84:
-            name = "Alchemy jug";
-            break;
-        case 85:
-            name = "Cap of water breathing";
-            break;
-        case 86:
-            name = "Cloak of the manta ray";
-            break;
-        case 87:
-            name = "Driftglobe";
-            break;
-        case 88:
-            name = "Goggles of night";
-            break;
-        case 89:
-            name = "Helm of comprehending languages";
-            break;
-        case 90:
-            name = "Immovable Rob";
-            break;
-        case 91:
-            name = "Lantern of revealing";
-            break;
-        case 92:
-            name = "Mariner's armor";
-            break;
-        case 93:
-            name = "Mithral armor";
-            break;
-        case 94:
-            name = "Potion of poison";
-            break;
-        case 95:
-            name = "Ring of swimming";
-            break;
-        case 96:
-            name = "Robe of useful items";
-            break;
-        case 97:
-            name = "Rope of climbing";
-            break;
-        case 98:
-            name = "Saddle of the cavalier";
-            break;
-        case 99:
-            name = "Wand of magic detection";
-            break;
-        case 100:
-            name = "Wand of secrets";
-            break;
+    /// TODO Finish implementing
     }
     return new MagicItem(name, 0);
-
 }
 
 MagicItem* LootFactory::_magicItemFactoryTableC()
 {
-        int roll = d100.roll();
-    std::string name;
+    MagicItem* magicItem = nullptr;
 
-    switch (roll)
-    {
-        case 1 ... 15:
-            name = "Potion of superior healing";
-            break;
-        case 16 ... 22:
-            name = "Spell scroll (4th level)";
-            break;
-        case 23 ... 27:
-            name = "Aummunition, +2";
-            break;
-        case 28 ... 32:
-            name = "Potion of clairvoyance";
-            break;
-        case 33 ... 37:
-            name = "Potion of duminution";
-            break;
-        case 38 ... 42:
-            name = "Potion of gaseous form";
-            break;
-        case 43 ... 47:
-            name = "Potion of frost giant strength";
-            break;
-        case 48 ... 52:
-            name = "Potion of stone giant strength";
-            break;
-        case 53 ... 57:
-            name = "Potion of heroism";
-            break;
-        case 58 ... 62:
-            name = "Potion of invulnerability";
-            break;
-        case 63 ... 67:
-            name = "Potion of mind reading";
-            break;
-        case 68 ... 72:
-            name = "Spell scroll (5th level)";
-            break;
-        case 73 ... 75:
-            name = "Elixir of health";
-            break;
-        case 76 ... 78:
-            name = "Oil of ehterealness";
-            break;
-        case 79 ... 81:
-            name = "Potion of fire giant strength";
-            break;
-        case 82 ... 84:
-            name = "Quaal's feather token";
-            break;
-        case 85 ... 87:
-            name = "Scroll of protection";
-            break;
-        case 88 ... 89:
-            name = "Bag of beans";
-            break;
-        case 90 ... 91:
-            name = "Bead of force";
-            break;
-        case 92:
-            name = "Chime of opening";
-            break;
-        case 93:
-            name = "Decanter of endless water";
-            break;
-        case 94:
-            name = "Eyes of minute seeing";
-            break;
-        case 95:
-            name = "Folding boat";
-            break;
-        case 96:
-            name = "Heward's handy haversack";
-            break;
-        case 97:
-            name = "Horseshoes of speed";
-            break;
-        case 98:
-            name = "Necklace of fireballs";
-            break;
-        case 99:
-            name = "Periapt of health";
-            break;
-        case 100:
-            name = "Sending stones";
-            break;
-    }
-    return new MagicItem(name, 0);
+    return magicItem;
 }
 
 MagicItem* LootFactory::_magicItemFactoryTableD()
 {
-    int roll = d100.roll();
-    std::string name;
+    MagicItem* magicItem = nullptr;
 
-    switch (roll)
-    {
-        case 1 ... 20:
-            name = "Potion of supreme healing";
-            break;
-        case 21 ... 30:
-            name = "Potion of invisibility";
-            break;
-        case 31 ... 40:
-            name = "Potion of speed";
-            break;
-        case 41 ... 50:
-            name = "Spell scroll (6th level)";
-            break;
-        case 51 ... 57:
-            name = "Spell scroll (7th level)";
-            break;
-        case 58 ... 62:
-            name = "Aummunition , +3";
-            break;
-        case 63 ... 67:
-            name = "Oil of sharpness";
-            break;
-        case 68 ... 72:
-            name = "Potion of flying";
-            break;
-        case 73 ... 77:
-            name = "Potion of cloud giant strength";
-            break;
-        case 78 ... 82:
-            name = "Potion of longevity";
-            break;
-        case 83 ... 87:
-            name = "Potion of vitality";
-            break;
-        case 88 ... 92:
-            name = "Spell scroll (8th level)";
-            break;
-        case 93 ... 95:
-            name = "Horseshoes of a zephyr";
-            break;
-        case 96 ... 98:
-            name = "Nolzur's marvelous pigments";
-            break;
-        case 99:
-            name = "Bag of devouring";
-            break;
-        case 100:
-            name = "Portable hole";
-            break;
-    }
-    return new MagicItem(name, 0);
+    return magicItem;
 }
 
 MagicItem* LootFactory::_magicItemFactoryTableE()
 {
- int roll = d100.roll();
-    std::string name;
+    MagicItem* magicItem = nullptr;
 
-    switch (roll)
-    {
-        case 1 ... 30:
-            name = "Spell scroll (8th level)";
-            break;
-        case 31 ... 55:
-            name = "Potion of storm giant strength";
-            break;
-        case 56 ... 70:
-            name = "potion of supreme healing";
-            break;
-        case 71 ... 85:
-            name = "Spell scroll (9th level)";
-            break;
-        case 86 ... 93:
-            name = "Universal solvent";
-            break;
-        case 94 ... 98:
-            name = "Arrow of slaying";
-            break;
-        case 99 ... 100:
-            name = "Sovereign glue";
-            break;
-    }
-    return new MagicItem(name, 0);
+    return magicItem;
 }
 
 MagicItem* LootFactory::_magicItemFactoryTableF()

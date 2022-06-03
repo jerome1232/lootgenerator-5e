@@ -1,0 +1,111 @@
+@startuml Loot
+
+abstract class Loot
+{
+    # _name : std::string
+    # _value : float
+    ==
+    + Loot(name : std::string)
+    + virtual ~Loot()
+    + getName() : std::string
+    + getValue() : float
+    + setName(name : std::string)
+    ...Abstract...
+    + {abstract} setValue(value: float) = 0
+    + {abstract} toString() : std::string = 0
+}
+
+package "Loot Implementations" as pkgLoot <<Rectangle>>
+{
+
+    class Coin <<Loot>>
+    {
+        + Coin(name: std::string, value: float)
+        + ~Coin()
+        + setValue(value: float)
+        + toString() : std::string
+    }
+
+    class Gemstone <<Loot>>
+    {
+        + Gemstone(name: std::string, value: float)
+        + ~Gemstone()
+        + setValue(value: float)
+        + toString() : std::string
+    }
+
+    class Art <<Loot>>
+    {
+        + Art(name: std::string, value: float)
+        + ~Art()
+        + setValue(value: float)
+        + toString() : std::string
+    }
+
+    class MagicItem <<Loot>>
+    {
+        + MagicItem(name: std::string, value: float)
+        + ~MagicItem()
+        + setValue(value: float)
+        + toString() : std::string
+    }
+}
+
+class Coinage
+{
+    + copper: Coin*
+    + silver: Coin*
+    + electrum: Coin*
+    + gold: Coin*
+    + platinum: Coin*
+    + Coinage(copper: Coin*, silver: Coin*,
+              electrum: Coin*, gold: Coin*, platinum: Coin*)
+    + ~Coinage()
+}
+
+class Treasure
+{
+    + coinage: Coinage*
+    + gems : std::vector
+    + artwork : std::vector
+    + magicItems : std::vector
+    + Treasure(coinage: Coinage*, gems: std::vector,
+               artwork: std::vector, magicItems: std::vector)
+}
+
+class TreasureGenerator
+{
+    - static _coinageGenerator(cr : const int) : *Coinage
+    - static _hoardCoinageGenerator(cr : const int) : *Coinage
+    - static _treasureGenerator(cr : const int, treasure : Treasure*)
+    - static _treasureGeneratorCr4(treasure : Treasure*)
+    - static _treasureGeneratorCr10(treasure : Treasure*)
+    - static _treasureGeneratorCr16(treasure : Treasure*)
+    - static _treasureGeneratorCr17(treasure : Treasure*)
+    + static generateLoot(cr : const int, isIndividual : const bool)
+}
+
+class LootFactory
+{
+
+}
+
+class Dice
+{
+
+}
+
+Loot <|-- pkgLoot
+Coinage --* Coin : cointains
+Treasure  --* Coinage : contains
+Treasure  --* Gemstone : contains
+Treasure  --* Art : contains
+Treasure  --* MagicItem : contains
+TreasureGenerator ..* Coinage : uses
+TreasureGenerator ..* Treasure : uses
+TreasureGenerator ..|> LootFactory : uses
+TreasureGenerator ..|> Dice : uses
+LootFactory ..|> pkgLoot : uses
+LootFactory --* Dice : contains
+
+@enduml
