@@ -721,7 +721,7 @@ MagicItem* LootFactory::_magicItemFactoryTableB()
             name = "Oil of slipperiness";
             break;
         case 74 ... 75:
-            name = "Dust of disapperance";
+            name = "Dust of disappearance";
             break;
         case 76 ... 77:
             name = "Dust of dryness";
@@ -740,7 +740,7 @@ MagicItem* LootFactory::_magicItemFactoryTableB()
             break;
         case 85:
             name = "Cap of water breathing";
-            break;   
+            break;
         case 86:
             name = "Cloak of the manta ray";
             break;
@@ -763,7 +763,7 @@ MagicItem* LootFactory::_magicItemFactoryTableB()
             name = "Mariner's armor";
             break;
         case 93:
-            name = "Mithral armor";
+            name = "Mithril armor";
             break;
         case 94:
             name = "Potion of poison";
@@ -785,15 +785,15 @@ MagicItem* LootFactory::_magicItemFactoryTableB()
             break;
         case 100:
             name = "Wand of secrets";
-            break;    
+            break;
     }
     return new MagicItem(name, 0);
-    
+
 }
 
 MagicItem* LootFactory::_magicItemFactoryTableC()
 {
-        int roll = d100.roll();
+    int roll = d100.roll();
     std::string name;
 
     switch (roll)
@@ -805,13 +805,13 @@ MagicItem* LootFactory::_magicItemFactoryTableC()
             name = "Spell scroll (4th level)";
             break;
         case 23 ... 27:
-            name = "Aummunition, +2";
+            name = "Ammunition, +2";
             break;
         case 28 ... 32:
             name = "Potion of clairvoyance";
             break;
         case 33 ... 37:
-            name = "Potion of duminution";
+            name = "Potion of diminution";
             break;
         case 38 ... 42:
             name = "Potion of gaseous form";
@@ -838,7 +838,7 @@ MagicItem* LootFactory::_magicItemFactoryTableC()
             name = "Elixir of health";
             break;
         case 76 ... 78:
-            name = "Oil of ehterealness";
+            name = "Oil of etherealness";
             break;
         case 79 ... 81:
             name = "Potion of fire giant strength";
@@ -857,7 +857,7 @@ MagicItem* LootFactory::_magicItemFactoryTableC()
             break;
         case 92:
             name = "Chime of opening";
-            break;   
+            break;
         case 93:
             name = "Decanter of endless water";
             break;
@@ -909,7 +909,7 @@ MagicItem* LootFactory::_magicItemFactoryTableD()
             name = "Spell scroll (7th level)";
             break;
         case 58 ... 62:
-            name = "Aummunition , +3";
+            name = "Ammunition , +3";
             break;
         case 63 ... 67:
             name = "Oil of sharpness";
@@ -940,14 +940,14 @@ MagicItem* LootFactory::_magicItemFactoryTableD()
             break;
         case 100:
             name = "Portable hole";
-            break;    
+            break;
     }
     return new MagicItem(name, 0);
 }
 
 MagicItem* LootFactory::_magicItemFactoryTableE()
 {
- int roll = d100.roll();
+    int roll = d100.roll();
     std::string name;
 
     switch (roll)
@@ -985,7 +985,7 @@ MagicItem* LootFactory::_magicItemFactoryTableF()
     switch (roll)
     {
         case 1 ... 15:
-            name = "Weaon, +1";
+            name = "Weapon, +1";
             break;
         case 16 ... 18:
             name = "Shield, +1";
@@ -1033,7 +1033,7 @@ MagicItem* LootFactory::_magicItemFactoryTableF()
             name = "Rod of the pact keeper, +1";
             break;
         case 48 ... 49:
-            name = "Slippers of sprider climbing";
+            name = "Slippers of spider climbing";
             break;
         case 50 ... 51:
             name = "Staff of the adder";
@@ -1108,7 +1108,7 @@ MagicItem* LootFactory::_magicItemFactoryTableF()
             name = "Gloves of swimming and climbing";
             break;
         case 82:
-            name = "Gloves of theivery";
+            name = "Gloves of thievery";
             break;
         case 83:
             name = "Headband of intellect";
@@ -1120,10 +1120,10 @@ MagicItem* LootFactory::_magicItemFactoryTableF()
             name = "Instrument of the bards (Doss lute)";
             break;
         case 86:
-            name = "Instrument of the bards (fochlucan bandore)";
+            name = "Instrument of the bards (Fochlucan bandore)";
             break;
         case 87:
-            name = "Instrument of the bards (mac-Fuimidh cittern)";
+            name = "Instrument of the bards (Mac-Fuimidh cittern)";
             break;
         case 88:
             name = "Medallion of thoughts";
@@ -1180,6 +1180,32 @@ MagicItem* LootFactory::_magicItemFactoryTableG()
             break;
         case 12 ... 14:
             name = "Figurine of wondrous power (see DMG)";
+            {
+                int subRoll = d8.roll();
+                switch (subRoll)
+                {
+                case 1:
+                    name += " Bronze griffon";
+                    break;
+                case 2:
+                    name += " Ebony fly";
+                    break;
+                case 3:
+                    name += " Golden lions";
+                    break;
+                case 4:
+                    name += " Ivory goats";
+                    break;
+                case 5:
+                    name += " Marble elephant";
+                case 6 ... 7:
+                    name += " Onyx dog";
+                    break;
+                case 8:
+                    name += " Serpentine owl";
+                    break;
+                }
+            }
             break;
         case 15:
             name = "Adamantine armor (breastplate)";
@@ -1221,10 +1247,10 @@ MagicItem* LootFactory::_magicItemFactoryTableG()
             name = "Brazier of commanding fire elementals";
             break;
         case 28:
-            name = "Cape of the moutebank";
+            name = "Cape of the mountebank";
             break;
         case 29:
-            name = "Censer of crontrolling air elementals";
+            name = "Censer of controlling air elementals";
             break;
         case 30:
             name = "Armor, +1 chain mail";
@@ -1236,13 +1262,13 @@ MagicItem* LootFactory::_magicItemFactoryTableG()
             name = "Armor, +1 chain shirt";
             break;
         case 33:
-            name = "Armor of resistnace (chain shirt)";
+            name = "Armor of resistance (chain shirt)";
             break;
         case 34:
             name = "Cloak of displacement";
             break;
         case 35:
-            name = "Cload of the bat";
+            name = "Cloud of the bat";
             break;
         case 36:
             name = "Cube of force";
@@ -1287,7 +1313,7 @@ MagicItem* LootFactory::_magicItemFactoryTableG()
             name = "Instrument of the bards (Canaith mandolin)";
             break;
         case 50:
-            name = "Instument of the bards (Cli lyre)";
+            name = "Instrument of the bards (Cli lyre)";
             break;
         case 51:
             name = "Ioun stone (awareness)";
@@ -1425,7 +1451,7 @@ MagicItem* LootFactory::_magicItemFactoryTableG()
             name = "Wand of fireballs";
             break;
         case 96:
-            name = "Wand of lighning bolts";
+            name = "Wand of lightning bolts";
             break;
         case 97:
             name = "Wand of paralysis";
@@ -1472,7 +1498,7 @@ MagicItem* LootFactory::_magicItemFactoryTableH()
             name = "Ring of telekinesis";
             break;
         case 23 ... 24:
-            name = "Robe of scantillating colors";
+            name = "Robe of scintillating colors";
             break;
         case 25 ... 26:
             name = "Robe of stars";
@@ -1532,7 +1558,7 @@ MagicItem* LootFactory::_magicItemFactoryTableH()
             name = "Belt of fire giant strength";
             break;
         case 59:
-            name = "Belf of frost(or stone) giant strength";
+            name = "Belt of frost(or stone) giant strength";
             break;
         case 60:
             name = "Armor, +1 breastplate";
@@ -1550,7 +1576,7 @@ MagicItem* LootFactory::_magicItemFactoryTableH()
             name = "Armor, +2 chain shirt";
             break;
         case 65:
-            name = "Cloak of arachnida";
+            name = "Cloak of arachnidan";
             break;
         case 66:
             name = "Dancing sword";
@@ -1583,7 +1609,7 @@ MagicItem* LootFactory::_magicItemFactoryTableH()
             name = "Horn of Valhalla";
             break;
         case 76:
-            name = "Instument of the bards (Anstruth harp)";
+            name = "Instrument of the bards (Anstruth harp)";
             break;
         case 77:
             name = "Ioun stone (absorption)";
@@ -1634,7 +1660,7 @@ MagicItem* LootFactory::_magicItemFactoryTableH()
             name = "Armor, +2 scale mail";
             break;
         case 93:
-            name = "Spellgaurd shield";
+            name = "Spellguard shield";
             break;
         case 94:
             name = "Armor, +1 splint";
@@ -1750,7 +1776,33 @@ MagicItem* LootFactory::_magicItemFactoryTableI()
             name = "Well of many worlds";
             break;
         case 76:
-            name = "Magic armor (see DMG)";
+            {
+                name = "Armor, ";
+                int subRoll = d12.roll();
+                switch (subRoll)
+                {
+                    case 1 ... 2:
+                        name  += "+2 half plate";
+                        break;
+                    case 3 ... 4:
+                        name += "+2 plate";
+                        break;
+                    case 5 ... 6:
+                        name += "+3 studded leather";
+                        break;
+                    case 7 ... 8:
+                        name += "+3 breastplate";
+                        break;
+                    case 9 ... 10:
+                        name += "+3 splint";
+                    case 11:
+                        name += "+3 half plate";
+                        break;
+                    case 12:
+                        name += "+3 plate";
+                        break;
+                }
+            }
             break;
         case 77:
             name = "Apparatus of Kwalish";
