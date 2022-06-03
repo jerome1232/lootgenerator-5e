@@ -1,5 +1,5 @@
 /**
- * @file loot.cpp
+ * @file art.hpp
  * @author Jeremy Jones <j.jones1232@gmail.com>
  * @brief
  * @version 0.1
@@ -23,31 +23,38 @@
  * You should have received a copy of the GNU General Public License
  * along with Loot Generator.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+#ifndef ART_HPP
+#define ART_HPP
+
 #include "loot.hpp"
+#include <cmath>
 
-Loot::Loot(float value)
+/**
+ * @brief Represents a work of art.
+ *
+ */
+class Art: public Loot
 {
-    _value = value;
-}
+    public:
+        /**
+         * @brief Construct a new Art object.
+         *
+         */
+        Art(std::string, float);
 
-Loot::Loot(std::string name)
-{
-    _name = name;
-}
+        /**
+         * @brief Set the Value object.
+         *
+         */
+        void setValue(float);
 
-Loot::Loot(std::string name, float value)
-{
-    _name = name;
-    _value = value;
-}
+        /**
+         * @brief Represent an Art object as a string.
+         *
+         * @return std::string
+         */
+        virtual std::string toString();
+};
 
-std::string Loot::getName()
-{
-    return _name;
-}
-
-float Loot::getValue()
-{
-    return _value;
-}
-
+#endif /* ART_HPP */

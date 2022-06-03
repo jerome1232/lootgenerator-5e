@@ -34,41 +34,16 @@ Dice LootFactory::d6(6);
 Dice LootFactory::d4(4);
 
 Coin* LootFactory::coinFactory(int numDie, int numDieSides,
-                               std::string coinType, int multiplier)
+                               CoinType coinType, int multiplier)
 {
     std::string name;
     int amount = 0;
     Dice die(numDieSides);
 
-    if (coinType == "copper")
-    {
-        name = "copper";
-    }
-    else if (coinType == "silver")
-    {
-        name = "silver";
-    }
-    else if (coinType == "electrum")
-    {
-        name = "electrum";
-    }
-    else if (coinType == "gold")
-    {
-        name = "gold";
-    }
-    else if (coinType == "platinum")
-    {
-        name = "platinum";
-    }
-    else
-    {
-        throw std::invalid_argument("Invalid coinType");
-    }
-
     amount = die.roll(numDie);
     amount *= multiplier;
 
-    return new Coin(name, amount);
+    return new Coin(coinType, amount);
 };
 
 Gemstone* LootFactory::gemFactory(const int value)

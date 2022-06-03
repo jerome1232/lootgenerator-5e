@@ -23,69 +23,64 @@
  * You should have received a copy of the GNU General Public License
  * along with Loot Generator.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #ifndef LOOT_HPP
 #define LOOT_HPP
 
 #include <string>
 #include <sstream>
 #include <iostream>
-#include <math.h>
 
+/**
+ * @brief
+ * An abstract base class for loot.
+ */
 class Loot
 {
-protected:
-    std::string _name;
-    float _value;
+    protected:
+        /**
+         * @brief Common name by which loot is called.
+         *
+         */
+        std::string _name;
 
-public:
-    Loot(std::string);
-    virtual ~Loot() {};
+        /**
+         * @brief Value of loot.
+         *
+         */
+        float _value;
 
-    std::string getName();
-    float getValue();
-
-    static bool isInt(float);
-
-    void setName(std::string);
-    virtual void setValue(float) = 0;
-
-    virtual std::string toString() = 0;
-};
-
-class Coin: public Loot
-{
     public:
-        Coin(std::string, float);
-        virtual ~Coin() {};
-        virtual void setValue(float);
-        virtual std::string toString();
+        /**
+         * @brief Construct a new Loot object.
+         *
+         */
+        Loot(std::string);
+
+        /**
+         * @brief Construct a new Loot object
+         *
+         */
+        Loot(float);
+
+        // Constructor to set both name and value.
+        Loot(std::string, float);
+
+        // Gets the name.
+        std::string getName();
+
+        // Gets the value.
+        float getValue();
+
+        // Sets the value.
+        virtual void setValue(float) = 0;
+
+        // Creates a string representation of the loot item.
+        virtual std::string toString() = 0;
 };
 
-class Gemstone: public Loot
-{
-    public:
-        Gemstone(std::string, float);
-        virtual ~Gemstone() {};
-        void setValue(float);
-        virtual std::string toString();
-};
 
-class Art: public Loot
-{
-    public:
-        Art(std::string, float);
-        virtual ~Art() {};
-        void setValue(float);
-        virtual std::string toString();
-};
 
-class MagicItem: public Loot
-{
-    public:
-        MagicItem(std::string, float);
-        virtual ~MagicItem() {};
-        void setValue(float);
-        virtual std::string toString();
-};
+
 
 #endif /* LOOT_HPP */

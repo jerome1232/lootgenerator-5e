@@ -1,9 +1,10 @@
+
 /**
- * @file coinage.hpp
+ * @file magicItem.hpp
  * @author Jeremy Jones <j.jones1232@gmail.com>
  * @brief
  * @version 0.1
- * @date 2022-03-12
+ * @date 2022-06-03
  *
  * @copyright Copyright (c) 2022
  *
@@ -23,26 +24,38 @@
  * You should have received a copy of the GNU General Public License
  * along with Loot Generator.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef COINAGE_HPP
-#define COINAGE_HPP
+
+#ifndef MAGICITEM_HPP
+#define MAGICITEM_HPP
 
 #include "loot.hpp"
-#include "ostream"
+#include <cmath>
 
-class Coinage
+/**
+ * @brief Represents a magic item.
+ *
+ */
+class MagicItem: public Loot
 {
-public:
-    Coinage(Coin* = nullptr, Coin* = nullptr, Coin* = nullptr,
-            Coin* = nullptr, Coin* = nullptr);
-    ~Coinage();
+    public:
+        /**
+         * @brief Construct a new Magic Item object
+         *
+         */
+        MagicItem(std::string, float);
 
-    Coin* copper;
-    Coin* silver;
-    Coin* electrum;
-    Coin* gold;
-    Coin* platinum;
+        /**
+         * @brief Set the Value object.
+         *
+         */
+        void setValue(float);
 
-    std::string toString();
+        /**
+         * @brief Creates string representation of a MagicItem.
+         *
+         * @return std::string
+         */
+        virtual std::string toString();
 };
 
-#endif
+#endif /* MAIGCITEM_HPP */

@@ -1,5 +1,5 @@
 /**
- * @file dice.hpp
+ * @file art.cpp
  * @author Jeremy Jones <j.jones1232@gmail.com>
  * @brief
  * @version 0.1
@@ -24,22 +24,29 @@
  * along with Loot Generator.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef DICE_HPP
-#define DICE_HPP
+#include "art.hpp"
 
-#include <iostream>
-#include <random>
-
-class Dice
+Art::Art(std::string name, float value)
+    : Loot(name)
 {
-private:
-    int sides;
+    setValue(value);
+}
 
-public:
-    Dice(const int);
-    ~Dice() {};
+void Art::setValue(float value)
+{
+    if (value >= 0)
+    {
+        _value = std::round(value);
+    }
+    else
+    {
+        _value = 0;
+    }
+}
 
-    int roll(const int = 1);
-};
-
-#endif /* DICE_HPP */
+std::string Art::toString()
+{
+    std::ostringstream oss;
+    oss << getName() << " art worth " << getValue() << " gp";
+    return oss.str();
+}
