@@ -1,9 +1,9 @@
 /**
- * @file loot.cpp
+ * @file magicItem.cpp
  * @author Jeremy Jones <j.jones1232@gmail.com>
  * @brief
  * @version 0.1
- * @date 2022-03-12
+ * @date 2022-06-03
  *
  * @copyright Copyright (c) 2022
  *
@@ -23,31 +23,27 @@
  * You should have received a copy of the GNU General Public License
  * along with Loot Generator.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "loot.hpp"
+#include "magicItem.hpp"
 
-Loot::Loot(float value)
+MagicItem::MagicItem(std::string name, float value)
+    : Loot(name)
 {
-    _value = value;
+    setValue(value);
 }
 
-Loot::Loot(std::string name)
+void MagicItem::setValue(float value)
 {
-    _name = name;
+    if (value >= 0)
+    {
+        _value = std::round(value);
+    }
+    else
+    {
+        _value = 0;
+    }
 }
 
-Loot::Loot(std::string name, float value)
+std::string MagicItem::toString()
 {
-    _name = name;
-    _value = value;
+    return getName();
 }
-
-std::string Loot::getName()
-{
-    return _name;
-}
-
-float Loot::getValue()
-{
-    return _value;
-}
-
