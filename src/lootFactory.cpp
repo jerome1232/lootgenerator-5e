@@ -1170,7 +1170,7 @@ MagicItem* LootFactory::_magicItemFactoryTableF()
 
 MagicItem* LootFactory::_magicItemFactoryTableG()
 {
-int roll = d100.roll();
+    int roll = d100.roll();
     std::string name;
 
     switch (roll)
@@ -1667,7 +1667,8 @@ MagicItem* LootFactory::_magicItemFactoryTableI()
     std::string name;
 
     switch (roll)
-        case 1 ... 5:
+    {
+            case 1 ... 5:
             name = "Defender";
             break;
         case 6 ... 10:
@@ -1823,5 +1824,6 @@ MagicItem* LootFactory::_magicItemFactoryTableI()
         case 100:
             name = "Tome of stilled tongue";
             break;
+    }
     return new MagicItem(name, 0);
 }
