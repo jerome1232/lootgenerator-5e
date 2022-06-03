@@ -12,11 +12,6 @@ linux-cli: main.o
 	art.o gemstone.o magicItem.o coin.o \
 	-o bin/lootGen-cli.bin ${INCLUDE}
 
-# win-cli: test_loot_generator-win.o
-# 	${WCC} ${CFLAGS} ${WFLAGS} loot-win.o coinage-win.o treasure-win.o \
-# 	lootFactory-win.o treasureGenerator-win.o test_loot_generator-win.o \
-# 	dice-win.o -o bin/lootGen-cli.exe
-
 main.o: src/main.cpp treasureGenerator.o
 	${CC} ${CFLAGS} -c src/main.cpp ${INCLUDE}
 
@@ -50,33 +45,6 @@ treasure.o: coinage.o loot.o art.o gemstone.o magicItem.o src/treasure.cpp
 
 dice.o: src/dice.cpp
 	${CC} ${CFLAGS} -c src/dice.cpp ${INCLUDE}
-
-
-# test_loot_generator-win.o: tests/test_loot_generator.cpp \
-#                            treasureGenerator-win.o
-# 	${WCC} ${CFLAGS} ${WFLAGS} -c tests/test_loot_generator.cpp \
-# 	-o test_loot_generator-win.o
-
-# treasureGenerator-win.o: treasure-win.o lootFactory-win.o dice-win.o \
-#                          src/treasureGenerator.cpp
-# 	${WCC} ${CFLAGS} ${WFLAGS} -c src/treasureGenerator.cpp \
-# 	-o treasureGenerator-win.o
-
-# lootFactory-win.o: loot-win.o dice-win.o src/lootFactory.cpp
-# 	${WCC} ${CFLAGS} ${WFLAGS} -c src/lootFactory.cpp \
-# 	-o lootFactory-win.o
-
-# loot-win.o: src/loot.cpp
-# 	${WCC} ${CFLAGS} ${WFLAGS} -c src/loot.cpp -o loot-win.o
-
-# coinage-win.o: src/coinage.cpp
-# 	${WCC} ${CFLAGS} ${WFLAGS} -c src/coinage.cpp -o coinage-win.o
-
-# treasure-win.o: coinage-win.o loot-win.o src/treasure.cpp
-# 	${WCC} ${CFLAGS} ${WFLAGS} -c src/treasure.cpp -o treasure-win.o
-
-# dice-win.o: src/dice.cpp
-# 	${WCC} ${CFLAGS} ${WFLAGS} -c src/dice.cpp -o dice-win.o
 
 clean:
 	rm -f *.o
