@@ -1,0 +1,11 @@
+version: "3.3"
+
+services:
+  lootgen:
+    container_name: lootgen
+    image: httpd:2.4
+    ports:
+      - "8080:80"
+    volumes:
+      - ../public_html:/usr/local/apache2/htdocs/
+
